@@ -2,4 +2,6 @@
 
 # SkiRent
 
-Testing
+# Building
+
+Open the solution file(`SkiRent.sln`) in Visual Studio and build the project.
