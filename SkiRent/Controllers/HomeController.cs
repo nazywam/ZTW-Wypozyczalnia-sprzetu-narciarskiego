@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using SkiRent.Entities;
+using SkiRent.ViewModels;
 
 namespace SkiRent.Controllers
 {
@@ -10,7 +12,13 @@ namespace SkiRent.Controllers
 	{
 		public ActionResult Index()
 		{
-			return View();
+			var model = new Model();
+			return View(new IndexViewModel()
+			{
+				Employeeses = model.Employees.ToList(),
+				Customers =	model.Customers.ToList(),
+				Items =  model.Items.ToList()
+			});
 		}
 
 		public ActionResult About()
