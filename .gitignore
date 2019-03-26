@@ -4,3 +4,4 @@
 /SkiRent/obj/
 /SkiRent.Tests/bin/
 /SkiRent.Tests/obj/
+*.csproj.user
