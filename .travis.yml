@@ -1,0 +1,6 @@
+language: csharp
+solution: SkiRent.sln
+services:
+  - mysql
+before_install:
+  - mysql -e 'CREATE DATABASE myapp_test;'
