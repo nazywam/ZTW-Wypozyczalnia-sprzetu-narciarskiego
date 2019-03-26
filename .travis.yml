@@ -1,2 +1,4 @@
 language: csharp
 solution: SkiRent.sln
+services:
+  - mysql
