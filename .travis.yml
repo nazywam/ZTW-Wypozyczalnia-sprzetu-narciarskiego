@@ -4,10 +4,3 @@ services:
   - mysql
 before_install:
   - mysql -e 'CREATE DATABASE myapp_test;'
-deploy:
-  provider: heroku
-  api_key:
-    secure: D4QZNgWkuXXTruZl7GYFgxpCTSVGy0v8TBVan8dOgxOvACqFadEOXfeDWOpfICnkXGqGspCX+QcDobfgJLy7r70BHvsNIb9EBFGDZUr8ky4YNaxCpy0LYms9sfn9X7QbfrUCnOYLh1qEYjNEGw8psVAJW4wh+9BK29C2+49O9J8D0ozrarBhPczGRpeGx72uE3yLbx1rLp2r6BCVHJr4fe0UgdHjCrjb5dSIIgwHH6TizcB/EwThHk343EXTZLKgRFoKUKK40p+j0kGLCbN8kPTAyebZBL0FxQ1Bd47+ZGYWN4PtI7tOkpWrRcELO5RrsBTAz/hRWln79HIjq+zyaNMgb9Hf9MQ96YvBtmS322OjRdQwctNb5rBH5OEFQIg0DjW+y/g+syWr/WbJnXWUBqLAY7E4wom/MuJVmzEBinSXdg1frc8Ef04oO4Sn0si4Gymn5D5pZl+yxHQhY+UniYgVVp4hFD39Y2ehNC5FkBX6juPqczE/u7CqwdfaMtuJ62tRuVROqt60s6aPbpYeTB3ZF6jarup6345bq44Ae6madumc7Aiut6cpM3acrkEb4zfBSda1cicYdpVh2ZDeCOoKJiFh4gtgue/U2esQz5fcrRGKkxiMspAUYAwTGqexaY0ooq1amFChi+et4loETZQ43DkgNyR8rKUpwq4YUvs=
-  app: ztw-skirent
-  on:
-    repo: nazywam/ZTW-Wypozyczalnia-sprzetu-narciarskiego
