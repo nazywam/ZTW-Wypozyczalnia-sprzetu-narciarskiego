@@ -24,11 +24,11 @@ namespace SkiRent.Controllers
 	    }
 
 		[BreadCrumb(Clear = true, Label = "Zarządzanie pracownikiami")]
-		public ActionResult Index()
+		public ActionResult Index(int? page)
         {
 			EmployeeIndexViewModel model = new EmployeeIndexViewModel()
 			{
-				EmployeeList = _employeeService.GetAll().ToPagedList(1, PAGE_SIZE),
+				EmployeeList = _employeeService.GetAll().ToPagedList(page ?? 1, PAGE_SIZE),
 				FilterModel = new EmployeeFilterModel()
 			};
 
