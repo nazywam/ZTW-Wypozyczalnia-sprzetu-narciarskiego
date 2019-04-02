@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿@using System.Activities.Statements
+@using System.Web.Mvc.Html
+@using SkiRent.Authorization
+@using WebGrease.Css
+@using MvcBreadCrumbs
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -6,37 +11,102 @@
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/toastr")
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
-<body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+<body class="cbg-light">
+<header>
 
-    @Scripts.Render("~/bundles/jquery")
+	<nav class="navbar navbar-expand-lg navbar-dark cbg-grey mb-3">
+		<div class="container">
+			@Html.ActionLink("SkiRent", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav mr-auto">
+					@{
+						if (@User.Identity.IsAuthenticated)
+						{
+							if (@User.IsInRole("Admin"))
+							{
+								<li>
+									<a href="@Url.Action("Index", "Employee")" class="nav-link">
+										<i class="fas fa-user mr-1"></i>Zarządzanie pracownikami
+									</a>
+								</li>
+							}
+							else
+							{
+								<li>
+									<a href="@Url.Action("Index", "Home")" class="nav-link">
+										<i class="fas fa-cart-plus mr-1"></i>Wypożycz
+									</a>
+								</li>
+								<li>
+									<a href="@Url.Action("Index", "Home")" class="nav-link">
+										<i class="fas fa-list mr-1"></i>Wypożyczenia
+									</a>
+								</li>
+								<li>
+									<a href="@Url.Action("Index", "Home")" class="nav-link">
+										<i class="fas fa-users mr-1"></i>Klienci
+									</a>
+								</li>
+								<li>
+									<a href="@Url.Action("Index", "Home")" class="nav-link">
+										<i class="fas fa-warehouse mr-1"></i>Sprzęt
+									</a>
+								</li>
+							}
+						}
+					}
+				</ul>
+				<span class="navbar-text">
+					@{
+						if (@User.Identity.IsAuthenticated)
+						{
+							<ul class="navbar-nav">
+								<li>
+									<a href="@Url.Action("Index", "Home")" class="nav-link">
+										<i class="fas fa-id-badge mr-1"></i>
+										@((User.Identity as User).Employee.FirstName) @((User.Identity as User).Employee.LastName)
+									</a>
+								</li>
+								<li>
+									<a href="@Url.Action("Logout", "Login")" class="nav-link">
+										<i class="fas fa-sign-out-alt mr-1"></i>Wyloguj
+									</a>
+								</li>
+							</ul>
+
+						}
+						else
+						{
+							<a href="@Url.Action("Login", "Login")" class="nav-link">
+								<i class="fas fa-sign-in-alt mr-2"></i>Zaloguj się
+							</a>
+						}
+					}
+				</span>
+			</div>
+		</div>
+	</nav>
+</header>
+<div class="container">
+	@Html.Raw(BreadCrumb.Display())
+	@RenderBody()
+</div>
+<footer>
+	<div class="footer-copyright text-center text-white py-3 mt-3 cbg-grey">
+		&copy; @DateTime.Now.Year - SkriRent
+	</div>
+</footer>
+
+	@Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
+	@Scripts.Render("~/bundles/toastr")
+	@Html.Partial("_Toastr")
     @RenderSection("scripts", required: false)
 </body>
 </html>

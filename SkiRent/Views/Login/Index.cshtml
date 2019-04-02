@@ -1,0 +1,25 @@
+﻿@model SkiRent.ViewModels.Login.LoginViewModel
+
+@{
+	ViewBag.Title = "Home Page";
+}
+<div class="row justify-content-center align-items-center text-center">
+	<div class="col-md-3">
+		@using (Html.BeginForm())
+		{
+			<h1 class="h3 mb-3 font-weight-normal">Zaloguj się</h1>
+			<div class="form-group">
+				@Html.TextBoxFor(model => model.Login, new { @class = "form-control " + @Html.FieldHasError(model => model.Login), @placeholder = @Html.DisplayNameFor(model => model.Login) })
+				@Html.ValidationMessageFor(m => m.Login, "", new { @class = "invalid-feedback" })  
+			</div>
+			<div class="form-group @Html.FieldHasError(model => model.Password))">
+				@Html.TextBoxFor(model => model.Password, new { @class = "form-control mb-3 " + @Html.FieldHasError(model => model.Password), @type="password", @placeholder = @Html.DisplayNameFor(model => model.Password) })
+				@Html.ValidationMessageFor(m => m.Password, "", new { @class = "invalid-feedback" })  
+			</div>
+
+			<button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj się</button>
+
+
+		}
+	</div>
+</div>

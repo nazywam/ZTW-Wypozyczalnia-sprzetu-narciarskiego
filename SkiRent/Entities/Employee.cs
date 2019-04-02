@@ -38,7 +38,7 @@ namespace SkiRent.Entities
         public string Login { get; set; }
 
         [Required]
-        [StringLength(30)]
+        [StringLength(200)]
         public string Password { get; set; }
 
         public int PermissionLevel { get; set; }

@@ -1,5 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using SkiRent.Extensions;
 
 namespace SkiRent
 {
@@ -8,6 +9,7 @@ namespace SkiRent
 		public static void RegisterGlobalFilters(GlobalFilterCollection filters)
 		{
 			filters.Add(new HandleErrorAttribute());
+			filters.Add(new MessagesActionFilter());
 		}
 	}
 }

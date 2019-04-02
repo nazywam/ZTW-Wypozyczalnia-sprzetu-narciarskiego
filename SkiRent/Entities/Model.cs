@@ -18,7 +18,7 @@ namespace SkiRent.Entities
 		public virtual DbSet<Item> Items { get; set; }
 		public virtual DbSet<Order> Orders { get; set; }
 		public virtual DbSet<Payment> Payments { get; set; }
-		public virtual DbSet<RentedItem> Rented_Items { get; set; }
+		public virtual DbSet<RentedItem> RentedItems { get; set; }
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{

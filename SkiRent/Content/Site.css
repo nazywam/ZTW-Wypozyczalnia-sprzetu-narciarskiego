@@ -1,24 +1,69 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿.cbg-black {
+	background-color: #030303;
 }
 
-/* Set padding to keep content from hitting the edges */
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+.cbg-green {
+	background-color: #51a351;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+.cbg-red {
+	background-color: #bd362f;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.cbg-blue {
+	background-color: #9E9E9E;
+}
+
+.cbg-yellow {
+	background-color: #f89406;
+}
+.cbg-light {
+	background-color: #ECEFF4;
+}
+
+.cbg-grey {
+	background-color: #607D8B;
+}
+.icon-link:hover {
+	text-decoration: none;
+}
+
+.icon-link {
+	font-size: 16px;
+}
+
+.page-item.active .page-link {
+	background-color: #2f96b4 !important;
+	border-color: #2f96b4 !important;
+}
+
+/* Style the list */
+ol.breadcrumb {
+	padding: 10px 16px;
+	list-style: none;
+	background-color: white;
+}
+
+/* Display list items side by side */
+ol.breadcrumb li {
+display: inline;
+font-size: 18px;
+}
+
+/* Add a slash symbol (/) before/behind each list item */
+ol.breadcrumb li + li:before {
+	padding: 8px;
+	color: black;
+	content: ">\00a0";
+}
+
+/* Add a color to all links inside the list */
+ol.breadcrumb li a {
+	color: #0275d8;
+	text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ol.breadcrumb li a:hover {
+	color: #01447e;
 }

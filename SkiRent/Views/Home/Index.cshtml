@@ -1,99 +1,10 @@
-﻿@model SkiRent.ViewModels.IndexViewModel
+@model SkiRent.ViewModels.IndexViewModel
 
 @{
 	ViewBag.Title = "Home Page";
 }
 
 <div class="jumbotron">
-	<h1>ASP.NET</h1>
-	<p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-	<p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+	<h1>SkiRent</h1>
+	<p class="lead">Witaj w aplikacji SkiRent!</p>
 </div>
-
-Users
-<table class="table">
-	<thead>
-	<th>
-		Imię
-	</th>
-	<th>
-		Nazwisko
-	</th>
-	<th>
-		Hasło
-	</th>
-	</thead>
-	@foreach (var emp in Model.Employeeses)
-	{
-		<tr>
-			<td>
-				@Html.DisplayFor(modelItem => emp.FirstName)<br/>
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => emp.LastName)<br/>
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => emp.Password)<br/>
-			</td>
-
-		</tr>
-	}
-</table>
-Customers
-<table class="table">
-	<thead>
-	<th>
-		Imię
-	</th>
-	<th>
-		Nazwisko
-	</th>
-	<th>
-		Adres
-	</th>
-	</thead>
-	@foreach (var emp in Model.Customers)
-	{
-		<tr>
-			<td>
-				@Html.DisplayFor(modelItem => emp.FirstName)<br/>
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => emp.LastName)<br/>
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => emp.Address)<br/>
-			</td>
-
-		</tr>
-	}
-</table>
-Items
-<table class="table">
-	<thead>
-	<th>
-		Nazwa
-	</th>
-	<th>
-		Rozmiar
-	</th>
-	<th>
-		Dostępny
-	</th>
-	</thead>
-	@foreach (var emp in Model.Items)
-	{
-		<tr>
-			<td>
-				@Html.DisplayFor(modelItem => emp.ModelName)<br/>
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => emp.Size)<br/>
-			</td>
-			<td>
-				@Html.DisplayFor(modelItem => emp.Avaiable)<br/>
-			</td>
-
-		</tr>
-	}
-</table>

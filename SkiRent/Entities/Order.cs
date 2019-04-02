@@ -23,10 +23,10 @@ namespace SkiRent.Entities
 
         public int CustomerID { get; set; }
 
-        [Column(TypeName = "timestamp")]
+        //[Column(TypeName = "timestamp")]
         public DateTime? Date_Rented { get; set; }
 
-        [Column(TypeName = "timestamp")]
+        //[Column(TypeName = "timestamp")]
         public DateTime? Date_Return { get; set; }
 
         [StringLength(255)]
