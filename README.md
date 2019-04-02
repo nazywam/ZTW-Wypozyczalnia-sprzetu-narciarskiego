@@ -6,13 +6,42 @@
  * `MySQL Connector Net 6.9.10` from [here](https://dev.mysql.com/downloads/connector/net/6.9.html), add references
 
 # Building
+
+## Database
+
+ * Setup a MySQL database
+ * Create a database and a user
+ * Generate the database structure from `/Misc/db.sql`
+ * Correct the databse connection string in `/SkiRent/SkiRent/Web.config`
+
+## Application
 Open the solution file(`SkiRent.sln`) in Visual Studio, build the project and navigate to http://localhost:49698/
+
+# Features
+
+## Logging in
+![](https://i.imgur.com/29hZc0X.png)
+
+
+## Employees managements
+
+### Browsing
+
+![](https://i.imgur.com/m7NUDuM.png)
+
+
+### Filtering
+
+![](https://i.imgur.com/52tC1B1.png)
+
 
 # Screenshots
 
 ![](https://i.imgur.com/RZj8Cb5.png)
 
 ## Build status
+
+[Current Build](http://skirent.eu-central-1.elasticbeanstalk.com)
 
 [![Build Status](https://travis-ci.com/nazywam/ZTW-Wypozyczalnia-sprzetu-narciarskiego.svg?branch=master)](https://travis-ci.com/nazywam/ZTW-Wypozyczalnia-sprzetu-narciarskiego)
 
