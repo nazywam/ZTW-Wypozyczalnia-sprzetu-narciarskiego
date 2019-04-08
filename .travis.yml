@@ -9,3 +9,5 @@ before_install:
   - mysql -e 'CREATE DATABASE myapp_test;'
 script:
   - dotnet restore
+  - dotnet build
+  - dotnet test SkiRent.Tests/SkiRent.Tests.csproj
