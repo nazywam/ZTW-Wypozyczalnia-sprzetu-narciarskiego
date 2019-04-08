@@ -4,3 +4,5 @@ services:
   - mysql
 before_install:
   - mysql -e 'CREATE DATABASE myapp_test;'
+script:
+  - dotnet restore
