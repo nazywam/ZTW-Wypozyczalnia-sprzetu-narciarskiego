@@ -1,6 +1,5 @@
 language: csharp
 solution: SkiRent.sln
-mono: none
 dotnet: 2.1.502
 
 services:
