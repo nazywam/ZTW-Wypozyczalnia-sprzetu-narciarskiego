@@ -41,7 +41,7 @@ Open the solution file(`SkiRent.sln`) in Visual Studio, build the project and na
 
 ## Build status
 
-[Current Build](http://skirent.eu-central-1.elasticbeanstalk.com)
+[Current Build](http://skirent-env.qmgk85mipb.eu-central-1.elasticbeanstalk.com/)
 
 [![Build Status](https://travis-ci.com/nazywam/ZTW-Wypozyczalnia-sprzetu-narciarskiego.svg?branch=master)](https://travis-ci.com/nazywam/ZTW-Wypozyczalnia-sprzetu-narciarskiego)
 
