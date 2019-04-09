@@ -44,6 +44,6 @@ namespace SkiRent.Entities.DTO
 			set { PermissionLevel = value ? 1 : 0; }
 		}
 		public DateTime EmploymentDate { get; set; }
-        public virtual List<OrderDTO> Orders { get; set; }
+        public virtual HashSet<OrderDTO> Orders { get; set; }
     }
 }

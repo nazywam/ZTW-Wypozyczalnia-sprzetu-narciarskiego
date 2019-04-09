@@ -28,7 +28,7 @@ namespace SkiRent.Tests.Authorization
                 .RuleFor(x => x.PermissionLevel, f => f.Random.Int(0, 1))
                 .RuleFor(x => x.PhoneNumber, f => f.Random.Int(100000000, 999999999))
                 .RuleFor(x => x.Salary, f => f.Random.Decimal())
-                .RuleFor(x => x.Orders, f => new List<OrderDTO>());
+                .RuleFor(x => x.Orders, f => new HashSet<OrderDTO>());
         }
 
         [TestMethod]

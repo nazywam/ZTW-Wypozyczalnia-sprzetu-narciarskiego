@@ -10,11 +10,10 @@ namespace SkiRent.Services
         {
             var mapperConfiguration = new MapperConfiguration(config =>
             {
-	            config.CreateMap<Employee, EmployeeDTO>()
-		            .ForMember(dest => dest.Password, opt => opt.Ignore());
-	            config.CreateMap<EmployeeDTO, Employee>()
-		            .ForSourceMember(src => src.IsAdmin, opt => opt.DoNotValidate())
-		            .ForMember(src => src.Orders, opt => opt.Ignore());
+                config.CreateMap<Employee, EmployeeDTO>()
+                    .ForMember(dest => dest.Password, opt => opt.Ignore());
+                config.CreateMap<EmployeeDTO, Employee>()
+                    .ForSourceMember(src => src.IsAdmin, opt => opt.DoNotValidate());
 
                 config.CreateMap<Category, CategoryDTO>();
                 config.CreateMap<Customer, CustomerDTO>();

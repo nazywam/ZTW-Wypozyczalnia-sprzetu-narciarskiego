@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using SkiRent.Extensions;
 
 namespace SkiRent.Services
 {
@@ -11,8 +10,8 @@ namespace SkiRent.Services
 	{
 		List<T> GetAll();
 		T Get(int id);
-		ServiceResult Update(T item);
-		ServiceResult Delete(T item);
-		ServiceResult Add(T item);
+		void Update(T item);
+		void Delete(T item);
+		void Add(T item);
 	}
 }

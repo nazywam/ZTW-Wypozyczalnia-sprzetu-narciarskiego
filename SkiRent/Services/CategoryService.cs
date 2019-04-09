@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using AutoMapper;
 using SkiRent.Entities;
 using SkiRent.Entities.DTO;
+using SkiRent.Extensions;
 
 namespace SkiRent.Services
 {
@@ -30,19 +32,49 @@ namespace SkiRent.Services
 		    return _mapper.Map<CategoryDTO>(category);
 		}
 
-		public void Update(CategoryDTO item)
+		public ServiceResult Update(CategoryDTO item)
 		{
-
+		    var category = m_Context.Categories.SingleOrDefault(cat => cat.ID == item.ID);
+			if (category != null)
+			{
+			    _mapper.Map(item, category);
+			    return SaveChanges();
+			}
+			return new ServiceResult(false, "");
 		}
 
-		public void Delete(CategoryDTO item)
+		public ServiceResult Delete(CategoryDTO item)
 		{
+			var category = m_Context.Categories.SingleOrDefault(cat => cat.ID == item.ID);
+		    if (category != null)
+		    {
+		        m_Context.Categories.Remove(category);
+				return SaveChanges();
+			}
+		    return new ServiceResult(false, "");
+		}
 
-        }
-
-		public void Add(CategoryDTO item)
+		public ServiceResult Add(CategoryDTO item)
 		{
+		    var category = _mapper.Map<Category>(item);
+		    m_Context.Categories.Add(category);
+		    return SaveChanges();
+		}
 
+		public List<SelectListItem> GetSelectCategoryList()
+		{
+			var categories = GetAll();
+			List<SelectListItem> listItems = new List<SelectListItem>();
+			foreach (CategoryDTO cat in categories)
+			{
+				listItems.Add(new SelectListItem()
+				{
+					Text = cat.Name,
+					Value = cat.ID.ToString()
+				});
+			}
+
+			return listItems;
 		}
 	}
 }

@@ -54,7 +54,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="@Url.Action("Index", "Item")" class="nav-link">
+									<a href="@Url.Action("Index", "Home")" class="nav-link">
 										<i class="fas fa-warehouse mr-1"></i>Sprzęt
 									</a>
 								</li>
@@ -68,9 +68,9 @@
 						{
 							<ul class="navbar-nav">
 								<li>
-									<a href="@Url.Action("Details", "Employee", new {id = (User.Identity as User).Name})" class="nav-link">
+									<a href="@Url.Action("Index", "Home")" class="nav-link">
 										<i class="fas fa-id-badge mr-1"></i>
-											@((User.Identity as User).Employee.FirstName) @((User.Identity as User).Employee.LastName)
+										@((User.Identity as User).Employee.FirstName) @((User.Identity as User).Employee.LastName)
 									</a>
 								</li>
 								<li>
@@ -99,7 +99,7 @@
 </div>
 <footer>
 	<div class="footer-copyright text-center text-white py-3 mt-3 cbg-grey">
-		&copy; @DateTime.Now.Year - SkiRent
+		&copy; @DateTime.Now.Year - SkriRent
 	</div>
 </footer>
 

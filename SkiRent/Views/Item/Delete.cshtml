@@ -1,0 +1,28 @@
+﻿@model SkiRent.Entities.DTO.EmployeeDTO
+
+@{
+	ViewBag.Title = "title";
+}
+
+@using (Html.BeginForm())
+{
+	<ul class="list-group">
+		<li class="list-group-item cbg-blue text-white">
+			<div class="row">
+				<div class="col-md-9"><h2>Usuń pracownika</h2></div>
+			</div>
+		</li>
+        <li class="list-group-item">
+            <p class="mb-0"> Czy jesteś pewny, że chcesz usunąć pracownika: <span class="font-weight-bold">@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</span>?</p>
+        </li>
+		<li class="list-group-item bg-light text-white">
+			<div class="row">
+				<div class="col-md-9"></div>
+				<div class="col-md-3  text-right">
+					@Html.Partial($"~/Views/Shared/_FormCancelDelete.cshtml")
+				</div>
+			</div>
+		</li>
+	</ul>
+
+}

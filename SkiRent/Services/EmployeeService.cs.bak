@@ -10,7 +10,6 @@ using SkiRent.Authorization;
 using SkiRent.Entities;
 using SkiRent.Entities.DTO;
 using SkiRent.Entities.FilterModels;
-using SkiRent.Extensions;
 
 namespace SkiRent.Services
 {
@@ -57,37 +56,19 @@ namespace SkiRent.Services
             return _mapper.Map<EmployeeDTO>(employee);
         }
 
-		public ServiceResult Update(EmployeeDTO item)
+		public void Update(EmployeeDTO item)
 		{
-		    var employee = m_Context.Employees.SingleOrDefault(emp => emp.ID == item.ID);
-            if (employee != null)
-            {
-	            string tmp_pass = employee.Password;
-	            _mapper.Map(item, employee);
-				if(employee.Password!=tmp_pass)
-					employee.Password = AuthorizationHelper.HashPassword(employee.Login, employee.Password);
-				return SaveChanges();
-            }
-			return new ServiceResult(false, "");
+
 		}
 
-		public ServiceResult Delete(EmployeeDTO item)
+		public void Delete(EmployeeDTO item)
 		{
-		    var employee = m_Context.Employees.SingleOrDefault(emp => emp.ID == item.ID);
-            if (employee != null)
-			{
-				m_Context.Employees.Remove(employee);
-				return SaveChanges();
-			}
-            return new ServiceResult(false, "");
+
 		}
 
-		public ServiceResult Add(EmployeeDTO item)
+		public void Add(EmployeeDTO item)
 		{
-		    var employee = _mapper.Map<Employee>(item);
-            employee.Password = AuthorizationHelper.HashPassword(employee.Login, employee.Password);
-            m_Context.Employees.Add(employee);
-            return SaveChanges();
+
 		}
 	}
 }

@@ -27,18 +27,5 @@ namespace SkiRent.Controllers
 		{
 			return _Toastr.AddToastMessage("Sukces!", "Pomyślnie usunięto.", ToastType.Success);
 		}
-		public ToastMessage AddServiceErrorToastMessage(ServiceResult result)
-		{
-			return _Toastr.AddToastMessage("Błąd!", result.ErrorMessage, ToastType.Error);
-		}
-
-		protected override void OnException(ExceptionContext filterContext)
-		{
-			filterContext.ExceptionHandled = true;
-
-			AddSuccessEditedToastMessage();
-			//Redirect or return a view, but not both.
-			filterContext.Result = RedirectToAction("Index", "Home");
-		}
 	}
 }

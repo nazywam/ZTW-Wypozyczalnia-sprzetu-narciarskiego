@@ -24,7 +24,7 @@
 				<button class="btn btn-light mr-2" type="button" data-toggle="collapse" data-target="#filters" aria-expanded="false" aria-controls="filters">
 					<i class="fas fa-filter mr-2"></i>Pokaż filtry
 				</button>
-				<a href="@Url.Action("Create")" class="btn btn-light">
+				<a href="@Url.Action("Index")" class="btn btn-light">
 					<i class="fas fa-plus mr-2"></i>Dodaj pracownika
 				</a>
 			</div>
@@ -90,13 +90,13 @@
 						@Html.DisplayFor(modelItem => emp.Login)<br />
 					</td>
 					<td class="">
-						<a href="@Url.Action("Details", new {id = emp.ID})" class="icon-link">
+						<a href="@Url.Action("Index")" class="icon-link">
 							<i class="fas fa-info"></i>
 						</a>
-						<a href="@Url.Action("Edit", new {id = emp.ID})" class="icon-link">
+						<a href="@Url.Action("Index")" class="icon-link">
 							<i class="far fa-edit"></i>
 						</a>
-						<a href="@Url.Action("Delete", new {id = emp.ID})" class="">
+						<a href="@Url.Action("Index")" class="icon-link">
 							<i class="far fa-trash-alt"></i>
 						</a>
 					</td>

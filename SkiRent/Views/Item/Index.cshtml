@@ -1,0 +1,126 @@
+﻿@using X.PagedList.Mvc
+@using X.PagedList.Mvc.Common
+@model SkiRent.ViewModels.Employee.ItemIndexViewModel
+
+@{
+	ViewBag.Title = "title";
+}
+
+
+<ul class="list-group">
+	<li class="list-group-item cbg-blue text-white">
+		<div class="row">
+			<div class="col-md-7"><h2>Zarządzanie sprzętem
+				@{
+					if (Model.FilterModel.IsFiltered == true)
+					{
+								  <small>(filtr)</small>
+					}
+
+				}
+				</h2>
+			</div>
+			<div class="col-md-5  text-right">
+				<button class="btn btn-light mr-2" type="button" data-toggle="collapse" data-target="#filters" aria-expanded="false" aria-controls="filters">
+					<i class="fas fa-filter mr-2"></i>Pokaż filtry
+				</button>
+				<a href="@Url.Action("Create")" class="btn btn-light">
+					<i class="fas fa-plus mr-2"></i>Dodaj sprzęt
+				</a>
+			</div>
+		</div>
+	</li>
+	<li class="list-group-item">
+		<div class="collapse" id="filters">
+			@using (Html.BeginForm())
+			{
+				<ul class="list-group">
+					<li class="list-group-item">
+						<div class="form-group row">
+							<label for="staticEmail" class="col-sm-1 col-form-label">@Html.DisplayNameFor(model => model.FilterModel.S_Manufacturer)</label>
+							<div class="col-sm-2">
+								@Html.TextBoxFor(model => model.FilterModel.S_Manufacturer, new { @class = "form-control " + @Html.FieldHasError(model => model.FilterModel.S_Manufacturer) })
+								@Html.ValidationMessageFor(model => model.FilterModel.S_Manufacturer, "", new { @class = "invalid-feedback" })
+							</div>
+
+							<label for="staticEmail" class="col-sm-1 col-form-label">@Html.DisplayNameFor(model => model.FilterModel.S_Model)</label>
+							<div class="col-sm-2">
+								@Html.TextBoxFor(model => model.FilterModel.S_Model, new { @class = "form-control " + @Html.FieldHasError(model => model.FilterModel.S_Model) })
+								@Html.ValidationMessageFor(model => model.FilterModel.S_Model, "", new { @class = "invalid-feedback" })
+							</div>
+
+							<label for="staticEmail" class="col-sm-1 col-form-label">@Html.DisplayNameFor(model => model.FilterModel.S_Avaible)</label>
+							<div class="col-sm-2">
+								@Html.DropDownListFor(model => model.FilterModel.S_Avaible, Model.AvaibleSelectList, "Wybierz", new { @class = "form-control " + @Html.FieldHasError(model => model.FilterModel.S_Avaible) })
+								@Html.ValidationMessageFor(model => model.FilterModel.S_Avaible, "", new { @class = "invalid-feedback" })
+							</div>
+
+							<label for="staticEmail" class="col-sm-1 col-form-label">@Html.DisplayNameFor(model => model.FilterModel.S_CategoryID)</label>
+							<div class="col-sm-2">
+								@Html.DropDownListFor(model => model.FilterModel.S_CategoryID, Model.CategorySelectList,"Wybierz", new { @class = "form-control " + @Html.FieldHasError(model => model.FilterModel.S_CategoryID) })
+								@Html.ValidationMessageFor(model => model.FilterModel.S_CategoryID, "", new { @class = "invalid-feedback" })
+							</div>
+
+						</div>
+					</li>
+					<li class="list-group-item">
+						<div class="row">
+							<div class="col-md-9"></div>
+							<div class="col-md-3  text-right">
+								@Html.ActionLink("Usuń filtry", "Index", new { }, new { @class = "btn btn-secondary" })
+								<button class="btn btn-primary" type="submit"><i class="fas fa-filter mr-2"></i>Filtruj</button>
+							</div>
+						</div>
+					</li>
+				</ul>
+			}
+		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Model</th>
+					<th scope="col">Producent</th>
+					<th scope="col">Kategoria</th>
+					<th scope="col">Dostępny</th>
+					<th scope="col">Akcje</th>
+				</tr>
+			</thead>
+			@foreach (var emp in Model.ItemList)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => emp.ModelName)<br />
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => emp.Manufacturer)<br />
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => emp.Category.Name)<br />
+					</td>
+					<td>
+						@Html.CheckBoxFor(modelItem => emp.IsAvaible, new { @disabled = "disabled" })<br />
+					</td>
+					<td class="">
+						<a href="@Url.Action("Details", new {id = emp.ID})" class="icon-link">
+							<i class="fas fa-info"></i>
+						</a>
+						<a href="@Url.Action("Edit", new {id = emp.ID})" class="icon-link">
+							<i class="far fa-edit"></i>
+						</a>
+						<a href="@Url.Action("Delete", new {id = emp.ID})" class="">
+							<i class="far fa-trash-alt"></i>
+						</a>
+					</td>
+				</tr>
+			}
+		</table>
+			@Html.PagedListPager(Model.ItemList, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+			{
+				UlElementClasses = new[] { "pagination justify-content-center" },
+				LiElementClasses = new[] { "page-item" },
+				PageClasses = new[] { "page-link" },
+			})
+	</li>
+</ul>
+
+
