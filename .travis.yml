@@ -1,12 +1,7 @@
 language: csharp
 solution: SkiRent.sln
-dotnet: 2.1.502
 
 services:
   - mysql
 before_install:
   - mysql -e 'CREATE DATABASE myapp_test;'
-script:
-  - dotnet restore
-  - dotnet build
-  - dotnet test SkiRent.Tests/SkiRent.Tests.csproj
