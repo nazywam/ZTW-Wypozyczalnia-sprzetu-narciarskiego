@@ -15,7 +15,7 @@
  * Correct the databse connection string in `/SkiRent/SkiRent/Web.config`
 
 ## Application
-Open the solution file(`SkiRent.sln`) in Visual Studio, build the project and navigate to http://localhost:49698/
+ * Open the solution file(`SkiRent.sln`) in Visual Studio, build the project and navigate to http://localhost:49698/
 
 # Features
 
@@ -23,21 +23,22 @@ Open the solution file(`SkiRent.sln`) in Visual Studio, build the project and na
 ![](https://i.imgur.com/29hZc0X.png)
 
 
-## Employees managements
+## Employee management
 
 ### Browsing
 
-![](https://i.imgur.com/m7NUDuM.png)
+![](img/employee_browse.png)
 
 
-### Filtering
+### CRUD
 
-![](https://i.imgur.com/52tC1B1.png)
+![](img/employee_crud.png)
 
+## Inventory management
 
-# Screenshots
+### Browsing
 
-![](https://i.imgur.com/RZj8Cb5.png)
+![](img/inventory.png)
 
 ## Build status
 
@@ -46,3 +47,5 @@ Open the solution file(`SkiRent.sln`) in Visual Studio, build the project and na
 [![Build Status](https://travis-ci.com/nazywam/ZTW-Wypozyczalnia-sprzetu-narciarskiego.svg?branch=master)](https://travis-ci.com/nazywam/ZTW-Wypozyczalnia-sprzetu-narciarskiego)
 
 [![Build status](https://ci.appveyor.com/api/projects/status/svbu5e3vnd4g5coc?svg=true)](https://ci.appveyor.com/project/nazywam/ztw-wypozyczalnia-sprzetu-narciarskiego)
+
+![](img/tests.png)
