@@ -40,6 +40,20 @@
 
 ![](img/inventory.png)
 
+### CRUD
+
+![](img/items.png)
+
+
+## Clients management
+
+![](img/clients.png)
+
+### CRUD
+
+![](img/client.png)
+
+
 ## Build status
 
 [Current Build](http://skirent-env.qmgk85mipb.eu-central-1.elasticbeanstalk.com/)
