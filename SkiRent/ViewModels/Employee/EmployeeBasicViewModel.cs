@@ -14,28 +14,28 @@ namespace SkiRent.ViewModels.Employee
 
 		[Required]
 		[StringLength(30)]
-		[DisplayName("Imię")]
+		[DisplayName("[[[Name]]]")]
 		public string FirstName { get; set; }
 		[Required]
 		[StringLength(30)]
-		[DisplayName("Nazwisko")]
+		[DisplayName("[[[Surname]]]")]
 		public string LastName { get; set; }
 		[Required]
 		[StringLength(30)]
-		[DisplayName("Adres")]
+		[DisplayName("[[[Address]]]")]
 		public string Address { get; set; }
-		[DisplayName("Telefon")]
+		[DisplayName("[[[Telephone]]]")]
 		[DataType(DataType.PhoneNumber)]
 		public int PhoneNumber { get; set; }
-		[DisplayName("Pensja")]
+		[DisplayName("[[[Salary]]]")]
 		[DataType(DataType.Currency)]
 		public decimal? Salary { get; set; }
 		[Required]
 		[StringLength(30)]
-		[DisplayName("Login")]
+		[DisplayName("[[[Login]]]")]
 		public string Login { get; set; }
 		public int PermissionLevel { get; set; }
-		[DisplayName("Administrator")]
+		[DisplayName("[[[Administrator]]]")]
 		public bool IsAdmin
 		{
 			get { return PermissionLevel == 1; }

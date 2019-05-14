@@ -15,11 +15,11 @@
 						@{
 							if (Model.Model.ID != 0)
 							{
-								<h2>Edytuj sprzęt</h2>
+								<h2>[[[Edit item]]]</h2>
 							}
 							else
 							{
-								<h2>Dodaj sprzęt</h2>
+								<h2>[[[Add item]]]</h2>
 							}
 						}
 						</div>
@@ -39,19 +39,26 @@
 						@Html.ValidationMessageFor(model => model.Model.ModelName, "", new { @class = "invalid-feedback" })
 					</div>
 				</div>
-				<div class="form-group row">
-					<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.Size)</label>
-					<div class="col-sm-4">
-						@Html.TextBoxFor(model => model.Model.Size, new { @class = "form-control " + @Html.FieldHasError(model => model.Model.Size) })
-						@Html.ValidationMessageFor(model => model.Model.Size, "", new { @class = "invalid-feedback" })
-					</div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.Size)</label>
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model.Model.Size, new { @class = "form-control " + @Html.FieldHasError(model => model.Model.Size) })
+                        @Html.ValidationMessageFor(model => model.Model.Size, "", new { @class = "invalid-feedback" })
+                    </div>
 
-					<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.Manufacturer)</label>
-					<div class="col-sm-4">
-						@Html.DropDownListFor(model => model.Model.CategoryID, Model.CategorySelectList,"Wybierz", new { @class = "form-control " + @Html.FieldHasError(model => model.Model.CategoryID) })
-						@Html.ValidationMessageFor(model => model.Model.CategoryID, "", new { @class = "invalid-feedback" })
-					</div>
-				</div>
+                    <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.Manufacturer)</label>
+                    <div class="col-sm-4">
+                        @Html.DropDownListFor(model => model.Model.CategoryID, Model.CategorySelectList,"Wybierz", new { @class = "form-control " + @Html.FieldHasError(model => model.Model.CategoryID) })
+                        @Html.ValidationMessageFor(model => model.Model.CategoryID, "", new { @class = "invalid-feedback" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.Barcode)</label>
+                    <div class="col-sm-4">
+                        @Html.TextBoxFor(model => model.Model.Barcode, new { @class = "form-control " + @Html.FieldHasError(model => model.Model.Barcode) })
+                        @Html.ValidationMessageFor(model => model.Model.Barcode, "", new { @class = "invalid-feedback" })
+                    </div>
+                </div>
 			</li>
 			<li class="list-group-item bg-light text-white">
 				<div class="row">

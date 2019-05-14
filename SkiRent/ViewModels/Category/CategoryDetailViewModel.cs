@@ -11,6 +11,6 @@ namespace SkiRent.ViewModels.Category
 	public class CategoryDetailViewModel : CategoryBasicViewModel
 	{
 		public List<ItemBasicViewModel> ItemList { get; set; }
-		public List<CategoryBasicViewModel> SubCategories { get; set; }
-	}
+        public List<CategoryBasicViewModel> SubCategories { get; set; }
+    }
 }

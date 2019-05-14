@@ -8,7 +8,7 @@ namespace SkiRent.Entities
 	public partial class Model : DbContext
 	{
 		public Model()
-			: base("name=db_debug")
+			: base("name=db_aws")
 		{
 		}
 
@@ -116,17 +116,17 @@ namespace SkiRent.Entities
 				.HasMany(e => e.Rented_Items)
 				.WithRequired(e => e.Order)
 				.HasForeignKey(e => e.OrderID)
-				.WillCascadeOnDelete(false);
+				.WillCascadeOnDelete(true);
 
 			modelBuilder.Entity<Payment>()
 				.Property(e => e.Currency)
 				.IsUnicode(false);
 
-			modelBuilder.Entity<Payment>()
-				.HasMany(e => e.Orders)
-				.WithRequired(e => e.Payment)
-				.HasForeignKey(e => e.PaymentID)
-				.WillCascadeOnDelete(false);
-		}
+            modelBuilder.Entity<Order>()
+                .HasMany(e => e.Payments)
+                .WithRequired(e => e.Order)
+                .HasForeignKey(e => e.OrderID)
+                .WillCascadeOnDelete(true);
+        }
 	}
 }

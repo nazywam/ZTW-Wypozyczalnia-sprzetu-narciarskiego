@@ -14,8 +14,9 @@ namespace SkiRent.ViewModels.Payment
 	public class PaymentBasicViewModel
 	{
 		public int ID { get; set; }
+        public int OrderID { get; set; }
 
-		public DateTime PaymentDate { get; set; }
+        public DateTime PaymentDate { get; set; }
 
 		public decimal Amount { get; set; }
 
@@ -23,7 +24,7 @@ namespace SkiRent.ViewModels.Payment
 		[StringLength(3)]
 		public string Currency { get; set; }
 
-		[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-		public List<OrderBasicViewModel> Orders { get; set; }
-	}
+        public decimal ExchangeRate { get; set; }
+        public  OrderBasicViewModel Order { get; set; }
+    }
 }

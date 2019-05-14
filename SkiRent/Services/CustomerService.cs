@@ -79,5 +79,20 @@ namespace SkiRent.Services
 			m_Context.Customers.Add(v_item);
 			return SaveChanges();
 		}
-	}
+
+        public List<SelectListItem> GetSelectCustomerList()
+        {
+            var categories = m_Context.Customers.ToList();
+            List<SelectListItem> listItems = new List<SelectListItem>();
+            foreach (Customer cut in categories)
+            {
+                listItems.Add(new SelectListItem()
+                {
+                    Text = string.Format("{0} {1} - {2}", cut.FirstName, cut.LastName, cut.IdentyficationNumber),
+                    Value = cut.ID+""
+                });
+            }
+            return listItems;
+        }
+    }
 }

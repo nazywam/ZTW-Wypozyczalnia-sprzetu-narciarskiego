@@ -10,7 +10,7 @@
 <ul class="list-group">
 	<li class="list-group-item cbg-blue text-white">
 		<div class="row">
-			<div class="col-md-7"><h2>Zarządzanie klientami
+			<div class="col-md-7"><h2>[[[Client management]]]
 				@{
 					if (Model.FilterModel.IsFiltered == true)
 					{
@@ -22,10 +22,10 @@
 			</div>
 			<div class="col-md-5  text-right">
 				<button class="btn btn-light mr-2" type="button" data-toggle="collapse" data-target="#filters" aria-expanded="false" aria-controls="filters">
-					<i class="fas fa-filter mr-2"></i>Pokaż filtry
+					<i class="fas fa-filter mr-2"></i>[[[Show filters]]]
 				</button>
 				<a href="@Url.Action("Create")" class="btn btn-light">
-					<i class="fas fa-plus mr-2"></i>Dodaj klienta
+					<i class="fas fa-plus mr-2"></i>[[[Add client]]]
 				</a>
 			</div>
 		</div>
@@ -72,10 +72,10 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th scope="col">Imię</th>
-					<th scope="col">Nazwisko</th>
-					<th scope="col">Numer dokumentu</th>
-					<th scope="col">Akcje</th>
+					<th scope="col">[[[Name]]]</th>
+					<th scope="col">[[[Surname]]]</th>
+					<th scope="col">[[[Document ID]]]</th>
+					<th scope="col">[[[Actions]]]</th>
 				</tr>
 			</thead>
 			@foreach (var emp in Model.CustomerList)

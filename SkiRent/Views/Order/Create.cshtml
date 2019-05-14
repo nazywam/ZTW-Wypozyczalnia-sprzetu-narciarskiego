@@ -1,4 +1,7 @@
-﻿@model SkiRent.ViewModels.Order.OrderCreateViewModel
+﻿@using SkiRent.Entities
+@using SkiRent.ViewModels.Item
+@using SkiRent.ViewModels.Payment
+@model SkiRent.ViewModels.Order.OrderCreateViewModel
 
 @{
 	ViewBag.Title = "title";
@@ -7,53 +10,110 @@
 @using (Html.BeginForm())
 {
 	@Html.HiddenFor(model => model.Model.ID)
-		<ul class="list-group">
-			<li class="list-group-item cbg-blue text-white">
-				<div class="row">
-					<div class="col-md-9">
-						@{
-							if (Model.Model.ID != 0)
-							{
-								<h2>Edytuj kategorię</h2>
-							}
-							else
-							{
-								<h2>Dodaj kategorię</h2>
-							}
-						}
-						</div>
-				</div>
-			</li>
-			<li class="list-group-item">
-				<div class="form-group row">
-					<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.Name)</label>
-					<div class="col-sm-4">
-						@Html.TextBoxFor(model => model.Model.Name, new { @class = "form-control " + @Html.FieldHasError(model => model.Model.Name) })
-						@Html.ValidationMessageFor(model => model.Model.Name, "", new { @class = "invalid-feedback" })
-					</div>
+    @Html.HiddenFor(model => model.Model.EmployeeID)
+    <ul class="list-group">
+        <li class="list-group-item cbg-blue text-white">
+            <div class="row">
+                <div class="col-md-9">
+                    @{
+                        if (Model.IsEditMode)
+                        {
+                            <h2>[[[Edit order]]]</h2>
+                        }
+                        else
+                        {
+                            <h2>[[[Add order]]]</h2>
+                        }
+                    }
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.Date_Rented)</label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(model => model.Model.Date_Rented, new { @class = "form-control ", @readonly = true })
+                </div>
 
-					<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.PricePerDay)</label>
-					<div class="col-sm-4">
-						@Html.TextBoxFor(model => model.Model.PricePerDay, new { @class = "form-control " + @Html.FieldHasError(model => model.Model.PricePerDay) })
-						@Html.ValidationMessageFor(model => model.Model.PricePerDay, "", new { @class = "invalid-feedback" })
-					</div>
-				</div>
-				<div class="form-group row">
-					<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.ParentOrderID)</label>
-					<div class="col-sm-4">
-						@Html.DropDownListFor(model => model.Model.ParentOrderID, Model.OrderSelectList, "Wybierz", new { @class = "form-control " + @Html.FieldHasError(model => model.Model.ParentOrderID) })
-						@Html.ValidationMessageFor(model => model.Model.ParentOrderID, "", new { @class = "invalid-feedback" })
-					</div>
-				</div>
-			</li>
-			<li class="list-group-item bg-light text-white">
-				<div class="row">
-					<div class="col-md-9"></div>
-					<div class="col-md-3  text-right">
-						@Html.Partial($"~/Views/Shared/_FormCancelSave.cshtml")
-					</div>
-				</div>
-			</li>
-		</ul>
+                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.Date_Return)</label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(model => model.Model.Date_Return, new { @class = "form-control ", @readonly = true })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.Comment)</label>
+                <div class="col-sm-4">
+                    @Html.TextAreaFor(model => model.Model.Comment, new { @class = "form-control "})
+                    @Html.ValidationMessageFor(model => model.Model.Comment, "", new { @class = "invalid-feedback" })
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.CustomerID)</label>
+                <div class="col-sm-4">
+                    @Html.DropDownListFor(model => model.Model.CustomerID, Model.CustomerSelectList, "Wybierz", new { @class = "form-control " + @Html.FieldHasError(model => model.Model.CustomerID) })
+                    @Html.ValidationMessageFor(model => model.Model.CustomerID, "", new { @class = "invalid-feedback" })
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">[[[Add by barcode]]]:</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="barcodeInput"/>
+                </div>
+                <div class="col-sm-2">
+                    <a href="#" class="btn btn-primary" id="addItem">[[[Add]]]</a>
+                </div>
+            </div>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">[[[Barcode]]]</th>
+                    <th scope="col">[[[Model]]]</th>
+                    <th scope="col">[[[Producent]]]</th>
+                    <th scope="col">[[[Action]]]</th>
+                </tr>
+                </thead>
+                <tbody id="item_table">
+                @if (Model.ItemsFormList != null)
+                {
+                    foreach (ItemBasicViewModel rentedItem in Model.ItemsFormList)
+                    {
+                        Html.RenderPartial("_ItemRow", rentedItem);
+                    }
+                }
+                </tbody>
+            </table>
+        </li>
+        <li class="list-group-item bg-light text-white">
+            <div class="row">
+                <div class="col-md-9"></div>
+                <div class="col-md-3  text-right">
+                    @Html.Partial($"~/Views/Shared/_FormCancelSave.cshtml")
+                </div>
+            </div>
+        </li>
+    </ul>
 
 }
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(function () {
+            $("#barcodeInput").autocomplete({
+                source: '@Url.Action("ItemsAutocomplete")'
+            });
+            $("#addItem").click(function () {
+                $.get('/Order/GetItemRowPartial?barcode=' + $("#barcodeInput").val(), function (template) {
+                    $("#item_table").append(template);
+                });
+            });
+        });
+    });
+
+
+
+</script>

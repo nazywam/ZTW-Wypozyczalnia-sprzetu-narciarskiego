@@ -10,7 +10,7 @@
 <ul class="list-group">
 	<li class="list-group-item cbg-blue text-white">
 		<div class="row">
-			<div class="col-md-7"><h2>Zarządzanie kategoriami
+			<div class="col-md-7"><h2>[[[Category management]]]
 				@{
 					if (Model.FilterModel.IsFiltered == true)
 					{
@@ -22,10 +22,10 @@
 			</div>
 			<div class="col-md-5  text-right">
 				<button class="btn btn-light mr-2" type="button" data-toggle="collapse" data-target="#filters" aria-expanded="false" aria-controls="filters">
-					<i class="fas fa-filter mr-2"></i>Pokaż filtry
+					<i class="fas fa-filter mr-2"></i>[[[Show filters]]]
 				</button>
 				<a href="@Url.Action("Create")" class="btn btn-light">
-					<i class="fas fa-plus mr-2"></i>Dodaj kategorię
+					<i class="fas fa-plus mr-2"></i>[[[Add category]]]
 				</a>
 			</div>
 		</div>
@@ -65,9 +65,9 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th scope="col">Nazwa</th>
-					<th scope="col">Cena za dzień</th>
-					<th scope="col">Akcje</th>
+					<th scope="col">[[[Name]]]</th>
+					<th scope="col">[[[Daily price]]]</th>
+					<th scope="col">[[[actions]]]</th>
 				</tr>
 			</thead>
 			@foreach (var emp in Model.CategoryList)

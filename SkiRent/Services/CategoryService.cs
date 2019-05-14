@@ -78,6 +78,18 @@ namespace SkiRent.Services
 			return SaveChanges();
 		}
 
+        public decimal GetCategoryPricePerDay(int id)
+        {
+            var category = m_Context.Categories.SingleOrDefault(cat => cat.ID == id);
+            var price = category.PricePerDay;
+            while (price == null)
+            {
+                category = category.ParentCategory;
+                price = category.PricePerDay;
+            }
+
+            return price.Value;
+        }
 		public List<SelectListItem> GetSelectCategoryList()
 		{
 			var categories = m_Context.Categories.ToList();
@@ -90,20 +102,20 @@ namespace SkiRent.Services
 			return listItems;
 		}
 
-		private void AddChildren(List<SelectListItem> selectList, Category cat,int level)
-		{
-			var sep = "";
-			for (int i = 0; i < level; i++)
-				sep += TREE_SEPARATOR;
-			selectList.Add(new SelectListItem
-			{
-				Text = sep + cat.Name,
-				Value = cat.ID+ ""
-			});
-			level++;
-			if (cat.SubCategories != null)
-				foreach (Category child in cat.SubCategories)
-					AddChildren(selectList, child, level);
-		}
-	}
+        private void AddChildren(List<SelectListItem> selectList, Category cat, int level)
+        {
+            var sep = "";
+            for (int i = 0; i < level; i++)
+                sep += TREE_SEPARATOR;
+            selectList.Add(new SelectListItem
+            {
+                Text = sep + cat.Name,
+                Value = cat.ID + ""
+            });
+            level++;
+            if (cat.SubCategories != null)
+                foreach (Category child in cat.SubCategories)
+                    AddChildren(selectList, child, level);
+        }
+    }
 }

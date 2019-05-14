@@ -173,23 +173,18 @@
     <Compile Include="Authorization\AuthorizationHelper.cs" />
     <Compile Include="Authorization\User.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Entities\DTO\ItemDTO.cs" />
-    <Compile Include="Entities\DTO\EmployeeDTO.cs" />
-    <Compile Include="Entities\DTO\CategoryDTO.cs" />
-    <Compile Include="Entities\DTO\CustomerDTO.cs" />
+    <Compile Include="Entities\FilterModels\OrderFilterModel.cs" />
     <Compile Include="Entities\FilterModels\CustomerFilterModel.cs" />
     <Compile Include="Entities\FilterModels\CategoryFilterModel.cs" />
     <Compile Include="Entities\FilterModels\ItemFilterModel.cs" />
     <Compile Include="Entities\FilterModels\EmployeeFilterModel.cs" />
-    <Compile Include="Entities\DTO\OrderDTO.cs" />
-    <Compile Include="Entities\DTO\PaymentDTO.cs" />
-    <Compile Include="Entities\DTO\RentedItemDTO.cs" />
     <Compile Include="Extensions\MessageActionFilter.cs" />
     <Compile Include="Extensions\ServiceResult.cs" />
     <Compile Include="Extensions\ToastrHelper.cs" />
@@ -206,6 +201,8 @@
     <Compile Include="Entities\RentedItem.cs" />
     <Compile Include="Extensions\HtmlHelperExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\PaymentService.cs" />
+    <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\CustomerService.cs" />
     <Compile Include="Services\ItemService.cs" />
     <Compile Include="Services\EmployeeService.cs" />
@@ -213,6 +210,10 @@
     <Compile Include="Services\CategoryService.cs" />
     <Compile Include="Services\IService.cs" />
     <Compile Include="Services\MapperService.cs" />
+    <Compile Include="ViewModels\Order\OrderBasicViewModel.cs" />
+    <Compile Include="ViewModels\Order\OrderCreateViewModel.cs" />
+    <Compile Include="ViewModels\Order\OrderDetailViewModel.cs" />
+    <Compile Include="ViewModels\Order\OrderIndexViewModel.cs" />
     <Compile Include="ViewModels\Customer\CustomerBasicViewModel.cs" />
     <Compile Include="ViewModels\Customer\CustomerCreateViewModel.cs" />
     <Compile Include="ViewModels\Customer\CustomerDetailViewModel.cs" />
@@ -230,6 +231,8 @@
     <Compile Include="ViewModels\Employee\EmployeeIndexViewModel.cs" />
     <Compile Include="ViewModels\IndexViewModel.cs" />
     <Compile Include="ViewModels\Login\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Payment\PaymentBasicViewModel.cs" />
+    <Compile Include="ViewModels\RentedItem\RentedItemBasicViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Client Scripts\mvcfoolproof.unobtrusive.js" />
@@ -315,6 +318,10 @@
     <Content Include="Views\Shared\DisplayTemplates\MetaRobotsHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\MenuHelperModel.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\CanonicalHelperModel.cshtml" />
+    <Content Include="Views\Order\Create.cshtml" />
+    <Content Include="Views\Order\Delete.cshtml" />
+    <Content Include="Views\Order\Details.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

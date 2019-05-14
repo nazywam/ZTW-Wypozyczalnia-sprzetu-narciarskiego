@@ -57,7 +57,13 @@ namespace SkiRent.Services
             return _mapper.Map<ItemDetailViewModel>(v_item);
         }
 
-		public ServiceResult Update(ItemDetailViewModel item)
+        public ItemBasicViewModel GetBasic(int id)
+        {
+            var v_item = m_Context.Items.SingleOrDefault(emp => emp.ID == id);
+            return _mapper.Map<ItemBasicViewModel>(v_item);
+        }
+
+        public ServiceResult Update(ItemDetailViewModel item)
 		{
 		    var v_item = m_Context.Items.SingleOrDefault(emp => emp.ID == item.ID);
             if (v_item != null)
@@ -103,5 +109,17 @@ namespace SkiRent.Services
 
 			return listItems;
 		}
-	}
+
+        public List<string> GetAvaibleItemBarcodesByBarcode(string term)
+        {
+            List<string> items = m_Context.Items.Where(i => i.Barcode.Contains(term) && i.Avaiable == "1").Select(i => i.Barcode).ToList();
+            return items;
+        }
+
+        public ItemBasicViewModel GetAvaibleItemByBarcode(string term)
+        {
+            var item = _mapper.Map<ItemBasicViewModel>(m_Context.Items.Where(i => i.Barcode == term && i.Avaiable == "1").SingleOrDefault());
+            return item;
+        }
+    }
 }

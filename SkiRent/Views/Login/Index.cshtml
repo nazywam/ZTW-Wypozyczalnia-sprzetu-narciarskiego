@@ -7,7 +7,7 @@
 	<div class="col-md-3">
 		@using (Html.BeginForm())
 		{
-			<h1 class="h3 mb-3 font-weight-normal">Zaloguj się</h1>
+			<h1 class="h3 mb-3 font-weight-normal">[[[Log in]]]</h1>
 			<div class="form-group">
 				@Html.TextBoxFor(model => model.Login, new { @class = "form-control " + @Html.FieldHasError(model => model.Login), @placeholder = @Html.DisplayNameFor(model => model.Login) })
 				@Html.ValidationMessageFor(m => m.Login, "", new { @class = "invalid-feedback" })  
@@ -17,7 +17,7 @@
 				@Html.ValidationMessageFor(m => m.Password, "", new { @class = "invalid-feedback" })  
 			</div>
 
-			<button class="btn btn-lg btn-primary btn-block" type="submit">Zaloguj się</button>
+			<button class="btn btn-lg btn-primary btn-block" type="submit">[[[Log in]]]</button>
 
 
 		}

@@ -19,19 +19,19 @@ namespace SkiRent.Controllers
 
 		public ToastMessage AddSuccessEditedToastMessage()
 		{
-			return _Toastr.AddToastMessage("Sukces!", "Pomyślnie zeedytowano.", ToastType.Success);
+			return _Toastr.AddToastMessage("[[[Sukces!]]]", "[[[Pomyślnie zeedytowano.]]]", ToastType.Success);
 		}
 		public ToastMessage AddSuccessCreatedToastMessage()
 		{
-			return _Toastr.AddToastMessage("Sukces!", "Pomyślnie dodano.", ToastType.Success);
+			return _Toastr.AddToastMessage("[[[Sukces!]]]", "[[[Pomyślnie dodano.]]]", ToastType.Success);
 		}
 		public ToastMessage AddSuccessDeletedToastMessage()
 		{
-			return _Toastr.AddToastMessage("Sukces!", "Pomyślnie usunięto.", ToastType.Success);
+			return _Toastr.AddToastMessage("[[[Sukces!]]]", "[[[Pomyślnie usunięto.]]]", ToastType.Success);
 		}
 		public ToastMessage AddServiceErrorToastMessage(ServiceResult result)
 		{
-			return _Toastr.AddToastMessage("Błąd!", result.ErrorMessage, ToastType.Error);
+			return _Toastr.AddToastMessage("[[[Błąd!]]]", result.ErrorMessage, ToastType.Error);
 		}
 
 		protected override void OnException(ExceptionContext filterContext)

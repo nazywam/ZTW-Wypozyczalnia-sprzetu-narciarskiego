@@ -14,32 +14,36 @@ namespace SkiRent.ViewModels.Item
 		public int ID { get; set; }
 
 		[Required]
-		[DisplayName("Kategoria")]
+		[DisplayName("[[[Category]]]")]
 		public string CategoryID { get; set; }
 
 		[Required]
 		[StringLength(30)]
-		[DisplayName("Producent")]
+		[DisplayName("[[[Manufacturer]]]")]
 		public string Manufacturer { get; set; }
 
 		[Required]
 		[StringLength(255)]
-		[DisplayName("Model")]
+		[DisplayName("[[[Model]]]")]
 		public string ModelName { get; set; }
 
 		[Required]
 		[StringLength(10)]
-		[DisplayName("Rozmiar")]
+		[DisplayName("[[[Size]]]")]
 		public string Size { get; set; }
 
 		[StringLength(1)]
 		public string Avaiable { get; set; }
 
-		[DisplayName("Data zakupu")]
+		[DisplayName("[[[Purchase date]]]")]
 		public DateTime? Purchase_date { get; set; }
 
+        [StringLength(255)]
+        [DisplayName("[[[Barcode]]]")]
+        public string Barcode { get; set; }
+
 		public virtual CategoryBasicViewModel Category { get; set; }
-		[DisplayName("Dostępny")]
+		[DisplayName("[[[Available]]]")]
 		public bool IsAvaible
 		{
 			get { return Avaiable == "1"; }

@@ -15,25 +15,25 @@ namespace SkiRent.ViewModels.Customer
 
 		[Required]
 		[StringLength(255)]
-		[DisplayName("Imię")]
+		[DisplayName("[[[Name]]]")]
 		public string FirstName { get; set; }
 
 		[Required]
 		[StringLength(255)]
-		[DisplayName("Nazwisko")]
+		[DisplayName("[[[Surname]]]")]
 		public string LastName { get; set; }
 
 		[Required]
 		[StringLength(255)]
-		[DisplayName("Adres")]
+		[DisplayName("[[[Adress]]]")]
 		public string Address { get; set; }
 
-		[DisplayName("Numer telefonu")]
+		[DisplayName("[[[Telephone number]]]")]
 		public int PhoneNumber { get; set; }
 
 		[Required]
 		[StringLength(20)]
-		[DisplayName("Numer dokumentu")]
+		[DisplayName("[[[Document number]]]")]
 		public string IdentyficationNumber { get; set; }
 	}
 }

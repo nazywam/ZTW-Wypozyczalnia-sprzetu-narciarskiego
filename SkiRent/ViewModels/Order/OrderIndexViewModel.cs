@@ -16,5 +16,9 @@ namespace SkiRent.ViewModels.Order
 	{
 		public OrderFilterModel FilterModel { get; set; }
 		public IPagedList<OrderBasicViewModel> OrderList { get; set; }
-	}
+
+        public List<SelectListItem> ReturnedSelectList { get; set; }
+
+        public List<SelectListItem> CustomerSelectList { get; set; }
+    }
 }

@@ -10,11 +10,11 @@
 <ul class="list-group">
 	<li class="list-group-item cbg-blue text-white">
 		<div class="row">
-			<div class="col-md-7"><h2>[[[Zarządzanie pracownikami]]]
+			<div class="col-md-7"><h2>[[[Employee management]]]
 				@{
 					if (Model.FilterModel.IsFiltered == true)
 					{
-								  <small>[[[(filtr)]]]</small>
+								  <small>[[[(filter)]]]</small>
 					}
 
 				}
@@ -22,10 +22,10 @@
 			</div>
 			<div class="col-md-5  text-right">
 				<button class="btn btn-light mr-2" type="button" data-toggle="collapse" data-target="#filters" aria-expanded="false" aria-controls="filters">
-					<i class="fas fa-filter mr-2"></i>Pokaż filtry
+					<i class="fas fa-filter mr-2"></i>[[[Show filters]]]
 				</button>
 				<a href="@Url.Action("Create")" class="btn btn-light">
-					<i class="fas fa-plus mr-2"></i>Dodaj pracownika
+					<i class="fas fa-plus mr-2"></i>[[[Add employee]]]
 				</a>
 			</div>
 		</div>
@@ -71,10 +71,10 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th scope="col">Imię</th>
-					<th scope="col">Nazwisko</th>
-					<th scope="col">Login</th>
-					<th scope="col">Akcje</th>
+					<th scope="col">[[[Name]]]</th>
+					<th scope="col">[[[Surname]]]</th>
+					<th scope="col">[[[Login]]]</th>
+					<th scope="col">[[[Actions]]]</th>
 				</tr>
 			</thead>
 			@foreach (var emp in Model.EmployeeList)

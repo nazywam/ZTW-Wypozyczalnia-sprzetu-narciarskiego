@@ -12,38 +12,103 @@
 			<div class="row">
 				<div class="col-md-7">
 					<h2>
-						Dane sprzętu
+						[[[Rent details]]]
 					</h2>
 				</div>
 				<div class="col-md-5  text-right">
 					<a href="@Url.Action("Edit", new {id = Model.ID})" class="btn btn-light icon-link">
-						<i class="far fa-edit mr-2"></i>Edytuj
+						<i class="far fa-edit mr-2"></i>[[[Edit]]]
 					</a>
 					<a href="@Url.Action("Delete", new {id = Model.ID})" class="btn btn-light">
-						<i class="far fa-trash-alt mr-2"></i>Usuń
+						<i class="far fa-trash-alt mr-2"></i>[[[Delete]]]
 					</a>
 				</div>
 			</div>
 		</li>
-		<li class="list-group-item">
-			<div class="form-group row">
-				<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Name)</label>
-				<div class="col-sm-4">
-					@Html.TextBoxFor(model => model.Name, new { @class = "form-control ", @readonly = true})
-				</div>
+        <li class="list-group-item">
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.ID)</label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(model => model.ID, new { @class = "form-control ", @readonly = true})
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Date_Rented)</label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(model => model.Date_Rented, new {@class = "form-control ", @readonly = true})
+                </div>
 
-				<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.PricePerDay)</label>
-				<div class="col-sm-4">
-					@Html.TextBoxFor(model => model.PricePerDay, new { @class = "form-control ", @readonly = true })
-				</div>
-			</div>
-			<div class="form-group row">
-				<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.ParentOrderID)</label>
-				<div class="col-sm-4">
-					@Html.TextBoxFor(model => model.ParentOrder.Name, new { @class = "form-control ", @readonly = true })
-				</div>
-			</div>
-		</li>
-	</ul>
+                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Date_Return)</label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(model => model.Date_Return, new {@class = "form-control ", @readonly = true})
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">[[[Employee]]]</label>
+                <div class="col-sm-4">
+                    <a href="@Url.Action("Details", "Employee", new {id = Model.Employee.ID})" class="icon-link">
+                        @Model.Employee.FirstName @Model.Employee.LastName
+                    </a>
+                </div>
 
-						}
+                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">[[[Customer]]]</label>
+                <div class="col-sm-4">
+                    <a href="@Url.Action("Details", "Customer", new {id = Model.Customer.ID})" class="icon-link">
+                        @Model.Customer.FirstName @Model.Customer.LastName
+                    </a>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Comment)</label>
+                <div class="col-sm-10">
+                    @Html.TextAreaFor(model => model.Comment, new {@class = "form-control ", @readonly = true})
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">[[[Model]]]</th>
+                    <th scope="col">[[[Manufacturer]]]</th>
+                    <th scope="col">[[[Category]]]</th>
+                    <th scope="col">[[[Price]]]</th>
+                </tr>
+                </thead>
+                @foreach (var emp in Model.Rented_Items)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => emp.Item.ModelName)<br />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => emp.Item.Manufacturer)<br />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => emp.Item.Category.Name)<br />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => emp.Item.Category.PricePerDay)<br />
+                        </td>
+                    </tr>
+                }
+            </table>
+        </li>
+        <li class="list-group-item">
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.DaysRented)</label>
+                <div class="col-sm-2">
+                    @Html.TextBoxFor(model => model.DaysRented, new {@class = "form-control ", @readonly = true})
+                </div>
+                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.PricePerDay)</label>
+                <div class="col-sm-2">
+                    @Html.TextBoxFor(model => model.PricePerDay, new {@class = "form-control ", @readonly = true})
+                </div>
+                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.PaymentValue)</label>
+                <div class="col-sm-2">
+                    @Html.TextBoxFor(model => model.PaymentValue, new {@class = "form-control ", @readonly = true})
+                </div>
+            </div>
+        </li>
+    </ul>
+}

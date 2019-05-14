@@ -11,6 +11,9 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/toastr")
+    @Scripts.Render("~/bundles/jquery")
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
 </head>
 <body class="cbg-light">
@@ -31,7 +34,7 @@
 							{
 								<li>
 									<a href="@Url.Action("Index", "Employee")" class="nav-link">
-										<i class="fas fa-user mr-1"></i>Zarządzanie pracownikami
+										<i class="fas fa-user mr-1"></i>[[[Employee management]]]
 									</a>
 								</li>
 							}
@@ -39,27 +42,27 @@
 							{
 								<li>
 									<a href="@Url.Action("Create", "Order")" class="nav-link">
-										<i class="fas fa-cart-plus mr-1"></i>Wypożycz
+										<i class="fas fa-cart-plus mr-1"></i>[[[Add order]]]
 									</a>
 								</li>
 								<li>
 									<a href="@Url.Action("Index", "Order")" class="nav-link">
-										<i class="fas fa-list mr-1"></i>Wypożyczenia
+										<i class="fas fa-list mr-1"></i>[[[Orders]]]
 									</a>
 								</li>
 								<li>
 									<a href="@Url.Action("Index", "Customer")" class="nav-link">
-										<i class="fas fa-users mr-1"></i>Klienci
+										<i class="fas fa-users mr-1"></i>[[[Customers]]]
 									</a>
 								</li>
 								<li>
 									<li class="nav-item dropdown">
 										<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
-											<i class="fas fa-warehouse mr-1"></i>Sprzęt
+											<i class="fas fa-warehouse mr-1"></i>[[[Items]]]
 										</a>
 										<div class="dropdown-menu">
-											<a class="dropdown-item" href="@Url.Action("Index", "Item")">Sprzęt</a>
-											<a class="dropdown-item" href="@Url.Action("Index", "Category")">Kategorie</a>
+                                            <a class="dropdown-item" href="@Url.Action("Index", "Item")">[[[Items]]]</a>
+											<a class="dropdown-item" href="@Url.Action("Index", "Category")">[[[Categories]]]</a>
 										</div>
 									</li>
 								</li>
@@ -79,16 +82,16 @@
 								</li>
 								<li>
 									<a href="@Url.Action("Logout", "Login")" class="nav-link">
-										<i class="fas fa-sign-out-alt mr-1"></i>Wyloguj
+										<i class="fas fa-sign-out-alt mr-1"></i>[[[Logout]]]
 									</a>
 								</li>
 							}
 							else
 							{
 								<li>
-									<a href="@Url.Action("Login", "Login")" class="nav-link">
-										<i class="fas fa-sign-in-alt mr-2"></i>Zaloguj się
-									</a>
+                                    <a href="@Url.Action("Login", "Login")" class="nav-link">
+                                        <i class="fas fa-sign-in-alt mr-2"></i>[[[Login]]]
+                                    </a>
 								</li>
 							}
 							@if (Request.Cookies["currLang"] != null && Request.Cookies["currLang"].Value != "pl")
@@ -124,7 +127,7 @@
 	</div>
 </footer>
 
-	@Scripts.Render("~/bundles/jquery")
+
     @Scripts.Render("~/bundles/bootstrap")
 	@Scripts.Render("~/bundles/toastr")
 	@Html.Partial("_Toastr")

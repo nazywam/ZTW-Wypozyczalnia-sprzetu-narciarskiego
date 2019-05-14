@@ -10,11 +10,11 @@
 <ul class="list-group">
 	<li class="list-group-item cbg-blue text-white">
 		<div class="row">
-			<div class="col-md-7"><h2>Zarządzanie sprzętem
+			<div class="col-md-7"><h2>[[[Item management]]]
 				@{
 					if (Model.FilterModel.IsFiltered == true)
 					{
-								  <small>(filtr)</small>
+								  <small>([[[Filter]]])</small>
 					}
 
 				}
@@ -22,10 +22,10 @@
 			</div>
 			<div class="col-md-5  text-right">
 				<button class="btn btn-light mr-2" type="button" data-toggle="collapse" data-target="#filters" aria-expanded="false" aria-controls="filters">
-					<i class="fas fa-filter mr-2"></i>Pokaż filtry
+					<i class="fas fa-filter mr-2"></i>[[[Show filters]]]
 				</button>
 				<a href="@Url.Action("Create")" class="btn btn-light">
-					<i class="fas fa-plus mr-2"></i>Dodaj sprzęt
+					<i class="fas fa-plus mr-2"></i>[[[Add item]]]
 				</a>
 			</div>
 		</div>
@@ -68,7 +68,7 @@
 							<div class="col-md-9"></div>
 							<div class="col-md-3  text-right">
 								@Html.ActionLink("Usuń filtry", "Index", new { }, new { @class = "btn btn-secondary" })
-								<button class="btn btn-primary" type="submit"><i class="fas fa-filter mr-2"></i>Filtruj</button>
+								<button class="btn btn-primary" type="submit"><i class="fas fa-filter mr-2"></i>[[[Filter]]]</button>
 							</div>
 						</div>
 					</li>
@@ -78,11 +78,11 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th scope="col">Model</th>
-					<th scope="col">Producent</th>
-					<th scope="col">Kategoria</th>
-					<th scope="col">Dostępny</th>
-					<th scope="col">Akcje</th>
+					<th scope="col">[[[Model]]]</th>
+					<th scope="col">[[[Manufacturer]]]</th>
+					<th scope="col">[[[Category]]]</th>
+					<th scope="col">[[[Available]]]</th>
+					<th scope="col">[[[Actions]]]</th>
 				</tr>
 			</thead>
 			@foreach (var emp in Model.ItemList)

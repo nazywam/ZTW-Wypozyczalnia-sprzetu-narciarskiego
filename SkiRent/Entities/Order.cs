@@ -17,8 +17,6 @@ namespace SkiRent.Entities
 
         public int ID { get; set; }
 
-        public int PaymentID { get; set; }
-
         public int EmployeeID { get; set; }
 
         public int CustomerID { get; set; }
@@ -32,15 +30,15 @@ namespace SkiRent.Entities
         [StringLength(255)]
         public string Comment { get; set; }
 
-		public decimal Value { get; set; }
-
         public virtual Customer Customer { get; set; }
 
         public virtual Employee Employee { get; set; }
 
-        public virtual Payment Payment { get; set; }
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RentedItem> Rented_Items { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Payment> Payments { get; set; }
+
     }
 }

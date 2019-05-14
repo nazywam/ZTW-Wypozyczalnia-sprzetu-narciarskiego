@@ -15,14 +15,13 @@ namespace SkiRent.ViewModels.Category
 
 		[Required]
 		[StringLength(30)]
-		[DisplayName("Nazwa")]
+		[DisplayName("[[[Name]]]")]
 		public string Name { get; set; }
 
-		[Required]
-		[DisplayName("Cena za dzień")]
+		[DisplayName("[[[Price per day]]]")]
 		public decimal? PricePerDay { get; set; }
 
-		[DisplayName("Kategoria nadrzędna")]
+		[DisplayName("[[[Parent category]]]")]
 		public int? ParentCategoryID { get; set; }
 
 		public virtual CategoryBasicViewModel ParentCategory { get; set; }
