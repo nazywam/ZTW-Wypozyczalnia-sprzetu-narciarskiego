@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EntityFramework.Testing.Moq.Ninject</name>
+    </assembly>
+    <members>
+        <member name="T:EntityFramework.Testing.Moq.Ninject.EntityFrameworkTestingMoqModule">
+            <summary>
+            EntityFramework Testing Module
+            </summary>
+        </member>
+        <member name="M:EntityFramework.Testing.Moq.Ninject.EntityFrameworkTestingMoqModule.Load">
+            <summary>
+            Load the components.
+            </summary>
+        </member>
+        <member name="T:EntityFramework.Testing.Moq.Ninject.MoqDbContextActivationStrategy">
+            <summary>
+            <see cref="T:System.Data.Entity.DbContext"/> activation strategy.
+            </summary>
+        </member>
+        <member name="F:EntityFramework.Testing.Moq.Ninject.MoqDbContextActivationStrategy.getMethod">
+            <summary>
+            <see cref="T:Moq.Mock"/>'s Get generic method.
+            </summary>
+        </member>
+        <member name="M:EntityFramework.Testing.Moq.Ninject.MoqDbContextActivationStrategy.ActivateDbContext(Ninject.Activation.IContext,Ninject.Activation.InstanceReference)">
+            <summary>
+            Setup properties for the <see cref="T:System.Data.Entity.DbContext"/>.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="reference">The reference to the <see cref="T:System.Data.Entity.DbContext"/>.</param>
+        </member>
+        <member name="T:EntityFramework.Testing.Moq.Ninject.MoqDbSetActivationStrategy">
+            <summary>
+            <see cref="T:System.Data.Entity.DbSet`1"/> property injection strategy.
+            </summary>
+        </member>
+        <member name="F:EntityFramework.Testing.Moq.Ninject.MoqDbSetActivationStrategy.getMethod">
+            <summary>
+            <see cref="T:Moq.Mock"/>'s Get generic method.
+            </summary>
+        </member>
+        <member name="M:EntityFramework.Testing.Moq.Ninject.MoqDbSetActivationStrategy.ActivateDbSet(Ninject.Activation.IContext,Ninject.Activation.InstanceReference)">
+            <summary>
+            Seed data for the <see cref="T:System.Data.Entity.DbSet`1"/>.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="reference">The reference to the <see cref="T:System.Data.Entity.DbSet`1"/>.</param>
+        </member>
+    </members>
+</doc>

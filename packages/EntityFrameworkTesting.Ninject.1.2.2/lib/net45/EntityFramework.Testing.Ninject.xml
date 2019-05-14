@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>EntityFramework.Testing.Ninject</name>
+    </assembly>
+    <members>
+        <member name="T:EntityFramework.Testing.Ninject.DbContextActivationStrategy">
+            <summary>
+            <see cref="T:System.Data.Entity.DbContext"/> activation strategy.
+            </summary>
+        </member>
+        <member name="M:EntityFramework.Testing.Ninject.DbContextActivationStrategy.Activate(Ninject.Activation.IContext,Ninject.Activation.InstanceReference)">
+            <summary>
+            Activates the <see cref="T:System.Data.Entity.DbContext"/>.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="reference">The reference to the instance being activated.</param>
+        </member>
+        <member name="M:EntityFramework.Testing.Ninject.DbContextActivationStrategy.ActivateDbContext(Ninject.Activation.IContext,Ninject.Activation.InstanceReference)">
+            <summary>
+            Activates the <see cref="T:System.Data.Entity.DbContext"/>.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="reference">The reference to the <see cref="T:System.Data.Entity.DbContext"/>.</param>
+        </member>
+        <member name="T:EntityFramework.Testing.Ninject.DbSetActivationStrategy">
+            <summary>
+            <see cref="T:System.Data.Entity.DbSet`1"/> property injection strategy.
+            </summary>
+        </member>
+        <member name="M:EntityFramework.Testing.Ninject.DbSetActivationStrategy.Activate(Ninject.Activation.IContext,Ninject.Activation.InstanceReference)">
+            <summary>
+            Activates the <see cref="T:System.Data.Entity.DbSet`1"/>.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="reference">The reference to the instance being activated.</param>
+        </member>
+        <member name="M:EntityFramework.Testing.Ninject.DbSetActivationStrategy.ActivateDbSet(Ninject.Activation.IContext,Ninject.Activation.InstanceReference)">
+            <summary>
+            Activates the <see cref="T:System.Data.Entity.DbSet`1"/>.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="reference">The reference to the <see cref="T:System.Data.Entity.DbSet`1"/>.</param>
+        </member>
+        <member name="T:EntityFramework.Testing.Ninject.DbSetInjectionHeuristic">
+            <summary>
+            Should inject <see cref="T:System.Data.Entity.DbSet`1"/> properties.
+            </summary>
+        </member>
+        <member name="M:EntityFramework.Testing.Ninject.DbSetInjectionHeuristic.ShouldInject(System.Reflection.MemberInfo)">
+            <summary>
+            Returns a value indicating whether the specified member should be injected
+            </summary>
+            <param name="member">The member in question.</param>
+            <returns>True if the member should be injected; otherwise false.</returns>
+        </member>
+        <member name="T:EntityFramework.Testing.Ninject.EntityFrameworkTestingModule">
+            <summary>
+            The base Ninject module for EntityFramework Testing.
+            </summary>
+        </member>
+        <member name="M:EntityFramework.Testing.Ninject.EntityFrameworkTestingModule.Load">
+            <summary>
+            Load the components.
+            </summary>
+        </member>
+        <member name="T:EntityFramework.Testing.Ninject.MockEntityFrameworkBindingResolver">
+            <summary>
+            EntityFramework binding resolver that creates a mock for <see cref="T:System.Data.Entity.DbContext"/> and <see cref="T:System.Data.Entity.DbSet`1"/>.
+            </summary>
+        </member>
+        <member name="F:EntityFramework.Testing.Ninject.MockEntityFrameworkBindingResolver.mockProviderCallbackProvider">
+            <summary>
+            The call back provider for creating the mock provider.
+            </summary>
+        </member>
+        <member name="M:EntityFramework.Testing.Ninject.MockEntityFrameworkBindingResolver.#ctor(Ninject.MockingKernel.IMockProviderCallbackProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:EntityFramework.Testing.Ninject.MockEntityFrameworkBindingResolver"/> class.
+            </summary>
+            <param name="mockProviderCallbackProvider">The mock provider callback provider.</param>
+        </member>
+        <member name="M:EntityFramework.Testing.Ninject.MockEntityFrameworkBindingResolver.Resolve(Ninject.Infrastructure.Multimap{System.Type,Ninject.Planning.Bindings.IBinding},Ninject.Activation.IRequest)">
+            <summary>
+            Returns any bindings from the specified collection that match the specified request.
+            </summary>
+            <param name="bindings">The <see cref="T:Ninject.Infrastructure.Multimap`2"/> of all registered bindings.</param>
+            <param name="request">The request in question.</param>
+            <returns>The series of matching bindings.</returns>
+        </member>
+        <member name="M:EntityFramework.Testing.Ninject.MockEntityFrameworkBindingResolver.Dispose(System.Boolean)">
+            <summary>
+            Dispose the object.
+            </summary>
+            <param name="disposing">Whether it's disposing.</param>
+        </member>
+    </members>
+</doc>
