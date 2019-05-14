@@ -54,9 +54,16 @@
 ![](img/client.png)
 
 
-## Build status
+## Orders managamenet
 
-[Current Build](http://skirent-env.qmgk85mipb.eu-central-1.elasticbeanstalk.com/)
+![](img/orders.png)
+
+### CRUD
+
+![](img/client.png)
+
+
+## Build status
 
 [![Build Status](https://travis-ci.com/nazywam/ZTW-Wypozyczalnia-sprzetu-narciarskiego.svg?branch=master)](https://travis-ci.com/nazywam/ZTW-Wypozyczalnia-sprzetu-narciarskiego)
 

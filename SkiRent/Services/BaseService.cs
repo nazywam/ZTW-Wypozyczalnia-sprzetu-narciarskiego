@@ -6,7 +6,6 @@ using System.Data.Entity.Infrastructure;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-using MySql.Data.MySqlClient;
 using SkiRent.Extensions;
 
 namespace SkiRent.Services
@@ -28,7 +27,7 @@ namespace SkiRent.Services
 				return new ServiceResult(true);
 			}
 			catch (DbUpdateException ex) 
-			when (ex.InnerException?.InnerException is SqlException sqlEx)
+			    when (ex.InnerException?.InnerException is SqlException sqlEx)
 			{
 				bool status = false;
 				string message = "Nieznany błąd.";
