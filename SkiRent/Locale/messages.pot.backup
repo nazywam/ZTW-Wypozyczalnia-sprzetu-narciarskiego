@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-05-14 14:29+02:00\n"
+"POT-Creation-Date: 2019-05-14 14:39+02:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -96,6 +96,10 @@ msgstr ""
 #: ViewModels\Item\ItemBasicViewModel.cs:42
 #: Views\Order\Create.cshtml:74
 msgid "Barcode"
+msgstr ""
+
+#: Controllers\BaseController.cs:34
+msgid "Błąd!"
 msgstr ""
 
 #: Views\Shared\_FormCancelDelete.cshtml:1
@@ -359,6 +363,18 @@ msgstr ""
 msgid "Payment value"
 msgstr ""
 
+#: Controllers\BaseController.cs:26
+msgid "Pomyślnie dodano."
+msgstr ""
+
+#: Controllers\BaseController.cs:30
+msgid "Pomyślnie usunięto."
+msgstr ""
+
+#: Controllers\BaseController.cs:22
+msgid "Pomyślnie zeedytowano."
+msgstr ""
+
 #: Views\Order\Details.cshtml:75
 msgid "Price"
 msgstr ""
@@ -409,6 +425,12 @@ msgstr ""
 
 #: ViewModels\Item\ItemBasicViewModel.cs:32
 msgid "Size"
+msgstr ""
+
+#: Controllers\BaseController.cs:22
+#: Controllers\BaseController.cs:26
+#: Controllers\BaseController.cs:30
+msgid "Sukces!"
 msgstr ""
 
 #: ViewModels\Customer\CustomerBasicViewModel.cs:23

@@ -28,7 +28,7 @@ namespace SkiRent.Services
 				return new ServiceResult(true);
 			}
 			catch (DbUpdateException ex) 
-			when (ex.InnerException?.InnerException is MySqlException sqlEx)
+			when (ex.InnerException?.InnerException is SqlException sqlEx)
 			{
 				bool status = false;
 				string message = "Nieznany błąd.";

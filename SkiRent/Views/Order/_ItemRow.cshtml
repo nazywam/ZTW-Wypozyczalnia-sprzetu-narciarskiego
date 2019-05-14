@@ -1,0 +1,26 @@
+﻿@model SkiRent.ViewModels.Item.ItemBasicViewModel
+
+<tr class="item_row">
+    @using (Html.BeginCollectionItem("ItemsFormList"))
+    { 
+        @Html.HiddenFor(item => item.ID)
+        @Html.HiddenFor(item => item.Size)
+        @Html.HiddenFor(item => item.CategoryID)
+        <td>
+            @Html.TextBoxFor(item => item.Barcode,new { @class = "form-control ", @readonly = true } )                
+        </td>
+        <td>
+            @Html.TextBoxFor(item => item.Manufacturer,new { @class = "form-control ", @readonly = true})
+        </td>
+        <td>
+            @Html.TextBoxFor(item => item.ModelName,new { @class = "form-control ", @readonly = true})                 
+        </td>
+        <td>
+            <a onclick="$(this).parent().parent().remove();" href ="#">
+                <i class="far fa-trash-alt"></i>
+            </a>
+        </td>
+
+    }
+</tr>
+
