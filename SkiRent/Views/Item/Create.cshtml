@@ -1,4 +1,4 @@
-﻿@model SkiRent.Entities.DTO.EmployeeDTO
+﻿@model SkiRent.ViewModels.Item.ItemCreateViewModel
 
 @{
 	ViewBag.Title = "title";
@@ -6,18 +6,20 @@
 
 @using (Html.BeginForm())
 {
+	@Html.HiddenFor(model => model.Model.ID)
+	@Html.HiddenFor(model => model.Model.Avaiable)
 		<ul class="list-group">
 			<li class="list-group-item cbg-blue text-white">
 				<div class="row">
 					<div class="col-md-9">
 						@{
-							if (Model.ID != 0)
+							if (Model.Model.ID != 0)
 							{
-								<h2>Edytuj pracownika</h2>
+								<h2>Edytuj sprzęt</h2>
 							}
 							else
 							{
-								<h2>Dodaj pracownika</h2>
+								<h2>Dodaj sprzęt</h2>
 							}
 						}
 						</div>
@@ -25,58 +27,29 @@
 			</li>
 			<li class="list-group-item">
 				<div class="form-group row">
-					<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.FirstName)</label>
+					<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.Manufacturer)</label>
 					<div class="col-sm-4">
-						@Html.TextBoxFor(model => model.FirstName, new { @class = "form-control " + @Html.FieldHasError(model => model.FirstName) })
-						@Html.ValidationMessageFor(m => m.FirstName, "", new { @class = "invalid-feedback" })
+						@Html.TextBoxFor(model => model.Model.Manufacturer, new { @class = "form-control " + @Html.FieldHasError(model => model.Model.Manufacturer) })
+						@Html.ValidationMessageFor(model => model.Model.Manufacturer, "", new { @class = "invalid-feedback" })
 					</div>
 
-					<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.LastName)</label>
+					<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.ModelName)</label>
 					<div class="col-sm-4">
-						@Html.TextBoxFor(model => model.LastName, new { @class = "form-control " + @Html.FieldHasError(model => model.LastName) })
-						@Html.ValidationMessageFor(m => m.LastName, "", new { @class = "invalid-feedback" })
+						@Html.TextBoxFor(model => model.Model.ModelName, new { @class = "form-control " + @Html.FieldHasError(model => model.Model.ModelName) })
+						@Html.ValidationMessageFor(model => model.Model.ModelName, "", new { @class = "invalid-feedback" })
 					</div>
 				</div>
 				<div class="form-group row">
-					<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Address)</label>
+					<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.Size)</label>
 					<div class="col-sm-4">
-						@Html.TextBoxFor(model => model.Address, new { @class = "form-control " + @Html.FieldHasError(model => model.Address) })
-						@Html.ValidationMessageFor(m => m.Address, "", new { @class = "invalid-feedback" })
+						@Html.TextBoxFor(model => model.Model.Size, new { @class = "form-control " + @Html.FieldHasError(model => model.Model.Size) })
+						@Html.ValidationMessageFor(model => model.Model.Size, "", new { @class = "invalid-feedback" })
 					</div>
 
-					<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.PhoneNumber)</label>
+					<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.Manufacturer)</label>
 					<div class="col-sm-4">
-						@Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control " + @Html.FieldHasError(model => model.PhoneNumber) })
-						@Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "invalid-feedback" })
-					</div>
-				</div>
-				<div class="form-group row">
-					<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Salary)</label>
-					<div class="col-sm-4">
-						@Html.TextBoxFor(model => model.Salary, new { @class = "form-control " + @Html.FieldHasError(model => model.Salary) })
-						@Html.ValidationMessageFor(m => m.Salary, "", new { @class = "invalid-feedback" })
-					</div>
-				</div>
-			</li>
-			<li class="list-group-item">
-				<div class="form-group row">
-					<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Login)</label>
-					<div class="col-sm-4">
-						@Html.TextBoxFor(model => model.Login, new { @class = "form-control " + @Html.FieldHasError(model => model.Login) })
-						@Html.ValidationMessageFor(m => m.Login, "", new { @class = "invalid-feedback" })
-					</div>
-
-					<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Password)</label>
-					<div class="col-sm-4">
-						@Html.TextBoxFor(model => model.Password, new { @class = "form-control " + @Html.FieldHasError(model => model.Password), @type = "password" })
-						@Html.ValidationMessageFor(m => m.Password, "", new { @class = "invalid-feedback" })
-					</div>
-				</div>
-				<div class="form-group row">
-					<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.IsAdmin)</label>
-					<div class="col-sm-9 col-form-label">
-						@Html.CheckBoxFor(model => model.IsAdmin, new { @class = "form-check-label " + @Html.FieldHasError(model => model.IsAdmin) })
-						@Html.ValidationMessageFor(m => m.IsAdmin, "", new { @class = "invalid-feedback" })
+						@Html.DropDownListFor(model => model.Model.CategoryID, Model.CategorySelectList,"Wybierz", new { @class = "form-control " + @Html.FieldHasError(model => model.Model.CategoryID) })
+						@Html.ValidationMessageFor(model => model.Model.CategoryID, "", new { @class = "invalid-feedback" })
 					</div>
 				</div>
 			</li>

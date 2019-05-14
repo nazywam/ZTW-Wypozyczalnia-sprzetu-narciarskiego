@@ -1,0 +1,109 @@
+﻿@using X.PagedList.Mvc
+@using X.PagedList.Mvc.Common
+@model SkiRent.ViewModels.Order.OrderIndexViewModel
+
+@{
+	ViewBag.Title = "title";
+}
+
+
+<ul class="list-group">
+	<li class="list-group-item cbg-blue text-white">
+		<div class="row">
+			<div class="col-md-7"><h2>[[[Orders]]]
+				@{
+					if (Model.FilterModel.IsFiltered == true)
+					{
+								  <small>[[[(filtr)]]]</small>
+					}
+
+				}
+				</h2>
+			</div>
+			<div class="col-md-5  text-right">
+				<button class="btn btn-light mr-2" type="button" data-toggle="collapse" data-target="#filters" aria-expanded="false" aria-controls="filters">
+					<i class="fas fa-filter mr-2"></i>[[[Show filters]]]
+				</button>
+				<a href="@Url.Action("Create")" class="btn btn-light">
+					<i class="fas fa-plus mr-2"></i>[[[Add order]]]
+				</a>
+			</div>
+		</div>
+	</li>
+	<li class="list-group-item">
+		<div class="collapse" id="filters">
+			@using (Html.BeginForm())
+			{
+				<ul class="list-group">
+					@* <li class="list-group-item"> *@
+					@* 	<div class="form-group row"> *@
+					@* 		<label for="staticEmail" class="col-sm-2 col-form-label">@Html.DisplayNameFor(model => model.FilterModel.S_Name)</label> *@
+					@* 		<div class="col-sm-4"> *@
+					@* 			@Html.TextBoxFor(model => model.FilterModel.S_Name, new { @class = "form-control " + @Html.FieldHasError(model => model.FilterModel.S_Name) }) *@
+					@* 			@Html.ValidationMessageFor(model => model.FilterModel.S_Name, "", new { @class = "invalid-feedback" }) *@
+					@* 		</div> *@
+					@* *@
+					@* 		<label for="staticEmail" class="col-sm-2 col-form-label">@Html.DisplayNameFor(model => model.FilterModel.S_PricePerDay)</label> *@
+					@* 		<div class="col-sm-4"> *@
+					@* 			@Html.TextBoxFor(model => model.FilterModel.S_PricePerDay, new { @class = "form-control " + @Html.FieldHasError(model => model.FilterModel.S_PricePerDay) }) *@
+					@* 			@Html.ValidationMessageFor(model => model.FilterModel.S_PricePerDay, "", new { @class = "invalid-feedback" }) *@
+					@* 		</div> *@
+					@* 	</div> *@
+					@* </li> *@
+					@* <li class="list-group-item"> *@
+					@* 	<div class="row"> *@
+					@* 		<div class="col-md-9"></div> *@
+					@* 		<div class="col-md-3  text-right"> *@
+					@* 			@Html.ActionLink("Usuń filtry", "Index", new { }, new { @class = "btn btn-secondary" }) *@
+					@* 			<button class="btn btn-primary" type="submit"><i class="fas fa-filter mr-2"></i>Filtruj</button> *@
+					@* 		</div> *@
+					@* 	</div> *@
+					@* </li> *@
+				</ul>
+			}
+		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">[[[Date rented]]]</th>
+					<th scope="col">[[[Date return]]]</th>
+					<th scope="col">[[[Value]]]</th>
+					<th scope="col">[[[Actions]]]</th>
+				</tr>
+			</thead>
+			@foreach (var emp in Model.OrderList)
+			{
+				<tr>
+					<td>
+						@Html.DisplayFor(modelItem => emp.Date_Rented)<br />
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => emp.Date_Return)<br />
+					</td>
+					<td>
+						@Html.DisplayFor(modelItem => emp.Value)<br />
+					</td>
+					<td class="">
+						<a href="@Url.Action("Details", new {id = emp.ID})" class="icon-link">
+							<i class="fas fa-info"></i>
+						</a>
+						<a href="@Url.Action("Edit", new {id = emp.ID})" class="icon-link">
+							<i class="far fa-edit"></i>
+						</a>
+						<a href="@Url.Action("Delete", new {id = emp.ID})" class="">
+							<i class="far fa-trash-alt"></i>
+						</a>
+					</td>
+				</tr>
+			}
+		</table>
+			@Html.PagedListPager(Model.OrderList, page => Url.Action("Index", new { page }), new PagedListRenderOptions
+			{
+				UlElementClasses = new[] { "pagination justify-content-center" },
+				LiElementClasses = new[] { "page-item" },
+				PageClasses = new[] { "page-link" },
+			})
+	</li>
+</ul>
+
+

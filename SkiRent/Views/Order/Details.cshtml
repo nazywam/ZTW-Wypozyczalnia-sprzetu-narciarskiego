@@ -1,0 +1,49 @@
+﻿@model SkiRent.ViewModels.Order.OrderDetailViewModel
+
+@{
+	ViewBag.Title = "title";
+}
+
+@using (Html.BeginForm())
+{
+	@Html.HiddenFor(model => model.ID)
+	<ul class="list-group">
+		<li class="list-group-item cbg-blue text-white">
+			<div class="row">
+				<div class="col-md-7">
+					<h2>
+						Dane sprzętu
+					</h2>
+				</div>
+				<div class="col-md-5  text-right">
+					<a href="@Url.Action("Edit", new {id = Model.ID})" class="btn btn-light icon-link">
+						<i class="far fa-edit mr-2"></i>Edytuj
+					</a>
+					<a href="@Url.Action("Delete", new {id = Model.ID})" class="btn btn-light">
+						<i class="far fa-trash-alt mr-2"></i>Usuń
+					</a>
+				</div>
+			</div>
+		</li>
+		<li class="list-group-item">
+			<div class="form-group row">
+				<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Name)</label>
+				<div class="col-sm-4">
+					@Html.TextBoxFor(model => model.Name, new { @class = "form-control ", @readonly = true})
+				</div>
+
+				<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.PricePerDay)</label>
+				<div class="col-sm-4">
+					@Html.TextBoxFor(model => model.PricePerDay, new { @class = "form-control ", @readonly = true })
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.ParentOrderID)</label>
+				<div class="col-sm-4">
+					@Html.TextBoxFor(model => model.ParentOrder.Name, new { @class = "form-control ", @readonly = true })
+				</div>
+			</div>
+		</li>
+	</ul>
+
+						}

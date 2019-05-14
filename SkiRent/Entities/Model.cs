@@ -32,6 +32,12 @@ namespace SkiRent.Entities
 				.HasForeignKey(e => e.CategoryID)
 				.WillCascadeOnDelete(false);
 
+			modelBuilder.Entity<Category>()
+				.HasOptional(d => d.ParentCategory)
+				.WithMany(p => p.SubCategories)
+				.HasForeignKey(p => p.ParentCategoryID)
+				.WillCascadeOnDelete(false);
+
 			modelBuilder.Entity<Customer>()
 				.Property(e => e.FirstName)
 				.IsUnicode(false);

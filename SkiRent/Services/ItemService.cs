@@ -9,13 +9,14 @@ using System.Web.Security;
 using AutoMapper;
 using SkiRent.Authorization;
 using SkiRent.Entities;
-using SkiRent.Entities.DTO;
+
 using SkiRent.Entities.FilterModels;
 using SkiRent.Extensions;
+using SkiRent.ViewModels.Item;
 
 namespace SkiRent.Services
 {
-	public class ItemService : BaseService<Model>, IService<ItemDTO>
+	public class ItemService : BaseService<Model>
 	{
 	    private readonly IMapper _mapper;
 
@@ -24,7 +25,7 @@ namespace SkiRent.Services
 		    _mapper = MapperService.GetMapperInstance();
         }
 			
-		public List<ItemDTO> Filter(ItemFilterModel model)
+		public List<ItemBasicViewModel> Filter(ItemFilterModel model)
 		{
 			var items = m_Context.Items.AsQueryable();
 			if (model != null)
@@ -40,24 +41,23 @@ namespace SkiRent.Services
 					int CategoryID = Int32.Parse(model.S_CategoryID);
 					items = items.Where(x => x.CategoryID == CategoryID);
 				}
-
 			}
-			return _mapper.Map<List<ItemDTO>>(items.ToList());
+			return _mapper.Map<List<ItemBasicViewModel>>(items.ToList());
 		}
 
-		public List<ItemDTO> GetAll()
+		public List<ItemBasicViewModel> GetAll()
 		{
 		    var Items = m_Context.Items.ToList();
-		    return _mapper.Map<List<ItemDTO>>(Items);
+		    return _mapper.Map<List<ItemBasicViewModel>>(Items);
 		}
 
-        public ItemDTO Get(int id)
+        public ItemDetailViewModel Get(int id)
         {
             var v_item = m_Context.Items.SingleOrDefault(emp => emp.ID == id);
-            return _mapper.Map<ItemDTO>(v_item);
+            return _mapper.Map<ItemDetailViewModel>(v_item);
         }
 
-		public ServiceResult Update(ItemDTO item)
+		public ServiceResult Update(ItemDetailViewModel item)
 		{
 		    var v_item = m_Context.Items.SingleOrDefault(emp => emp.ID == item.ID);
             if (v_item != null)
@@ -68,7 +68,7 @@ namespace SkiRent.Services
             return new ServiceResult(false, "");
 		}
 
-		public ServiceResult Delete(ItemDTO item)
+		public ServiceResult Delete(ItemDetailViewModel item)
 		{
 		    var v_item = m_Context.Items.SingleOrDefault(emp => emp.ID == item.ID);
             if (v_item != null)
@@ -79,8 +79,9 @@ namespace SkiRent.Services
             return new ServiceResult(false, "");
 		}
 
-		public ServiceResult Add(ItemDTO item)
+		public ServiceResult Add(ItemDetailViewModel item)
 		{
+			item.IsAvaible = true;
 		    var v_item = _mapper.Map<Item>(item);
             m_Context.Items.Add(v_item);
             return SaveChanges();

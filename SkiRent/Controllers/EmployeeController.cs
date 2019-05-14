@@ -4,13 +4,13 @@ using System.IdentityModel.Protocols.WSTrust;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using MvcSiteMapProvider;
 using SkiRent.Entities;
-using SkiRent.Entities.DTO;
+
 using SkiRent.Entities.FilterModels;
 using SkiRent.Services;
 using SkiRent.ViewModels.Employee;
 using X.PagedList;
-using MvcBreadCrumbs;
 using SkiRent.Extensions;
 
 namespace SkiRent.Controllers
@@ -25,19 +25,18 @@ namespace SkiRent.Controllers
 			_employeeService = new EmployeeService(new Model());
 	    }
 
-		[BreadCrumb(Clear = true, Label = "Zarządzanie pracownikiami")]
-        public ActionResult Index(int? page)
+	    [MvcSiteMapNode(Title = "[[[Employee management]]]", ParentKey = "Home_Index", Key="Employee_Index")]
+		public ActionResult Index(int? page)
         {
-            EmployeeIndexViewModel model = new EmployeeIndexViewModel()
+	        EmployeeIndexViewModel model = new EmployeeIndexViewModel()
             {
                 EmployeeList = _employeeService.GetAll().ToPagedList(page ?? 1, PAGE_SIZE),
-                FilterModel = new EmployeeFilterModel()
             };
 
-            return View(model);
+            return View(GetIndexViewModel(model));
         }
 
-        [HttpPost]
+		[HttpPost]
 		public ActionResult Index(EmployeeFilterModel filterModel)
         {
 	        EmployeeIndexViewModel model = new EmployeeIndexViewModel()
@@ -46,30 +45,30 @@ namespace SkiRent.Controllers
 				FilterModel = filterModel
 	        };
 
-			return View(model);
+			return View(GetIndexViewModel(model));
         }
 
-		[BreadCrumb(Label = "Szczegóły")]
+		[MvcSiteMapNode(Title = "[[[Details]]]", ParentKey = "Employee_Index", Key = "Employee_Details", PreservedRouteParameters = "id")]
 		public ActionResult Details(int id)
         {
             return View(_employeeService.Get(id));
         }
 
-		[BreadCrumb(Label = "Dodaj")]
+		[MvcSiteMapNode(Title = "[[[Create]]]", ParentKey = "Employee_Index", Key = "Employee_Create")]
 		public ActionResult Create()
         {
-            return View(new EmployeeDTO());
+            return View(new EmployeeDetailViewModel());
         }
 
         [HttpPost]
-		public ActionResult Create(EmployeeDTO model)
+		public ActionResult Create(EmployeeDetailViewModel model)
         {
-	        ServiceResult result = _employeeService.Add(model);
 	        if (ModelState.IsValid)
 	        {
-		        if (result.Status)
+		        ServiceResult result = _employeeService.Add(model);
+				if (result.Status)
 		        {
-			        AddSuccessEditedToastMessage();
+			        AddSuccessCreatedToastMessage();
 			        return RedirectToAction("Index");
 		        }
 		        else
@@ -81,15 +80,14 @@ namespace SkiRent.Controllers
 			return View(model);
         }
 
-		[BreadCrumb(Label = "Edytuj")]
+		[MvcSiteMapNode(Title = "[[[Edit]]]", ParentKey = "Employee_Index", Key = "Employee_Edit", PreservedRouteParameters = "id")]
 		public ActionResult Edit(int id)
 		{
-			var x = _employeeService.Get(id);
             return View("Create", _employeeService.Get(id));
         }
 
         [HttpPost]
-		public ActionResult Edit(EmployeeDTO model)
+		public ActionResult Edit(EmployeeDetailViewModel model)
         {
 			if (ModelState.IsValid)
 	        {
@@ -108,14 +106,14 @@ namespace SkiRent.Controllers
 		    return View("Create",model);
 		}
 
-		[BreadCrumb(Label = "Usuń")]
+		[MvcSiteMapNode(Title = "[[[Delete]]]", ParentKey = "Employee_Index", Key = "Employee_Delete", PreservedRouteParameters = "id")]
 		public ActionResult Delete(int id)
         {
             return View(_employeeService.Get(id));
         }
 
         [HttpPost]
-		public ActionResult Delete(EmployeeDTO model)
+		public ActionResult Delete(EmployeeDetailViewModel model)
         {
 	        ServiceResult result = _employeeService.Delete(model);
 	        if (result.Status)
@@ -129,5 +127,11 @@ namespace SkiRent.Controllers
 		        return RedirectToAction("Delete", new {model.ID});
 			}
 		}
-    }
+
+		private EmployeeIndexViewModel GetIndexViewModel(EmployeeIndexViewModel currModel)
+		{
+			currModel.FilterModel = currModel.FilterModel ?? new EmployeeFilterModel();
+			return currModel;
+		}
+	}
 }

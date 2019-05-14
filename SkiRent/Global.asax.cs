@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
+using i18n;
 using SkiRent.Authorization;
 using SkiRent.Entities;
 using SkiRent.Services;
@@ -23,6 +24,10 @@ namespace SkiRent
 			FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
 			RouteConfig.RegisterRoutes(RouteTable.Routes);
 			BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+			UrlLocalizer.UrlLocalizationScheme = UrlLocalizationScheme.Void;
+			i18n.LocalizedApplication.Current.DefaultLanguage = "pl";
+			i18n.LocalizedApplication.Current.CookieName = "currLang";
 		}
 
 		protected void Application_AuthenticateRequest(Object sender, EventArgs e)

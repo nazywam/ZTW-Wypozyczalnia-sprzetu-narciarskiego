@@ -1,4 +1,4 @@
-﻿@model SkiRent.Entities.DTO.EmployeeDTO
+﻿@model SkiRent.ViewModels.Item.ItemDetailViewModel
 
 @{
 	ViewBag.Title = "title";
@@ -9,11 +9,11 @@
 	<ul class="list-group">
 		<li class="list-group-item cbg-blue text-white">
 			<div class="row">
-				<div class="col-md-9"><h2>Usuń pracownika</h2></div>
+				<div class="col-md-9"><h2>Usuń sprzęt</h2></div>
 			</div>
 		</li>
         <li class="list-group-item">
-            <p class="mb-0"> Czy jesteś pewny, że chcesz usunąć pracownika: <span class="font-weight-bold">@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</span>?</p>
+            <p class="mb-0"> Czy jesteś pewny, że chcesz usunąć sprzęt: <span class="font-weight-bold">@Html.DisplayFor(model => model.ModelName)</span>?</p>
         </li>
 		<li class="list-group-item bg-light text-white">
 			<div class="row">

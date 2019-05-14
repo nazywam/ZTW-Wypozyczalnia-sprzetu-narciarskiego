@@ -1,0 +1,72 @@
+﻿@model SkiRent.ViewModels.Customer.CustomerCreateViewModel
+
+@{
+	ViewBag.Title = "title";
+}
+
+@using (Html.BeginForm())
+{
+	@Html.HiddenFor(model => model.Model.ID)
+		<ul class="list-group">
+			<li class="list-group-item cbg-blue text-white">
+				<div class="row">
+					<div class="col-md-9">
+						@{
+							if (Model.Model.ID != 0)
+							{
+								<h2>Edytuj klienta</h2>
+							}
+							else
+							{
+								<h2>Dodaj klienta</h2>
+							}
+						}
+						</div>
+				</div>
+			</li>
+			<li class="list-group-item">
+				<div class="form-group row">
+					<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.FirstName)</label>
+					<div class="col-sm-4">
+						@Html.TextBoxFor(model => model.Model.FirstName, new { @class = "form-control " + @Html.FieldHasError(model => model.Model.FirstName) })
+						@Html.ValidationMessageFor(model => model.Model.FirstName, "", new { @class = "invalid-feedback" })
+					</div>
+
+					<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.LastName)</label>
+					<div class="col-sm-4">
+						@Html.TextBoxFor(model => model.Model.LastName, new { @class = "form-control " + @Html.FieldHasError(model => model.Model.LastName) })
+						@Html.ValidationMessageFor(model => model.Model.LastName, "", new { @class = "invalid-feedback" })
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.Address)</label>
+					<div class="col-sm-4">
+						@Html.TextBoxFor(model => model.Model.Address, new { @class = "form-control " + @Html.FieldHasError(model => model.Model.Address) })
+						@Html.ValidationMessageFor(model => model.Model.Address, "", new { @class = "invalid-feedback" })
+					</div>
+
+					<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.PhoneNumber)</label>
+					<div class="col-sm-4">
+						@Html.TextBoxFor(model => model.Model.PhoneNumber, new { @class = "form-control " + @Html.FieldHasError(model => model.Model.PhoneNumber) })
+						@Html.ValidationMessageFor(model => model.Model.PhoneNumber, "", new { @class = "invalid-feedback" })
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.IdentyficationNumber)</label>
+					<div class="col-sm-4">
+						@Html.TextBoxFor(model => model.Model.IdentyficationNumber, new { @class = "form-control " + @Html.FieldHasError(model => model.Model.IdentyficationNumber) })
+						@Html.ValidationMessageFor(model => model.Model.IdentyficationNumber, "", new { @class = "invalid-feedback" })
+					</div>
+				</div>
+			</li>
+			<li class="list-group-item bg-light text-white">
+				<div class="row">
+					<div class="col-md-9"></div>
+					<div class="col-md-3  text-right">
+						@Html.Partial($"~/Views/Shared/_FormCancelSave.cshtml")
+					</div>
+				</div>
+			</li>
+		</ul>
+
+}

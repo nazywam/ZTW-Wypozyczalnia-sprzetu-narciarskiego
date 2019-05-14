@@ -1,0 +1,59 @@
+﻿@model SkiRent.ViewModels.Category.CategoryCreateViewModel
+
+@{
+	ViewBag.Title = "title";
+}
+
+@using (Html.BeginForm())
+{
+	@Html.HiddenFor(model => model.Model.ID)
+		<ul class="list-group">
+			<li class="list-group-item cbg-blue text-white">
+				<div class="row">
+					<div class="col-md-9">
+						@{
+							if (Model.Model.ID != 0)
+							{
+								<h2>Edytuj kategorię</h2>
+							}
+							else
+							{
+								<h2>Dodaj kategorię</h2>
+							}
+						}
+						</div>
+				</div>
+			</li>
+			<li class="list-group-item">
+				<div class="form-group row">
+					<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.Name)</label>
+					<div class="col-sm-4">
+						@Html.TextBoxFor(model => model.Model.Name, new { @class = "form-control " + @Html.FieldHasError(model => model.Model.Name) })
+						@Html.ValidationMessageFor(model => model.Model.Name, "", new { @class = "invalid-feedback" })
+					</div>
+
+					<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.PricePerDay)</label>
+					<div class="col-sm-4">
+						@Html.TextBoxFor(model => model.Model.PricePerDay, new { @class = "form-control " + @Html.FieldHasError(model => model.Model.PricePerDay) })
+						@Html.ValidationMessageFor(model => model.Model.PricePerDay, "", new { @class = "invalid-feedback" })
+					</div>
+				</div>
+				<div class="form-group row">
+					<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.ParentCategoryID)</label>
+					<div class="col-sm-4">
+						@Html.DropDownListFor(model => model.Model.ParentCategoryID, Model.CategorySelectList, "Wybierz", new { @class = "form-control " + @Html.FieldHasError(model => model.Model.ParentCategoryID) })
+						@Html.ValidationMessageFor(model => model.Model.ParentCategoryID, "", new { @class = "invalid-feedback" })
+					</div>
+				</div>
+			</li>
+			<li class="list-group-item bg-light text-white">
+				<div class="row">
+					<div class="col-md-9"></div>
+					<div class="col-md-3  text-right">
+						@Html.Partial($"~/Views/Shared/_FormCancelSave.cshtml")
+					</div>
+				</div>
+			</li>
+		</ul>
+
+}

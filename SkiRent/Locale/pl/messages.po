@@ -1,0 +1,114 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2019-04-25 22:56+02:00\n"
+"PO-Revision-Date: 2019-04-25 22:56+02:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: i18n.POTGenerator\n"
+
+#: Views\Employee\Index.cshtml:17
+#: Views\Order\Index.cshtml:17
+msgid "(filtr)"
+msgstr "(filtr)"
+
+#: Views\Order\Index.cshtml:71
+msgid "Actions"
+msgstr ""
+
+#: Views\Order\Index.cshtml:28
+msgid "Add order"
+msgstr ""
+
+#: Controllers\CategoryController.cs:28
+msgid "Category management"
+msgstr ""
+
+#: Controllers\CategoryController.cs:55
+#: Controllers\CustomerController.cs:57
+#: Controllers\EmployeeController.cs:57
+#: Controllers\ItemController.cs:58
+#: Controllers\OrderController.cs:55
+msgid "Create"
+msgstr ""
+
+#: Controllers\CustomerController.cs:30
+msgid "Customer management"
+msgstr ""
+
+#: Views\Order\Index.cshtml:68
+msgid "Date rented"
+msgstr ""
+
+#: Views\Order\Index.cshtml:69
+msgid "Date return"
+msgstr ""
+
+#: Controllers\CategoryController.cs:114
+#: Controllers\CustomerController.cs:116
+#: Controllers\EmployeeController.cs:109
+#: Controllers\ItemController.cs:116
+#: Controllers\OrderController.cs:114
+msgid "Delete"
+msgstr ""
+
+#: Controllers\CategoryController.cs:49
+#: Controllers\CustomerController.cs:51
+#: Controllers\EmployeeController.cs:51
+#: Controllers\ItemController.cs:52
+#: Controllers\OrderController.cs:49
+msgid "Details"
+msgstr ""
+
+#: Controllers\CategoryController.cs:85
+#: Controllers\CustomerController.cs:87
+#: Controllers\EmployeeController.cs:83
+#: Controllers\ItemController.cs:87
+#: Controllers\OrderController.cs:85
+msgid "Edit"
+msgstr ""
+
+#: Controllers\EmployeeController.cs:28
+msgid "Employee management"
+msgstr ""
+
+#: Controllers\HomeController.cs:22
+msgid "Home"
+msgstr ""
+
+#: Controllers\ItemController.cs:31
+msgid "Item management"
+msgstr ""
+
+#: Controllers\OrderController.cs:28
+msgid "Order management"
+msgstr ""
+
+#: Views\Order\Index.cshtml:13
+msgid "Orders"
+msgstr ""
+
+#: Views\Order\Index.cshtml:25
+msgid "Show filters"
+msgstr ""
+
+#: Views\Order\Index.cshtml:70
+msgid "Value"
+msgstr ""
+
+#: Views\Employee\Index.cshtml:13
+msgid "Zarządzanie pracownikami"
+msgstr "Zarządzanie pracownikami"
+
+#~ msgid ""
+#~ "Orders]]\n"
+#~ "				@{\n"
+#~ "					if (Model.FilterModel.IsFiltered == true)\n"
+#~ "					{\n"
+#~ "								  <small>[[[(filtr)"
+#~ msgstr ""
+
+#~ msgid "Pracownik"
+#~ msgstr ""
+

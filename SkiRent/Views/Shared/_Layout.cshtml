@@ -2,7 +2,6 @@
 @using System.Web.Mvc.Html
 @using SkiRent.Authorization
 @using WebGrease.Css
-@using MvcBreadCrumbs
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,38 +38,43 @@
 							else
 							{
 								<li>
-									<a href="@Url.Action("Index", "Home")" class="nav-link">
+									<a href="@Url.Action("Create", "Order")" class="nav-link">
 										<i class="fas fa-cart-plus mr-1"></i>Wypożycz
 									</a>
 								</li>
 								<li>
-									<a href="@Url.Action("Index", "Home")" class="nav-link">
+									<a href="@Url.Action("Index", "Order")" class="nav-link">
 										<i class="fas fa-list mr-1"></i>Wypożyczenia
 									</a>
 								</li>
 								<li>
-									<a href="@Url.Action("Index", "Home")" class="nav-link">
+									<a href="@Url.Action("Index", "Customer")" class="nav-link">
 										<i class="fas fa-users mr-1"></i>Klienci
 									</a>
 								</li>
 								<li>
-									<a href="@Url.Action("Index", "Item")" class="nav-link">
-										<i class="fas fa-warehouse mr-1"></i>Sprzęt
-									</a>
+									<li class="nav-item dropdown">
+										<a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown">
+											<i class="fas fa-warehouse mr-1"></i>Sprzęt
+										</a>
+										<div class="dropdown-menu">
+											<a class="dropdown-item" href="@Url.Action("Index", "Item")">Sprzęt</a>
+											<a class="dropdown-item" href="@Url.Action("Index", "Category")">Kategorie</a>
+										</div>
+									</li>
 								</li>
 							}
 						}
 					}
 				</ul>
 				<span class="navbar-text">
-					@{
-						if (@User.Identity.IsAuthenticated)
-						{
-							<ul class="navbar-nav">
+						<ul class="navbar-nav">
+							@if (@User.Identity.IsAuthenticated)
+							{
 								<li>
 									<a href="@Url.Action("Details", "Employee", new {id = (User.Identity as User).Name})" class="nav-link">
 										<i class="fas fa-id-badge mr-1"></i>
-											@((User.Identity as User).Employee.FirstName) @((User.Identity as User).Employee.LastName)
+										@((User.Identity as User).Employee.FirstName) @((User.Identity as User).Employee.LastName)
 									</a>
 								</li>
 								<li>
@@ -78,23 +82,40 @@
 										<i class="fas fa-sign-out-alt mr-1"></i>Wyloguj
 									</a>
 								</li>
-							</ul>
-
-						}
-						else
-						{
-							<a href="@Url.Action("Login", "Login")" class="nav-link">
-								<i class="fas fa-sign-in-alt mr-2"></i>Zaloguj się
-							</a>
-						}
-					}
+							}
+							else
+							{
+								<li>
+									<a href="@Url.Action("Login", "Login")" class="nav-link">
+										<i class="fas fa-sign-in-alt mr-2"></i>Zaloguj się
+									</a>
+								</li>
+							}
+							@if (Request.Cookies["currLang"] != null && Request.Cookies["currLang"].Value != "pl")
+							{
+								<li>
+									<a href="@Url.Action("SwitchLanguage", "Home", new { lang = "pl"})" class="nav-link">
+										<img src="/Content/Images/poland-flag-icon.png"/>
+									</a>
+								</li>
+							}
+							else
+							{
+								<li>
+									<a href="@Url.Action("SwitchLanguage", "Home", new { lang = "en"})" class="nav-link">
+										<img src="/Content/Images/united-kingdom-flag-icon-16.png" />
+									</a>
+								</li>
+							}
+						</ul>
+					
 				</span>
 			</div>
 		</div>
 	</nav>
 </header>
 <div class="container">
-	@Html.Raw(BreadCrumb.Display())
+	@Html.MvcSiteMap().SiteMapPath()
 	@RenderBody()
 </div>
 <footer>

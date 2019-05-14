@@ -6,75 +6,104 @@ using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using SkiRent.Entities;
-using SkiRent.Entities.DTO;
+
+using SkiRent.Entities.FilterModels;
 using SkiRent.Extensions;
+using SkiRent.ViewModels.Category;
 
 namespace SkiRent.Services
 {
-	public class CategoryService : BaseService<Model>, IService<CategoryDTO>
+	public class CategoryService : BaseService<Model>
 	{
 	    private readonly IMapper _mapper;
+	    private const string TREE_SEPARATOR = "-";
 
         public CategoryService(Model context) : base(context)
 		{
 		    _mapper = MapperService.GetMapperInstance();
         }
 
-		public List<CategoryDTO> GetAll()
+		public List<CategoryBasicViewModel> Filter(CategoryFilterModel model)
 		{
-            var categories = m_Context.Categories.ToList();
-		    return _mapper.Map<List<CategoryDTO>>(categories);
-		}
-
-		public CategoryDTO Get(int id)
-		{
-            var category = m_Context.Categories.SingleOrDefault(item => item.ID == id);
-		    return _mapper.Map<CategoryDTO>(category);
-		}
-
-		public ServiceResult Update(CategoryDTO item)
-		{
-		    var category = m_Context.Categories.SingleOrDefault(cat => cat.ID == item.ID);
-			if (category != null)
+			var items = m_Context.Categories.AsQueryable();
+			if (model != null)
 			{
-			    _mapper.Map(item, category);
-			    return SaveChanges();
+				if (!string.IsNullOrEmpty(model.S_Name))
+					items = items.Where(x => x.Name.Contains(model.S_Name));
+				if (model.S_PricePerDay != 0)
+					items = items.Where(x => x.PricePerDay == model.S_PricePerDay);
+			}
+			return _mapper.Map<List<CategoryBasicViewModel>>(items.ToList());
+		}
+
+		public List<CategoryBasicViewModel> GetAll()
+		{
+			var Items = m_Context.Categories.ToList();
+			return _mapper.Map<List<CategoryBasicViewModel>>(Items);
+		}
+
+		public CategoryDetailViewModel Get(int id)
+		{
+			var v_item = m_Context.Categories.SingleOrDefault(emp => emp.ID == id);
+			var tmp = _mapper.Map<CategoryDetailViewModel>(v_item);
+			return tmp;
+		}
+
+		public ServiceResult Update(CategoryDetailViewModel item)
+		{
+			var v_item = m_Context.Categories.SingleOrDefault(emp => emp.ID == item.ID);
+			if (v_item != null)
+			{
+				_mapper.Map(item, v_item);
+				return SaveChanges();
 			}
 			return new ServiceResult(false, "");
 		}
 
-		public ServiceResult Delete(CategoryDTO item)
+		public ServiceResult Delete(CategoryDetailViewModel item)
 		{
-			var category = m_Context.Categories.SingleOrDefault(cat => cat.ID == item.ID);
-		    if (category != null)
-		    {
-		        m_Context.Categories.Remove(category);
+			var v_item = m_Context.Categories.SingleOrDefault(emp => emp.ID == item.ID);
+			if (v_item != null)
+			{
+				m_Context.Categories.Remove(v_item);
 				return SaveChanges();
 			}
-		    return new ServiceResult(false, "");
+			return new ServiceResult(false, "");
 		}
 
-		public ServiceResult Add(CategoryDTO item)
+		public ServiceResult Add(CategoryDetailViewModel item)
 		{
-		    var category = _mapper.Map<Category>(item);
-		    m_Context.Categories.Add(category);
-		    return SaveChanges();
+			var v_item = _mapper.Map<Category>(item);
+			m_Context.Categories.Add(v_item);
+			return SaveChanges();
 		}
 
 		public List<SelectListItem> GetSelectCategoryList()
 		{
-			var categories = GetAll();
+			var categories = m_Context.Categories.ToList();
 			List<SelectListItem> listItems = new List<SelectListItem>();
-			foreach (CategoryDTO cat in categories)
+			foreach (Category cat in categories)
 			{
-				listItems.Add(new SelectListItem()
-				{
-					Text = cat.Name,
-					Value = cat.ID.ToString()
-				});
+				if (cat.ParentCategoryID == null)
+					AddChildren(listItems,cat, 0);
 			}
-
 			return listItems;
+		}
+
+		private void AddChildren(List<SelectListItem> selectList, Category cat,int level)
+		{
+			var sep = "";
+			for (int i = 0; i < level; i++)
+				sep += TREE_SEPARATOR;
+			selectList.Add(new SelectListItem
+			{
+				Text = sep + cat.Name,
+				Value = cat.ID+ ""
+			});
+			level++;
+			if (cat.SubCategories != null)
+				foreach (Category child in cat.SubCategories)
+					AddChildren(selectList, child, level);
 		}
 	}
 }

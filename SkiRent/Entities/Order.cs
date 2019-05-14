@@ -32,6 +32,8 @@ namespace SkiRent.Entities
         [StringLength(255)]
         public string Comment { get; set; }
 
+		public decimal Value { get; set; }
+
         public virtual Customer Customer { get; set; }
 
         public virtual Employee Employee { get; set; }

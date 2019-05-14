@@ -8,13 +8,14 @@ using System.Web.Security;
 using AutoMapper;
 using SkiRent.Authorization;
 using SkiRent.Entities;
-using SkiRent.Entities.DTO;
+
 using SkiRent.Entities.FilterModels;
 using SkiRent.Extensions;
+using SkiRent.ViewModels.Employee;
 
 namespace SkiRent.Services
 {
-	public class EmployeeService : BaseService<Model>, IService<EmployeeDTO>
+	public class EmployeeService : BaseService<Model>
 	{
 	    private readonly IMapper _mapper;
 
@@ -23,14 +24,14 @@ namespace SkiRent.Services
 		    _mapper = MapperService.GetMapperInstance();
         }
 			
-		public EmployeeDTO GetUserByUserNameAndPassword(string login, string password)
+		public EmployeeBasicViewModel GetUserByUserNameAndPassword(string login, string password)
 		{
 		    string hashedPass = AuthorizationHelper.HashPassword(login, password);
             var employee = m_Context.Employees.SingleOrDefault(emp => emp.Login == login && emp.Password == hashedPass);
-		    return _mapper.Map<EmployeeDTO>(employee);
+		    return _mapper.Map<EmployeeBasicViewModel>(employee);
 		}
 
-		public List<EmployeeDTO> Filter(EmployeeFilterModel model)
+		public List<EmployeeBasicViewModel> Filter(EmployeeFilterModel model)
 		{
 			var items = m_Context.Employees.AsQueryable();
 			if (model != null)
@@ -42,22 +43,22 @@ namespace SkiRent.Services
 				if (!string.IsNullOrEmpty(model.S_Login))
 					items = items.Where(x => x.Login.Contains(model.S_Login));
 			}
-			return _mapper.Map<List<EmployeeDTO>>(items.ToList());
+			return _mapper.Map<List<EmployeeBasicViewModel>>(items.ToList());
 		}
 
-		public List<EmployeeDTO> GetAll()
+		public List<EmployeeBasicViewModel> GetAll()
 		{
 		    var employees = m_Context.Employees.ToList();
-		    return _mapper.Map<List<EmployeeDTO>>(employees);
+		    return _mapper.Map<List<EmployeeBasicViewModel>>(employees);
 		}
 
-        public EmployeeDTO Get(int id)
+        public EmployeeDetailViewModel Get(int id)
         {
             var employee = m_Context.Employees.SingleOrDefault(emp => emp.ID == id);
-            return _mapper.Map<EmployeeDTO>(employee);
+            return _mapper.Map<EmployeeDetailViewModel>(employee);
         }
 
-		public ServiceResult Update(EmployeeDTO item)
+		public ServiceResult Update(EmployeeDetailViewModel item)
 		{
 		    var employee = m_Context.Employees.SingleOrDefault(emp => emp.ID == item.ID);
             if (employee != null)
@@ -71,7 +72,7 @@ namespace SkiRent.Services
 			return new ServiceResult(false, "");
 		}
 
-		public ServiceResult Delete(EmployeeDTO item)
+		public ServiceResult Delete(EmployeeDetailViewModel item)
 		{
 		    var employee = m_Context.Employees.SingleOrDefault(emp => emp.ID == item.ID);
             if (employee != null)
@@ -82,7 +83,7 @@ namespace SkiRent.Services
             return new ServiceResult(false, "");
 		}
 
-		public ServiceResult Add(EmployeeDTO item)
+		public ServiceResult Add(EmployeeDetailViewModel item)
 		{
 		    var employee = _mapper.Map<Employee>(item);
             employee.Password = AuthorizationHelper.HashPassword(employee.Login, employee.Password);

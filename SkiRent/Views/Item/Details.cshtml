@@ -1,81 +1,53 @@
-﻿@model SkiRent.Entities.DTO.EmployeeDTO
-
+﻿@model SkiRent.ViewModels.Item.ItemDetailViewModel
 @{
 	ViewBag.Title = "title";
 }
+
 @using (Html.BeginForm())
 {
+	@Html.HiddenFor(model => model.ID)
+	<ul class="list-group">
+		<li class="list-group-item cbg-blue text-white">
+			<div class="row">
+				<div class="col-md-7">
+					<h2>
+						Dane sprzętu
+					</h2>
+				</div>
+				<div class="col-md-5  text-right">
+					<a href="@Url.Action("Edit", new {id = Model.ID})" class="btn btn-light icon-link">
+						<i class="far fa-edit mr-2"></i>Edytuj
+					</a>
+					<a href="@Url.Action("Delete", new {id = Model.ID})" class="btn btn-light">
+						<i class="far fa-trash-alt mr-2"></i>Usuń
+					</a>
+				</div>
+			</div>
+		</li>
+		<li class="list-group-item">
+			<div class="form-group row">
+				<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Manufacturer)</label>
+				<div class="col-sm-4">
+					@Html.TextBoxFor(model => model.Manufacturer, new {@readonly= true, @class = "form-control " })
+				</div>
 
-    <ul class="list-group">
-        <li class="list-group-item cbg-blue text-white">
-            <div class="row">
-                <div class="col-md-7">
-                    <h2>
-                        Dane pracownika
-                    </h2>
-                </div>
-                <div class="col-md-5  text-right">
-                    <a href="@Url.Action("Edit", new {id = Model.ID})" class="btn btn-light icon-link">
-                        <i class="far fa-edit mr-2"></i>Edytuj
-                    </a>
-                    <a href="@Url.Action("Delete", new {id = Model.ID})" class="btn btn-light">
-                        <i class="far fa-trash-alt mr-2"></i>Usuń
-                    </a>
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="form-group row">
-                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.FirstName)</label>
-                <div class="col-sm-4 ">
-                    @Html.TextBoxFor(model => model.FirstName, new { @readonly = true, @class = "form-control " })
-                </div>
+				<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.ModelName)</label>
+				<div class="col-sm-4">
+					@Html.TextBoxFor(model => model.ModelName, new { @readonly = true, @class = "form-control "})
+				</div>
+			</div>
+			<div class="form-group row">
+				<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Size)</label>
+				<div class="col-sm-4">
+					@Html.TextBoxFor(model => model.Size, new { @readonly = true, @class = "form-control "})
+				</div>
 
-                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.LastName)</label>
-                <div class="col-sm-4 ">
-                    @Html.TextBoxFor(model => model.LastName, new { @readonly = true , @class = "form-control " })
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Address)</label>
-                <div class="col-sm-4 ">
-                    @Html.TextBoxFor(model => model.Address, new { @readonly = true, @class = "form-control " })
-                </div>
-
-                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.PhoneNumber)</label>
-                <div class="col-sm-4 ">
-                    @Html.TextBoxFor(model => model.PhoneNumber, new { @readonly = true, @class = "form-control " })
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Salary)</label>
-                <div class="col-sm-4 ">
-                    @Html.TextBoxFor(model => model.Salary, new { @readonly = true, @class = "form-control " })
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item">
-            <div class="form-group row">
-                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Login)</label>
-                <div class="col-sm-4 ">
-                    @Html.TextBoxFor(model => model.Login, new { @readonly = true, @class = "form-control " })
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.IsAdmin)</label>
-                <div class="col-sm-9 col-form-label">
-                    @Html.CheckBoxFor(model => model.IsAdmin, new { @disabled = "disabled", @class= "form-check-label " })
-                </div>
-            </div>
-        </li>
-        <li class="list-group-item bg-light text-white">
-            <div class="row">
-                <div class="col-md-9"></div>
-                <div class="col-md-3  text-right">
-                    @Html.ActionLink("Powrót", "Index", new { }, new { @class = "btn btn-secondary" })
-                </div>
-            </div>
-        </li>
-    </ul>
+				<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Category)</label>
+				<div class="col-sm-4">
+					@Html.TextBoxFor(model => model.Category.Name, new { @readonly = true, @class = "form-control "})
+				</div>
+			</div>
+		</li>
+	</ul>
 
 }
