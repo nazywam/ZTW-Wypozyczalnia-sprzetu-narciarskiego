@@ -7,14 +7,14 @@
  * [Misc](#Misc)
  * [Features](#Features)
    * [Logging in](#Logging-in)
-   * [Employee management](##Employee-management)
-   * [Inventory management](##Inventory-management)
-   * [Clients management](##Clients-management)
-   * [Orders managamenet](##Orders-managamenet)
-   * [Fast barcode scanning](##Fast-barcode-scanning)
-   * [Return form](##Return-form)
-   * [Order payment in various currencies](##Order-payment-in-various-currencies)
-   * [Build status](##Build-status)
+   * [Employee management](#Employee-management)
+   * [Inventory management](#Inventory-management)
+   * [Clients management](#Clients-management)
+   * [Orders managamenet](#Orders-managamenet)
+   * [Fast barcode scanning](#Fast-barcode-scanning)
+   * [Return form](#Return-form)
+   * [Order payment in various currencies](#Order-payment-in-various-currencies)
+   * [Build status](#Build-status)
 
 
 # Requirements
