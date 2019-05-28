@@ -17,6 +17,10 @@
 ## Application
  * Open the solution file(`SkiRent.sln`) in Visual Studio, build the project and navigate to http://localhost:49698/
 
+# Misc
+ * 🇵🇱/🇬🇧 lang
+ * The application uses public api from nbp: http://api.nbp.pl/api/exchangerates/tables/A/ to calculate payment values for various currencies
+
 # Features
 
 ## Logging in
@@ -63,10 +67,18 @@
 ![](img/client.png)
 
 
+## Fast barcode scanning
+
+![](img/barcode_fast.png)
+
+
+## Order payment in various currencies
+
+![](img/order_payment.png)
+
+![](img/order_payments.png)
+
+
 ## Build status
-
-[![Build Status](https://travis-ci.com/nazywam/ZTW-Wypozyczalnia-sprzetu-narciarskiego.svg?branch=master)](https://travis-ci.com/nazywam/ZTW-Wypozyczalnia-sprzetu-narciarskiego)
-
-[![Build status](https://ci.appveyor.com/api/projects/status/svbu5e3vnd4g5coc?svg=true)](https://ci.appveyor.com/project/nazywam/ztw-wypozyczalnia-sprzetu-narciarskiego)
 
 ![](img/tests.png)
