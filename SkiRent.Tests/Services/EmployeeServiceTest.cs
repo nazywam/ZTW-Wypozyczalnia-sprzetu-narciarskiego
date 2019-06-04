@@ -13,17 +13,17 @@ using Ninject.MockingKernel.Moq;
 using Shouldly;
 using SkiRent.Authorization;
 using SkiRent.Entities;
-using SkiRent.Entities.DTO;
 using SkiRent.Extensions;
 using SkiRent.Services;
+using SkiRent.ViewModels.Employee;
 
 namespace SkiRent.Tests.Services
 {
     [TestClass]
     public class EmployeeServiceTest
     {
+        private IMapper _mapper;
         private Faker<Employee> _employeeFaker;
-        private Faker<EmployeeDTO> _employeeDTOFaker;
 
         [TestInitialize]
         public void Init()
@@ -40,19 +40,7 @@ namespace SkiRent.Tests.Services
                 .RuleFor(x => x.PhoneNumber, f => f.Random.Int(100000000, 999999999))
                 .RuleFor(x => x.Salary, f => f.Random.Decimal())
                 .RuleFor(x => x.Orders, f => new HashSet<Order>());
-
-            _employeeDTOFaker = new Faker<EmployeeDTO>()
-                .RuleFor(x => x.ID, f => f.IndexFaker)
-                .RuleFor(x => x.Address, f => f.Address.StreetAddress(true))
-                .RuleFor(x => x.EmploymentDate, f => f.Date.Recent())
-                .RuleFor(x => x.FirstName, f => f.Name.FirstName())
-                .RuleFor(x => x.LastName, f => f.Name.LastName())
-                .RuleFor(x => x.Login, f => f.Internet.UserName())
-                .RuleFor(x => x.Password, (f, x) => f.Internet.Password())
-                .RuleFor(x => x.PermissionLevel, f => f.Random.Int(0, 1))
-                .RuleFor(x => x.PhoneNumber, f => f.Random.Int(100000000, 999999999))
-                .RuleFor(x => x.Salary, f => f.Random.Decimal())
-                .RuleFor(x => x.Orders, f => new List<OrderDTO>());
+            _mapper = MapperService.GetMapperInstance();
         }
 
         [TestMethod]
@@ -78,11 +66,9 @@ namespace SkiRent.Tests.Services
                 result.FirstName.ShouldBe(input[2].FirstName);
                 result.LastName.ShouldBe(input[2].LastName);
                 result.Login.ShouldBe(input[2].Login);
-                result.Password.ShouldBeNull();
                 result.PermissionLevel.ShouldBe(input[2].PermissionLevel);
                 result.PhoneNumber.ShouldBe(input[2].PhoneNumber);
                 result.Salary.ShouldBe(input[2].Salary);
-                result.Orders.Count.ShouldBe(input[2].Orders.Count);
             }
         }
         
@@ -129,11 +115,9 @@ namespace SkiRent.Tests.Services
                     result[i].FirstName.ShouldBe(input[i].FirstName);
                     result[i].LastName.ShouldBe(input[i].LastName);
                     result[i].Login.ShouldBe(input[i].Login);
-                    result[i].Password.ShouldBeNull();
                     result[i].PermissionLevel.ShouldBe(input[i].PermissionLevel);
                     result[i].PhoneNumber.ShouldBe(input[i].PhoneNumber);
                     result[i].Salary.ShouldBe(input[i].Salary);
-                    result[i].Orders.Count.ShouldBe(input[i].Orders.Count);
                 }
             }
         }
@@ -181,11 +165,11 @@ namespace SkiRent.Tests.Services
                 kernel.GetMock<DbSet<Employee>>()
                     .SetupData(data);
 
-                var input = _employeeDTOFaker.Generate(1).FirstOrDefault();
+                var input = _employeeFaker.Generate(1).FirstOrDefault();
 
                 var service = kernel.Get<EmployeeService>();
                 
-                Action act = () => { service.Add(input); };
+                Action act = () => { service.Add(_mapper.Map<EmployeeDetailViewModel>(input)); };
                 Assert.ThrowsException<FileLoadException>(act);
 
                 data.Count.ShouldBe(6);
@@ -197,7 +181,7 @@ namespace SkiRent.Tests.Services
                 result.FirstName.ShouldBe(input.FirstName);
                 result.LastName.ShouldBe(input.LastName);
                 result.Login.ShouldBe(input.Login);
-                result.Password.ShouldBe(AuthorizationHelper.HashPassword(input.Login, input.Password));
+//                result.Password.ShouldBe(AuthorizationHelper.HashPassword(input.Login, input.Password));
                 result.PermissionLevel.ShouldBe(input.PermissionLevel);
                 result.PhoneNumber.ShouldBe(input.PhoneNumber);
                 result.Salary.ShouldBe(input.Salary);
@@ -218,9 +202,8 @@ namespace SkiRent.Tests.Services
                     .SetupData(data);
 
                 var service = kernel.Get<EmployeeService>();
-                var mapper = MapperService.GetMapperInstance();
                 var input = service.Get(1);
-                Action act = () => { service.Delete(mapper.Map<EmployeeDTO>(input)); };
+                Action act = () => { service.Delete(_mapper.Map<EmployeeDetailViewModel>(input)); };
                 Assert.ThrowsException<FileLoadException>(act);
 
                 data.Count.ShouldBe(4);
@@ -243,7 +226,7 @@ namespace SkiRent.Tests.Services
                 var service = kernel.Get<EmployeeService>();
                 var mapper = MapperService.GetMapperInstance();
                 var input = _employeeFaker.Generate(6).LastOrDefault();
-                service.Delete(mapper.Map<EmployeeDTO>(input));
+                service.Delete(mapper.Map<EmployeeDetailViewModel>(input));
 
                 data.Count.ShouldBe(5);
             }
@@ -263,10 +246,10 @@ namespace SkiRent.Tests.Services
 
                 var service = kernel.Get<EmployeeService>();
                 var inputID = service.Get(1).ID;
-                var input = _employeeDTOFaker.Generate(1).FirstOrDefault();
+                var input = _employeeFaker.Generate(1).FirstOrDefault();
                 input.ID = inputID;
 
-                Action act = () => { service.Update(input); };
+                Action act = () => { service.Update(_mapper.Map<EmployeeDetailViewModel>(input)); };
                 Assert.ThrowsException<FileLoadException>(act);
                 var result = data[1];
 
@@ -277,7 +260,7 @@ namespace SkiRent.Tests.Services
                 result.FirstName.ShouldBe(input.FirstName);
                 result.LastName.ShouldBe(input.LastName);
                 result.Login.ShouldBe(input.Login);
-                result.Password.ShouldBe(AuthorizationHelper.HashPassword(input.Login, input.Password));
+//                result.Password.ShouldBe(AuthorizationHelper.HashPassword(input.Login, input.Password));
                 result.PermissionLevel.ShouldBe(input.PermissionLevel);
                 result.PhoneNumber.ShouldBe(input.PhoneNumber);
                 result.Salary.ShouldBe(input.Salary);

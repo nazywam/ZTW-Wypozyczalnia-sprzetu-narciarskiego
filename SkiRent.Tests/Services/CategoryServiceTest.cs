@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.IO;
 using System.Linq;
+using AutoMapper;
 using Bogus;
 using EntityFramework.Testing.Moq.Ninject;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -11,16 +12,17 @@ using Ninject;
 using Ninject.MockingKernel.Moq;
 using Shouldly;
 using SkiRent.Entities;
-using SkiRent.Entities.DTO;
 using SkiRent.Services;
+using SkiRent.ViewModels.Category;
 
 namespace SkiRent.Tests.Services
 {
     [TestClass]
     public class CategoryServiceTest
     {
+        private IMapper _mapper;
+
         private Faker<Category> _categoryFaker;
-        private Faker<CategoryDTO> _categoryDTOFaker;
 
         [TestInitialize]
         public void Init()
@@ -29,14 +31,12 @@ namespace SkiRent.Tests.Services
                 .RuleFor(x => x.ID, f => f.IndexFaker)
                 .RuleFor(x => x.Name, f => f.Commerce.ProductAdjective())
                 .RuleFor(x => x.PricePerDay, f => f.Random.Decimal())
+                .RuleFor(x => x.ParentCategory, f => null)
+                .RuleFor(x => x.SubCategories, f => new List<Category>())
                 .RuleFor(x => x.Items, f => new HashSet<Item>());
-
-            _categoryDTOFaker = new Faker<CategoryDTO>()
-                .RuleFor(x => x.ID, f => f.IndexFaker)
-                .RuleFor(x => x.Name, f => f.Commerce.ProductAdjective())
-                .RuleFor(x => x.PricePerDay, f => f.Random.Decimal())
-                .RuleFor(x => x.Items, f => new HashSet<ItemDTO>());
+            _mapper = MapperService.GetMapperInstance();
         }
+
 
         [TestMethod]
         public void GetAll_Should_GetAll_Properly()
@@ -57,9 +57,9 @@ namespace SkiRent.Tests.Services
                 for (int i = 0; i < result.Count; i++)
                 {
                     result[i].ID.ShouldBe(input[i].ID);
-                    result[i].Items.Count.ShouldBe(input[i].Items.Count);
                     result[i].Name.ShouldBe(input[i].Name);
                     result[i].PricePerDay.ShouldBe(input[i].PricePerDay);
+                    result[i].ParentCategory.ShouldBeSameAs(input[i].ParentCategory);
                 }
             }
         }
@@ -80,9 +80,11 @@ namespace SkiRent.Tests.Services
                 var result = service.Get(1);
 
                 result.ID.ShouldBe(input[1].ID);
-                result.Items.Count.ShouldBe(input[1].Items.Count);
+//                result.ParentCategory.ShouldBeSameAs(input[1].ParentCategory);
                 result.Name.ShouldBe(input[1].Name);
                 result.PricePerDay.ShouldBe(input[1].PricePerDay);
+//                result.ItemList.Count.ShouldBe(input[1].Items.Count);
+                result.SubCategories.Count.ShouldBe(input[1].SubCategories.Count);
             }
         }
 
@@ -93,7 +95,7 @@ namespace SkiRent.Tests.Services
             {
                 kernel.Load(new EntityFrameworkTestingMoqModule());
 
-                var input = _categoryDTOFaker.Generate(1).FirstOrDefault();
+                var input = _categoryFaker.Generate(1).FirstOrDefault();
                 var data = _categoryFaker.Generate(5).ToList();
 
                 kernel.GetMock<DbSet<Category>>()
@@ -101,16 +103,18 @@ namespace SkiRent.Tests.Services
 
                 var service = kernel.Get<CategoryService>();
 
-                Action act = () => { service.Add(input); };
+                Action act = () => { service.Add(_mapper.Map<CategoryDetailViewModel>(input)); };
                 Assert.ThrowsException<FileLoadException>(act);
 
                 data.Count.ShouldBe(6);
                 var result = data.LastOrDefault();
 
                 result.ID.ShouldBe(input.ID);
-                result.Items.Count.ShouldBe(input.Items.Count);
+                result.ParentCategory.ShouldBe(input.ParentCategory);
                 result.Name.ShouldBe(input.Name);
                 result.PricePerDay.ShouldBe(input.PricePerDay);
+                result.Items.Count.ShouldBe(input.Items.Count);
+                result.SubCategories.Count.ShouldBe(input.SubCategories.Count);
             }
         }
 
@@ -127,9 +131,8 @@ namespace SkiRent.Tests.Services
                     .SetupData(data);
 
                 var service = kernel.Get<CategoryService>();
-                var mapper = MapperService.GetMapperInstance();
-                var input = service.Get(1);
-                Action act = () => { service.Delete(mapper.Map<CategoryDTO>(input)); };
+                var input = _mapper.Map<CategoryDetailViewModel>(service.Get(1));
+                Action act = () => { service.Delete(input); };
                 Assert.ThrowsException<FileLoadException>(act);
 
                 data.Count.ShouldBe(4);
@@ -150,9 +153,8 @@ namespace SkiRent.Tests.Services
                     .SetupData(data);
 
                 var service = kernel.Get<CategoryService>();
-                var mapper = MapperService.GetMapperInstance();
-                var input = _categoryDTOFaker.Generate(6).LastOrDefault();
-                service.Delete(input);
+                var input = _categoryFaker.Generate(1).LastOrDefault();
+                service.Delete(_mapper.Map<CategoryDetailViewModel>(input));
 
                 data.Count.ShouldBe(5);
             }
@@ -172,10 +174,10 @@ namespace SkiRent.Tests.Services
 
                 var service = kernel.Get<CategoryService>();
                 var inputID = service.Get(1).ID;
-                var input = _categoryDTOFaker.Generate(1).FirstOrDefault();
+                var input = _categoryFaker.Generate(1).LastOrDefault();
                 input.ID = inputID;
 
-                Action act = () => { service.Update(input); };
+                Action act = () => { service.Update(_mapper.Map<CategoryDetailViewModel>(input)); };
                 Assert.ThrowsException<FileLoadException>(act);
                 var result = data[1];
 
