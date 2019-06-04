@@ -2,6 +2,7 @@
 
 # Content
 
+ * [Deployment](#Deployment)
  * [Requirements](#Requirements)
  * [Building](#Building)
  * [Misc](#Misc)
@@ -15,6 +16,13 @@
    * [Return form](#Return-form)
    * [Order payment in various currencies](#Order-payment-in-various-currencies)
    * [Build status](#Build-status)
+   * [Stats](#Stats)
+
+[![Build status](https://ci.appveyor.com/api/projects/status/svbu5e3vnd4g5coc?svg=true)](https://ci.appveyor.com/project/nazywam/ztw-wypozyczalnia-sprzetu-narciarskiego)
+
+
+# Deployment
+  * [Current deployment](http://skirent-pwr.azurewebsites.net)
 
 
 # Requirements
@@ -98,6 +106,11 @@
 ![](img/order_payment.png)
 
 ![](img/order_payments.png)
+
+
+## Stats
+
+![](img/stats.png)
 
 
 ## Build status
