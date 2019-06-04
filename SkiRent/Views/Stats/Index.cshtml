@@ -1,0 +1,104 @@
+﻿@model SkiRent.ViewModels.StatsViewModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<ul class="list-group">
+    <li class="list-group-item">
+        @using (Html.BeginForm())
+        {
+            <div class="form-group row" id="date-container">
+                <label for="staticEmail" class="col-sm-2 col-form-label">@Html.DisplayNameFor(model => model.FilterModel.S_DateFrom)</label>
+                <div class="col-sm-3">
+                    @Html.TextBoxFor(model => model.FilterModel.S_DateFrom, new { @class = "form-control " + @Html.FieldHasError(model => model.FilterModel.S_DateFrom), @autocomplete = "off"})
+                    @Html.ValidationMessageFor(model => model.FilterModel.S_DateFrom, "", new { @class = "invalid-feedback" })
+                </div>
+
+                <label for="staticEmail" class="col-sm-2 col-form-label">@Html.DisplayNameFor(model => model.FilterModel.S_DateTo)</label>
+                <div class="col-sm-3">
+                    @Html.TextBoxFor(model => model.FilterModel.S_DateTo, new { @class = "form-control " + @Html.FieldHasError(model => model.FilterModel.S_DateTo), @autocomplete = "off" })
+                    @Html.ValidationMessageFor(model => model.FilterModel.S_DateTo, "", new { @class = "invalid-feedback" })
+                </div>
+                <div class="col-md-2  text-right">
+                    <button class="btn btn-primary" type="submit"><i class="fas fa-filter mr-2"></i>Filtruj</button>
+                </div>
+            </div>
+        }
+    </li>
+    <li class="list-group-item">
+        <div class="row">
+            <div class="col-lg-3">
+                <div class="card">
+                    <div class="stat-widget-two">
+                        <div class="text-center">
+                            <div class="stat-text">[[[Order Number]]]</div>
+                            <div class="stat-digit"> <i class="fa fa-usd"></i>@Model.OrderNumber</div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped" style="width: @(Model.OrderNumber*100/100+"%")" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card">
+                    <div class="stat-widget-two">
+                        <div class="text-center">
+                            <div class="stat-text">[[[Payments Value]]]</div>
+                            <div class="stat-digit"> <i class="fa fa-usd"></i>@Model.PaymentsValue PLN</div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped" style="width: @(Model.PaymentsValue*100/1000+"%")" role="progressbar" aria-valuenow="78" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card">
+                    <div class="stat-widget-two">
+                        <div class="text-center">
+                            <div class="stat-text">[[[New Items]]]</div>
+                            <div class="stat-digit"> <i class="fa fa-usd"></i>@Model.NewItems</div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped" style="width: @(Model.NewItems*100/100+"%")" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="card">
+                    <div class="stat-widget-two">
+                        <div class="text-center">
+                            <div class="stat-text">[[[Items rented]]]</div>
+                            <div class="stat-digit"> <i class="fa fa-usd"></i>@Model.RentedItems</div>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-striped" style="width: @(Model.RentedItems*100/300+"%")" role="progressbar" aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /# card -->
+            </div>
+            <!-- /# column -->
+        </div>
+    </li>
+</ul>
+
+<script>
+    $(document).ready(function () {
+        $(function () {
+            if (!$.fn.bootstrapDP && $.fn.datepicker && $.fn.datepicker.noConflict) {
+                var datepicker = $.fn.datepicker.noConflict();
+                $.fn.bootstrapDP = datepicker;
+            }
+            $('#date-container input').bootstrapDP({
+                format: "dd-mm-yyyy",
+                maxViewMode: 2,
+                language: "pl"
+            });
+        });
+    });
+
+</script>
