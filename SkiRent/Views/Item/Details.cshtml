@@ -24,18 +24,18 @@
 				</div>
 			</div>
 		</li>
-		<li class="list-group-item">
-			<div class="form-group row">
-				<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Manufacturer)</label>
-				<div class="col-sm-4">
-					@Html.TextBoxFor(model => model.Manufacturer, new {@readonly= true, @class = "form-control " })
-				</div>
+        <li class="list-group-item">
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Manufacturer)</label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(model => model.Manufacturer, new {@readonly= true, @class = "form-control " })
+                </div>
 
-				<label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.ModelName)</label>
-				<div class="col-sm-4">
-					@Html.TextBoxFor(model => model.ModelName, new { @readonly = true, @class = "form-control "})
-				</div>
-			</div>
+                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.ModelName)</label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(model => model.ModelName, new { @readonly = true, @class = "form-control "})
+                </div>
+            </div>
             <div class="form-group row">
                 <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Size)</label>
                 <div class="col-sm-4">
@@ -53,7 +53,11 @@
                     @Html.TextBoxFor(model => model.Barcode, new { @readonly = true, @class = "form-control "})
                 </div>
             </div>
-		</li>
+        </li>
+        <li class="list-group-item">
+            <h3>[[[Orders history]]]</h3>
+            @Html.Partial("_OrderTable", Model.Rented_Items.Select(i => i.Order).ToList())
+        </li>
 	</ul>
 
 }

@@ -10,16 +10,16 @@ namespace SkiRent.Entities.FilterModels
 	public class ItemFilterModel
 	{
 		[StringLength(30)]
-		[DisplayName("Producent")]
+		[DisplayName("[[[Manufacturer]]]")]
 		public string S_Manufacturer { get; set; }
 		[StringLength(255)]
-		[DisplayName("Model")]
+		[DisplayName("[[[Model]]]")]
 		public string S_Model { get; set; }
 		[StringLength(30)]
-		[DisplayName("Dostępny")]
+		[DisplayName("[[[Available]]]")]
 		public string S_Avaible { get; set; }
 		[StringLength(30)]
-		[DisplayName("Kategoria")]
+		[DisplayName("[[[Category]]]")]
 		public string S_CategoryID { get; set; }
 
 		public bool IsFiltered

@@ -10,13 +10,13 @@ namespace SkiRent.Entities.FilterModels
 	public class EmployeeFilterModel
 	{
 		[StringLength(30)]
-		[DisplayName("Imię")]
+		[DisplayName("[[[Name]]]")]
 		public string S_FirstName { get; set; }
 		[StringLength(30)]
-		[DisplayName("Nazwisko")]
+		[DisplayName("[[[Surname]]]")]
 		public string S_LastName { get; set; }
 		[StringLength(30)]
-		[DisplayName("Login")]
+		[DisplayName("[[[Login]]]")]
 		public string S_Login { get; set; }
 
 		public bool IsFiltered

@@ -11,11 +11,11 @@ namespace SkiRent.Entities.FilterModels
 	{
 		[Required]
 		[StringLength(30)]
-		[DisplayName("Nazwa")]
+		[DisplayName("[[[Name]]]")]
 		public string S_Name { get; set; }
 
 		[Required]
-		[DisplayName("Cena za dzień")]
+		[DisplayName("[[[Price per day]]]")]
 		public decimal? S_PricePerDay { get; set; }
 
 		public bool IsFiltered

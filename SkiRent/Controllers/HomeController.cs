@@ -18,11 +18,29 @@ using SkiRent.ViewModels;
 namespace SkiRent.Controllers
 {
 	public class HomeController : BaseController
-	{
-		[MvcSiteMapNode(Title = "[[[Home]]]", Key = "Home_Index")]
+    {
+        private ItemService _itemService;
+
+        public HomeController()
+        {
+            var model = new Model();
+            _itemService = new ItemService(model);
+        }
+
+        [MvcSiteMapNode(Title = "[[[Home]]]", Key = "Home_Index")]
 		public ActionResult Index()
-		{
-			return View();
-		}
-	}
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Index(IndexViewModel filterModel)
+        {
+            var ItemId = _itemService.GetAll().Where(i => i.Barcode == filterModel.S_Barcode).SingleOrDefault();
+            if (ItemId != null)
+                return RedirectToAction("Details", "Item", new {id = ItemId.ID});
+            else
+                return View();
+        }
+    }
 }

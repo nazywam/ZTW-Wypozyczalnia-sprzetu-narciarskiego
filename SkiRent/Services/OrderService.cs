@@ -6,6 +6,7 @@ using System.Runtime.Remoting.Contexts;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using Microsoft.Ajax.Utilities;
 using SkiRent.Entities;
 
 using SkiRent.Entities.FilterModels;
@@ -13,6 +14,7 @@ using SkiRent.Extensions;
 using SkiRent.ViewModels.Item;
 using SkiRent.ViewModels.Order;
 using SkiRent.ViewModels.Payment;
+using WebGrease.Css.Extensions;
 
 namespace SkiRent.Services
 {
@@ -75,8 +77,13 @@ namespace SkiRent.Services
             {
                 var itemPricePerDay = _categoryService.GetCategoryPricePerDay(int.Parse(item.Item.CategoryID));
                 tmp.PricePerDay += itemPricePerDay;
-                tmp.PaymentValue += daysToPay * itemPricePerDay;
+                tmp.OrderValue += daysToPay * itemPricePerDay;
             }
+
+            foreach (PaymentBasicViewModel item in tmp.Payments)
+                tmp.PaymentsValue += item.AmountInPLN;
+
+            tmp.RestToPay = tmp.OrderValue - tmp.PaymentsValue;
 
             return tmp;
         }
@@ -162,6 +169,24 @@ namespace SkiRent.Services
             ConvertCreateModelToBasicModel(createModel, v_item);
             v_item.Date_Rented = DateTime.Now;
             return SaveChanges();
+        }
+
+        public ServiceResult Return(OrderDetailViewModel model)
+        {
+            var v_item = m_Context.Orders.SingleOrDefault(emp => emp.ID == model.ID);
+            if (v_item != null)
+            {
+                v_item.Date_Return = DateTime.Now;
+                foreach(RentedItem rentItem in v_item.Rented_Items)
+                {
+                    foreach (var item in m_Context.Items.Where(i => i.ID == rentItem.ItemID))
+                    {
+                        item.Avaiable = "1";
+                    }
+                }
+                return SaveChanges();
+            }
+            return new ServiceResult(false, "");
         }
     }
 }

@@ -14,9 +14,9 @@ namespace SkiRent.ViewModels.Employee
 	{
 		public virtual List<OrderBasicViewModel> Orders { get; set; }
 
-		[RequiredIf("ID", Operator.EqualTo, 0, ErrorMessage = "Hasło jest wymagane")]
+		[RequiredIf("ID", Operator.EqualTo, 0, ErrorMessage = "[[[Password is required]]]")]
 		[StringLength(30)]
-		[DisplayName("Hasło")]
+		[DisplayName("[[[Password]]]")]
 		public string Password { get; set; }
 	}
 }

@@ -9,6 +9,6 @@ namespace SkiRent.ViewModels.Item
 {
 	public class ItemDetailViewModel : ItemBasicViewModel
 	{
-		public virtual ICollection<RentedItemBasicViewModel> Rented_Items { get; set; }
+		public virtual List<RentedItemBasicViewModel> Rented_Items { get; set; }
 	}
 }

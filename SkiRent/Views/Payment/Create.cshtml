@@ -1,0 +1,108 @@
+﻿@model SkiRent.ViewModels.Payment.PaymentCreateViewModel
+
+@{
+    ViewBag.Title = "title";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(model => model.Model.ID)
+    <ul class="list-group">
+        <li class="list-group-item cbg-blue text-white">
+            <div class="row">
+                <div class="col-md-9">
+                    @{
+                        if (Model.Model.ID != 0)
+                        {
+                            <h2>[[[Edit payment]]]</h2>
+                        }
+                        else
+                        {
+                            <h2>[[[Add payment]]]</h2>
+                        }
+                    }
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.OrderID)</label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(model => model.Model.OrderID, new { @class = "form-control " + @Html.FieldHasError(model => model.Model.OrderID), @readonly = true })
+                </div>
+                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.PaymentDate)</label>
+                <div class="col-sm-4">
+                    @Html.TextBoxFor(model => model.Model.PaymentDate, new { @class = "form-control " + @Html.FieldHasError(model => model.Model.PaymentDate) })
+                    @Html.ValidationMessageFor(model => model.Model.PaymentDate, "", new { @class = "invalid-feedback" })
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.Amount)</label>
+                <div class="col-sm-2">
+                    @Html.TextBoxFor(model => model.Model.Amount, new { @class = "form-control " + @Html.FieldHasError(model => model.Model.Amount) })
+                </div>
+                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.Currency)</label>
+                <div class="col-sm-2">
+                    @Html.TextBoxFor(model => model.Model.Currency, new { @class = "form-control " + @Html.FieldHasError(model => model.Model.Currency) })
+                </div>
+                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.Model.ExchangeRate)</label>
+                <div class="col-sm-2">
+                    @Html.TextBoxFor(model => model.Model.ExchangeRate, new { @class = "form-control " + @Html.FieldHasError(model => model.Model.ExchangeRate) })
+                </div>
+            </div>
+        </li>
+        <li class="list-group-item">
+            <a href="#" class="btn btn-primary" id="getExchangeTable">[[[Get exchange table]]]</a>
+            <hr/>
+            <div id="exchangeContainer"></div>
+        </li>
+        <li class="list-group-item bg-light text-white">
+            <div class="row">
+                <div class="col-md-9"></div>
+                <div class="col-md-3  text-right">
+                    @Html.Partial($"~/Views/Shared/_FormCancelSave.cshtml")
+                </div>
+            </div>
+        </li>
+    </ul>
+
+}
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(function () {
+            $("#getExchangeTable").click(function () {
+                $('#loading-block').show();
+                $.get('/Payment/GetExchangeTable', {}, function (template) {
+                    $('#loading-block').hide();
+                    $("#exchangeContainer").empty();
+                    $("#exchangeContainer").append(template);
+                });
+            });
+            $('#exchangeContainer').on("click",'.setExchangeRates', function () {
+                var code = $(this).parent().parent().find("td.currencyCode").html();
+                var rate = $(this).parent().parent().find("td.currencyRate").html();
+                var amount = $(this).parent().parent().find(".exchangeValue").val();
+                $("#Model_Currency").val(code);
+                $("#Model_ExchangeRate").val(rate);
+                $("#Model_Amount").val(amount);
+            });
+
+            $("#exchangeContainer").on("click",'.exchangeButton', function () {
+                var plnVal = $('#exchangePLNVal').val();
+                $(".exchangeValue").each(function(index) {
+                    var exchangeRate = $(this).parent().parent().find("td.currencyRate").html();
+                    var exchangeValue = (plnVal / exchangeRate).toFixed(2);
+                    if (!isNaN(exchangeValue)) {
+                        $(this).parent().parent().find(".exchangeValue").val(parseFloat(exchangeValue));
+                    } else {
+                        $(this).parent().parent().find(".exchangeValue").val("");
+                    }
+  
+
+                });
+            });
+        });
+    });
+</script>

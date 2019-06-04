@@ -22,9 +22,16 @@ namespace SkiRent.ViewModels.Payment
 
 		[Required]
 		[StringLength(3)]
+        [DefaultValue("PLN")]
 		public string Currency { get; set; }
 
+        [DefaultValue(1)]
         public decimal ExchangeRate { get; set; }
+
+        public decimal AmountInPLN
+        {
+            get { return Amount * ExchangeRate; }
+        }
         public  OrderBasicViewModel Order { get; set; }
     }
 }

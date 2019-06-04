@@ -10,15 +10,15 @@ namespace SkiRent.Entities.FilterModels
 	public class CustomerFilterModel
 	{
 		[StringLength(255)]
-		[DisplayName("Imie")]
+		[DisplayName("[[[Name]]]")]
 		public string S_FirstName { get; set; }
 
 		[StringLength(255)]
-		[DisplayName("Nazwisko")]
+		[DisplayName("[[[Surname]]]")]
 		public string S_LastName { get; set; }
 
 		[StringLength(20)]
-		[DisplayName("Numer dokumentu")]
+		[DisplayName("[[[Document ID]]]")]
 		public string S_IdentyficationNumber { get; set; }
 
 		public bool IsFiltered

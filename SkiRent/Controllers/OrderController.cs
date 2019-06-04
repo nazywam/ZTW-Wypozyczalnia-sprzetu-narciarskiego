@@ -35,7 +35,7 @@ namespace SkiRent.Controllers
 		public ActionResult Index(int? page)
         {
 	        OrderIndexViewModel model = new OrderIndexViewModel();
-	        model.OrderList = _orderService.GetAll().ToPagedList(page ?? 1, PAGE_SIZE);
+	        model.OrderList = _orderService.GetAll().OrderByDescending(i=>i.Date_Rented).ToPagedList(page ?? 1, PAGE_SIZE);
 
 			return View(GetIndexViewModel(model));
         }
@@ -118,29 +118,51 @@ namespace SkiRent.Controllers
 			return View("Create", GetCreateViewModel(viewModel));
 		}
 
-		[MvcSiteMapNode(Title = "[[[Delete]]]", ParentKey = "Order_Index", Key = "Order_Delete", PreservedRouteParameters = "id")]
-		public ActionResult Delete(int id)
+        //		[MvcSiteMapNode(Title = "[[[Delete]]]", ParentKey = "Order_Index", Key = "Order_Delete", PreservedRouteParameters = "id")]
+        //		public ActionResult Delete(int id)
+        //        {
+        //            return View(_orderService.Get(id));
+        //        }
+        //
+        //        [HttpPost]
+        //		public ActionResult Delete(OrderDetailViewModel model)
+        //        {
+        //	        ServiceResult result = _orderService.Delete(model);
+        //	        if (result.Status)
+        //	        {
+        //		        AddSuccessDeletedToastMessage();
+        //		        return RedirectToAction("Index");
+        //	        }
+        //	        else
+        //	        {
+        //		        AddServiceErrorToastMessage(result);
+        //		        return RedirectToAction("Delete", new { model.ID });
+        //	        }
+        //		}
+
+        [MvcSiteMapNode(Title = "[[[Return]]]", ParentKey = "Order_Index", Key = "Order_Return", PreservedRouteParameters = "id")]
+        public ActionResult Return(int id)
         {
             return View(_orderService.Get(id));
         }
 
         [HttpPost]
-		public ActionResult Delete(OrderDetailViewModel model)
+        public ActionResult Return(OrderDetailViewModel model)
         {
-	        ServiceResult result = _orderService.Delete(model);
-	        if (result.Status)
-	        {
-		        AddSuccessDeletedToastMessage();
-		        return RedirectToAction("Index");
-	        }
-	        else
-	        {
-		        AddServiceErrorToastMessage(result);
-		        return RedirectToAction("Delete", new { model.ID });
-	        }
-		}
+            ServiceResult result = _orderService.Return(model);
+            if (result.Status)
+            {
+                AddToastMessage("[[[Success!]]]", "[[[Returned successfully.]]]", ToastType.Success);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                AddServiceErrorToastMessage(result);
+                return RedirectToAction("Return", new { model.ID });
+            }
+        }
 
-		private OrderIndexViewModel GetIndexViewModel(OrderIndexViewModel currModel)
+        private OrderIndexViewModel GetIndexViewModel(OrderIndexViewModel currModel)
 		{
 			currModel.FilterModel = currModel.FilterModel ?? new OrderFilterModel();
             //To wlasciwie ta sama lista Tak = 1, Nie = 0

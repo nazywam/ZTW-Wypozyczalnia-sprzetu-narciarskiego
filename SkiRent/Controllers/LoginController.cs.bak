@@ -23,11 +23,11 @@ namespace SkiRent.Controllers
 	    {
 		    if (HttpContext.User.Identity.IsAuthenticated)
 		    {
-			    AddToastMessage("[[[Access denied.]]]", "[[[You don't have required permissions.]]]", ToastType.Warning);
+			    AddToastMessage("[[[Access denied.]]]", "[[[No permissions]]]", ToastType.Warning);
 			}
 		    else
 		    {
-			    AddToastMessage("[[[Access denied.]]]", "[[[You need to log in first.]]]", ToastType.Warning);
+			    AddToastMessage("[[[Access denied.]]]", "[[[You need to be logged in]]]", ToastType.Warning);
 			}
 		    return RedirectToAction("Login");
 		}
@@ -45,12 +45,12 @@ namespace SkiRent.Controllers
 		        var tmp = new AuthorizationHelper();
 		        if (tmp.ValidateUser(model.Login, model.Password))
 		        {
-			        AddToastMessage("[[[Logged in successfully]]]", "[[[Login successful]]]", ToastType.Success);
+			        AddToastMessage("[[Pomyślnie zalogowano]]", "[[Udało się zalogować]]", ToastType.Success);
 			        return RedirectToAction("Index", "Home");
 				}
 		        else
 		        {
-			        AddToastMessage("[[[Login Fail]]]", "[[[Login or password is incorrect]]]", ToastType.Error);
+			        AddToastMessage("[[Nieudana próba logowania]]", "[[Hasło lub login jest niepoprawne]]", ToastType.Error);
 		        }
 			}
 

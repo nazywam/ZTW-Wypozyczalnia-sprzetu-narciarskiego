@@ -1,4 +1,5 @@
-﻿@model SkiRent.ViewModels.Order.OrderDetailViewModel
+﻿@using System.Activities.Statements
+@model SkiRent.ViewModels.Order.OrderDetailViewModel
 
 @{
 	ViewBag.Title = "title";
@@ -10,19 +11,27 @@
 	<ul class="list-group">
 		<li class="list-group-item cbg-blue text-white">
 			<div class="row">
-				<div class="col-md-7">
+				<div class="col-md-5">
 					<h2>
 						[[[Rent details]]]
 					</h2>
 				</div>
-				<div class="col-md-5  text-right">
-					<a href="@Url.Action("Edit", new {id = Model.ID})" class="btn btn-light icon-link">
-						<i class="far fa-edit mr-2"></i>[[[Edit]]]
-					</a>
-					<a href="@Url.Action("Delete", new {id = Model.ID})" class="btn btn-light">
-						<i class="far fa-trash-alt mr-2"></i>[[[Delete]]]
-					</a>
-				</div>
+                <div class="col-md-7  text-right">
+                    @if (!Model.IsReturned) {
+                    <a href="@Url.Action("Return", new {id = Model.ID})" class="btn btn-light icon-link">
+                            <i class="far fa-arrow-alt-circle-down mr-2"></i>[[[Return]]]
+                        </a>
+                    }
+                    <a href="@Url.Action("Create","Payment", new {id = Model.ID})" class="btn btn-light icon-link">
+                        <i class="far fa-money-bill-alt mr-2"></i>[[[Add payment]]]
+                    </a>
+                    <a href="@Url.Action("Edit", new {id = Model.ID})" class="btn btn-light icon-link">
+                        <i class="far fa-edit mr-2"></i>[[[Edit]]]
+                    </a>
+                    <a href="@Url.Action("Delete", new {id = Model.ID})" class="btn btn-light">
+                        <i class="far fa-trash-alt mr-2"></i>[[[Delete]]]
+                    </a>
+                </div>
 			</div>
 		</li>
         <li class="list-group-item">
@@ -66,35 +75,42 @@
             </div>
         </li>
         <li class="list-group-item">
+            <h3>[[[Items]]]</h3>
             <table class="table">
                 <thead>
-                <tr>
-                    <th scope="col">[[[Model]]]</th>
-                    <th scope="col">[[[Manufacturer]]]</th>
-                    <th scope="col">[[[Category]]]</th>
-                    <th scope="col">[[[Price]]]</th>
-                </tr>
+                    <tr>
+                        <th scope="col">[[[Barcode]]]</th>
+                        <th scope="col">[[[Model]]]</th>
+                        <th scope="col">[[[Manufacturer]]]</th>
+                        <th scope="col">[[[Category]]]</th>
+                        <th scope="col">[[[Price]]]</th>
+                    </tr>
                 </thead>
                 @foreach (var emp in Model.Rented_Items)
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(modelItem => emp.Item.ModelName)<br />
+                            @Html.DisplayFor(modelItem => emp.Item.Barcode)<br/>
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => emp.Item.Manufacturer)<br />
+                            @Html.DisplayFor(modelItem => emp.Item.ModelName)<br/>
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => emp.Item.Category.Name)<br />
+                            @Html.DisplayFor(modelItem => emp.Item.Manufacturer)<br/>
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => emp.Item.Category.PricePerDay)<br />
+                            @Html.DisplayFor(modelItem => emp.Item.Category.Name)<br/>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => emp.Item.Category.PricePerDay)<br/>
                         </td>
                     </tr>
                 }
             </table>
         </li>
         <li class="list-group-item">
+            <h3>[[[Order value]]]</h3>
+            <hr/>
             <div class="form-group row">
                 <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.DaysRented)</label>
                 <div class="col-sm-2">
@@ -104,11 +120,71 @@
                 <div class="col-sm-2">
                     @Html.TextBoxFor(model => model.PricePerDay, new {@class = "form-control ", @readonly = true})
                 </div>
-                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.PaymentValue)</label>
+                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.OrderValue)</label>
                 <div class="col-sm-2">
-                    @Html.TextBoxFor(model => model.PaymentValue, new {@class = "form-control ", @readonly = true})
+                    @Html.TextBoxFor(model => model.OrderValue, new {@class = "form-control ", @readonly = true})
                 </div>
             </div>
         </li>
-    </ul>
+        <li class="list-group-item">
+            <h3>[[[Payments]]]</h3>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">[[[Date]]]</th>
+                    <th scope="col">[[[Amount]]]</th>
+                    <th scope="col">[[[Currency]]]</th>
+                    <th scope="col">[[[Exchange Rate]]]</th>
+                    <th scope="col">[[[Amount PLN]]]</th>
+                    <th scope="col">[[[Action]]]</th>
+                </tr>
+                </thead>
+                @foreach (var emp in Model.Payments)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => emp.PaymentDate)<br/>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => emp.Amount)<br/>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => emp.Currency)<br/>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => emp.ExchangeRate)<br/>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => emp.AmountInPLN)<br/>
+                        </td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Payment", new {id = emp.ID})" class="icon-link">
+                                <i class="far fa-edit"></i>
+                            </a>
+                            <a href="@Url.Action("Delete", "Payment", new {id = emp.ID})" class="">
+                                <i class="far fa-trash-alt"></i>
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </li>
+        <li class="list-group-item">
+            <h3>[[[Settlement]]]</h3>
+            <div class="form-group row">
+                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.OrderValue)</label>
+                <div class="col-sm-2">
+                    @Html.TextBoxFor(model => model.OrderValue,"{0:0.00}", new { @class = "form-control ", @readonly = true })
+                </div>
+                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.PaymentsValue)</label>
+                <div class="col-sm-2">
+                    @Html.TextBoxFor(model => model.PaymentsValue,"{0:0.00}", new { @class = "form-control ", @readonly = true })
+                </div>
+                <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">@Html.DisplayNameFor(model => model.RestToPay)</label>
+                <div class="col-sm-2">
+                    @Html.TextBoxFor(model => model.RestToPay,"{0:0.00}", new { @class = "form-control ", @readonly = true })
+                </div>
+            </div>
+        </li>
+</ul>
 }

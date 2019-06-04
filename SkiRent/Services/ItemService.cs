@@ -98,12 +98,12 @@ namespace SkiRent.Services
 			List<SelectListItem> listItems = new List<SelectListItem>();
 			listItems.Add(new SelectListItem()
 			{
-					Text = "Tak",
+					Text = "[[[Yes]]]",
 					Value = "1"
 			});
 			listItems.Add(new SelectListItem()
 			{
-				Text = "Nie",
+				Text = "[[[No]]]",
 				Value = "0"
 			});
 

@@ -107,13 +107,12 @@
                 source: '@Url.Action("ItemsAutocomplete")'
             });
             $("#addItem").click(function () {
+                $('#loading-block').show();
                 $.get('/Order/GetItemRowPartial?barcode=' + $("#barcodeInput").val(), function (template) {
+                    $('#loading-block').hide();
                     $("#item_table").append(template);
                 });
             });
         });
     });
-
-
-
 </script>

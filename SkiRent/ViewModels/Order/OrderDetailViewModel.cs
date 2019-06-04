@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using SkiRent.Entities;
@@ -20,7 +21,16 @@ namespace SkiRent.ViewModels.Order
         [DisplayName("[[[Price per day]]]")]
         public decimal PricePerDay { get; set; }
 
-        [DisplayName("[[[Payment value]]]")]
-        public decimal PaymentValue { get; set; }
+        [DisplayFormat(DataFormatString = "{0:0.00}", ApplyFormatInEditMode = true)]
+        [DisplayName("[[[Order value]]]")]
+        public decimal OrderValue { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:0.00}", ApplyFormatInEditMode = true)]
+        [DisplayName("[[[Payments value]]]")]
+        public decimal PaymentsValue { get; set; }
+
+        [DisplayFormat(DataFormatString = "{0:0.00000000000000000}", ApplyFormatInEditMode = true)]
+        [DisplayName("[[[Rest to pay]]]")]
+        public decimal RestToPay { get; set; }
     }
 }

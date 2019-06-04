@@ -1,21 +1,33 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2019-05-14 14:39+02:00\n"
-"PO-Revision-Date: 2019-05-14 14:40+0200\n"
+"POT-Creation-Date: 2019-05-28 18:11+02:00\n"
+"PO-Revision-Date: 2019-05-28 18:11+02:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: pl\n"
+"X-Generator: i18n.POTGenerator\n"
 
 #: Views\Employee\Index.cshtml:17
 msgid "(filter)"
 msgstr "(filtr)"
 
+#: Views\Category\Index.cshtml:17
+msgid "(filtr)"
+msgstr "(filtr)"
+
+#: Views\Customer\Details.cshtml:20
+msgid "[Edit"
+msgstr "Edytuj"
+
+#: Controllers\LoginController.cs:26
+#: Controllers\LoginController.cs:30
+msgid "Access denied."
+msgstr "Dostęp zabroniony."
+
 #: Views\Order\Create.cshtml:77
+#: Views\Order\Details.cshtml:139
+#: Views\Payment\_ExchangeTable.cshtml:17
 msgid "Action"
 msgstr "Akcje"
 
@@ -23,8 +35,11 @@ msgstr "Akcje"
 msgid "actions"
 msgstr "akcje"
 
-#: Views\Customer\Index.cshtml:78 Views\Employee\Index.cshtml:77
-#: Views\Item\Index.cshtml:85 Views\Order\Index.cshtml:78
+#: Views\Customer\Index.cshtml:78
+#: Views\Employee\Index.cshtml:77
+#: Views\Item\Index.cshtml:85
+#: Views\Order\Index.cshtml:78
+#: Views\Shared\_OrderTable.cshtml:10
 msgid "Actions"
 msgstr "Akcje"
 
@@ -36,26 +51,40 @@ msgstr "Dodaj"
 msgid "Add by barcode"
 msgstr "Dodaj (kod kreskowy)"
 
-#: Views\Category\Create.cshtml:21 Views\Category\Index.cshtml:28
+#: Views\Category\Create.cshtml:21
+#: Views\Category\Index.cshtml:28
 msgid "Add category"
 msgstr "Dodaj kategorię"
 
-#: Views\Customer\Create.cshtml:21 Views\Customer\Index.cshtml:28
+#: Views\Customer\Create.cshtml:21
+#: Views\Customer\Index.cshtml:28
 msgid "Add client"
 msgstr "Dodaj klienta"
 
-#: Views\Employee\Create.cshtml:20 Views\Employee\Index.cshtml:28
+#: Views\Employee\Create.cshtml:20
+#: Views\Employee\Index.cshtml:28
 msgid "Add employee"
 msgstr "Dodaj pracownika"
 
-#: Views\Item\Create.cshtml:22 Views\Item\Index.cshtml:28
+#: Views\Item\Create.cshtml:22
+#: Views\Item\Index.cshtml:28
 msgid "Add item"
-msgstr "Dodaj "
+msgstr "Dodaj sprzęt"
 
-#: Views\Order\Create.cshtml:25 Views\Order\Index.cshtml:28
+#: Views\Order\Create.cshtml:25
+#: Views\Order\Index.cshtml:28
 #: Views\Shared\_Layout.cshtml:45
 msgid "Add order"
 msgstr "Dodaj wypożyczenie"
+
+#: Views\Order\Details.cshtml:26
+#: Views\Payment\Create.cshtml:21
+msgid "Add payment"
+msgstr "Dodaj płatność"
+
+#: Controllers\BaseController.cs:26
+msgid "Added successfully."
+msgstr "Pomyślnie dodano."
 
 #: ViewModels\Employee\EmployeeBasicViewModel.cs:25
 msgid "Address"
@@ -69,33 +98,49 @@ msgstr "Administrator"
 msgid "Adress"
 msgstr "Adres"
 
+#: Views\Order\Details.cshtml:135
+msgid "Amount"
+msgstr "Kwota"
+
+#: Views\Order\Details.cshtml:138
+msgid "Amount PLN"
+msgstr "Kwota w złotówkach"
+
+#: Views\Category\Delete.cshtml:16
+msgid "Are you sure you want to delete category"
+msgstr "Czy na pewno chcesz usunąć kategorię"
+
 #: Views\Customer\Delete.cshtml:16
-msgid "Are you sure you want to delete client:"
-msgstr "Czy na pewno usunąć klienta:"
+msgid "Are you sure you want to delete client"
+msgstr "Czy na pewno usunąć klienta"
 
 #: Views\Employee\Delete.cshtml:16
-msgid "Are you sure you want to delete employee:"
-msgstr "Czy na pewno usunąć pracownika:"
+msgid "Are you sure you want to delete employee"
+msgstr "Czy na pewno usunąć pracownika"
 
 #: Views\Item\Delete.cshtml:16
 msgid "Are you sure you want to delete item"
-msgstr "Czy na pewno usunąć sprzęt:"
+msgstr "Czy na pewno usunąć sprzęt"
 
-#: Views\Order\Delete.cshtml:16
-msgid "Are you sure you want to delete order no. "
-msgstr "Czy na pewno usunąć zamówienie numer"
+#: Views\Payment\Delete.cshtml:17
+msgid "Are you sure you want to delete payment"
+msgstr "Czy na pewno chcesz usunąć płatność"
 
-#: ViewModels\Item\ItemBasicViewModel.cs:46 Views\Item\Index.cshtml:84
+#: Views\Order\Return.cshtml:16
+msgid "Are you sure you want to return order"
+msgstr "Czy na pewno chcesz usunąć wypożyczenie"
+
+#: Entities\FilterModels\ItemFilterModel.cs:19
+#: ViewModels\Item\ItemBasicViewModel.cs:46
+#: Views\Item\Index.cshtml:84
 msgid "Available"
 msgstr "Dostępny"
 
-#: ViewModels\Item\ItemBasicViewModel.cs:42 Views\Order\Create.cshtml:74
+#: ViewModels\Item\ItemBasicViewModel.cs:42
+#: Views\Order\Create.cshtml:74
+#: Views\Order\Details.cshtml:82
 msgid "Barcode"
 msgstr "Kod kreskowy"
-
-#: Controllers\BaseController.cs:34
-msgid "Błąd!"
-msgstr "Error!"
 
 #: Views\Shared\_FormCancelDelete.cshtml:1
 #: Views\Shared\_FormCancelSave.cshtml:2
@@ -106,12 +151,15 @@ msgstr "Anuluj"
 msgid "Categories"
 msgstr "Kategorie"
 
-#: ViewModels\Item\ItemBasicViewModel.cs:17 Views\Item\Index.cshtml:83
-#: Views\Order\Details.cshtml:74
+#: Entities\FilterModels\ItemFilterModel.cs:22
+#: ViewModels\Item\ItemBasicViewModel.cs:17
+#: Views\Item\Index.cshtml:83
+#: Views\Order\Details.cshtml:85
 msgid "Category"
 msgstr "Kategoria"
 
-#: Controllers\CategoryController.cs:28 Views\Category\Index.cshtml:13
+#: Controllers\CategoryController.cs:28
+#: Views\Category\Index.cshtml:13
 msgid "Category management"
 msgstr "Zarządzanie kategoriami"
 
@@ -123,16 +171,32 @@ msgstr "Zarządzanie klientami"
 msgid "Comment"
 msgstr "Komentarz"
 
-#: Controllers\CategoryController.cs:55 Controllers\CustomerController.cs:57
-#: Controllers\EmployeeController.cs:57 Controllers\ItemController.cs:58
+#: Controllers\CategoryController.cs:55
+#: Controllers\CustomerController.cs:57
+#: Controllers\EmployeeController.cs:57
+#: Controllers\ItemController.cs:58
 #: Controllers\OrderController.cs:61
+#: Controllers\PaymentController.cs:34
 msgid "Create"
 msgstr "Stwórz"
 
+#: Views\Order\Details.cshtml:136
+msgid "Currency"
+msgstr "Waluta"
+
+#: Views\Payment\_ExchangeTable.cshtml:14
+msgid "Currency code"
+msgstr "Kod waluty"
+
 #: Entities\FilterModels\OrderFilterModel.cs:20
-#: ViewModels\Order\OrderBasicViewModel.cs:23 Views\Order\Details.cshtml:54
+#: ViewModels\Order\OrderBasicViewModel.cs:23
+#: Views\Order\Details.cshtml:63
 msgid "Customer"
 msgstr "Klient"
+
+#: Views\Customer\Details.cshtml:15
+msgid "Customer data"
+msgstr "Dane klienta"
 
 #: Controllers\CustomerController.cs:30
 msgid "Customer management"
@@ -142,35 +206,46 @@ msgstr "Zarządzanie klientami"
 msgid "Customers"
 msgstr "Klienci"
 
-#: Views\Category\Delete.cshtml:16
-msgid "Czy jesteś pewny, że chcesz usunąć kategorię:"
-msgstr "Czy na pewno usunąć kategorię:"
-
 #: Views\Category\Index.cshtml:69
 msgid "Daily price"
 msgstr "Cena za dzień"
 
-#: ViewModels\Order\OrderBasicViewModel.cs:27 Views\Order\Index.cshtml:75
+#: Views\Order\Details.cshtml:134
+msgid "Date"
+msgstr "Data"
+
+#: ViewModels\Order\OrderBasicViewModel.cs:27
+#: Views\Order\Index.cshtml:75
+#: Views\Shared\_OrderTable.cshtml:7
 msgid "Date rented"
 msgstr "Data wypożyczenia"
 
-#: ViewModels\Order\OrderBasicViewModel.cs:31 Views\Order\Index.cshtml:76
+#: ViewModels\Order\OrderBasicViewModel.cs:31
+#: Views\Order\Index.cshtml:76
+#: Views\Shared\_OrderTable.cshtml:8
 msgid "Date return"
 msgstr "Data zwrotu"
 
-#: ViewModels\Order\OrderDetailViewModel.cs:18
+#: ViewModels\Order\OrderDetailViewModel.cs:19
 msgid "Days Rented"
 msgstr "Dni wypożyczenia"
 
-#: Controllers\CategoryController.cs:114 Controllers\CustomerController.cs:116
-#: Controllers\EmployeeController.cs:109 Controllers\ItemController.cs:116
-#: Controllers\OrderController.cs:121 Views\Employee\Details.cshtml:22
-#: Views\Item\Details.cshtml:22 Views\Order\Details.cshtml:23
+#: Controllers\CategoryController.cs:114
+#: Controllers\CustomerController.cs:116
+#: Controllers\EmployeeController.cs:109
+#: Controllers\ItemController.cs:116
+#: Controllers\OrderController.cs:121
+#: Controllers\PaymentController.cs:99
+#: Views\Customer\Details.cshtml:23
+#: Views\Employee\Details.cshtml:22
+#: Views\Item\Details.cshtml:22
+#: Views\Order\Details.cshtml:32
 #: Views\Shared\_FormCancelDelete.cshtml:2
 msgid "Delete"
 msgstr "Usuń"
 
-#: Views\Category\Delete.cshtml:12 Views\Customer\Delete.cshtml:12
+#: Views\Category\Delete.cshtml:12
+#: Views\Customer\Delete.cshtml:12
 msgid "Delete category"
 msgstr "Usuń kategorię"
 
@@ -182,12 +257,23 @@ msgstr "Usuń pracownika"
 msgid "Delete item"
 msgstr "Usuń sprzęt"
 
-#: Controllers\CategoryController.cs:49 Controllers\CustomerController.cs:51
-#: Controllers\EmployeeController.cs:51 Controllers\ItemController.cs:52
+#: Views\Payment\Delete.cshtml:13
+msgid "Delete payment"
+msgstr "Usuń płatność"
+
+#: Controllers\BaseController.cs:30
+msgid "Deleted successfully."
+msgstr "Pomyślnie usunięto."
+
+#: Controllers\CategoryController.cs:49
+#: Controllers\CustomerController.cs:51
+#: Controllers\EmployeeController.cs:51
+#: Controllers\ItemController.cs:52
 #: Controllers\OrderController.cs:55
 msgid "Details"
 msgstr "Szczegóły"
 
+#: Entities\FilterModels\CustomerFilterModel.cs:21
 #: Views\Customer\Index.cshtml:77
 msgid "Document ID"
 msgstr "Numer dokumentu"
@@ -196,10 +282,15 @@ msgstr "Numer dokumentu"
 msgid "Document number"
 msgstr "Numer dokumentu"
 
-#: Controllers\CategoryController.cs:85 Controllers\CustomerController.cs:87
-#: Controllers\EmployeeController.cs:83 Controllers\ItemController.cs:87
-#: Controllers\OrderController.cs:92 Views\Employee\Details.cshtml:19
-#: Views\Item\Details.cshtml:19 Views\Order\Details.cshtml:20
+#: Controllers\CategoryController.cs:85
+#: Controllers\CustomerController.cs:87
+#: Controllers\EmployeeController.cs:83
+#: Controllers\ItemController.cs:87
+#: Controllers\OrderController.cs:92
+#: Controllers\PaymentController.cs:70
+#: Views\Employee\Details.cshtml:19
+#: Views\Item\Details.cshtml:19
+#: Views\Order\Details.cshtml:29
 msgid "Edit"
 msgstr "Edytuj"
 
@@ -221,13 +312,23 @@ msgstr "Edytuj sprzęt"
 
 #: Views\Order\Create.cshtml:21
 msgid "Edit order"
-msgstr "Edytuj zamówienie\v"
+msgstr "Edytuj zamówienie"
 
-#: ViewModels\Order\OrderBasicViewModel.cs:20 Views\Order\Details.cshtml:47
+#: Views\Payment\Create.cshtml:17
+msgid "Edit payment"
+msgstr "Edytuj płatność"
+
+#: Controllers\BaseController.cs:22
+msgid "Edited successfully."
+msgstr "Zmodyfikowano pomyślnie."
+
+#: ViewModels\Order\OrderBasicViewModel.cs:20
+#: Views\Order\Details.cshtml:56
 msgid "Employee"
 msgstr "Pracownik"
 
-#: Controllers\EmployeeController.cs:28 Views\Employee\Index.cshtml:13
+#: Controllers\EmployeeController.cs:28
+#: Views\Employee\Index.cshtml:13
 #: Views\Shared\_Layout.cshtml:37
 msgid "Employee management"
 msgstr "Zarządzanie pracownikami"
@@ -236,114 +337,199 @@ msgstr "Zarządzanie pracownikami"
 msgid "Employeee information"
 msgstr "Dane pracownika"
 
+#: Controllers\BaseController.cs:34
+msgid "Error!"
+msgstr "Błąd!"
+
+#: Views\Payment\_ExchangeTable.cshtml:8
+msgid "Exchange"
+msgstr "Wymiana waluty"
+
+#: Views\Payment\_ExchangeTable.cshtml:3
+msgid "Exchange PLN"
+msgstr "Waluta PLN"
+
+#: Views\Payment\_ExchangeTable.cshtml:15
+msgid "Exchange rate"
+msgstr "Kurs wymiany"
+
+#: Views\Order\Details.cshtml:137
+msgid "Exchange Rate"
+msgstr "Kurs wymiany"
+
+#: Views\Payment\_ExchangeTable.cshtml:16
+msgid "Exchange value"
+msgstr "Wartość wymiany"
+
 #: Views\Order\Index.cshtml:17
 msgid "filter"
 msgstr "filter"
 
-#: Views\Item\Index.cshtml:17 Views\Item\Index.cshtml:71
+#: Views\Item\Index.cshtml:17
+#: Views\Item\Index.cshtml:71
 #: Views\Order\Index.cshtml:64
 msgid "Filter"
 msgstr "Filter"
 
-#: Controllers\HomeController.cs:22
+#: Views\Home\Index.cshtml:22
+msgid "Find"
+msgstr "Znajdź"
+
+#: Views\Home\Index.cshtml:16
+msgid "Find item by barcode:"
+msgstr "Znajdź przedmiot za pomocą kodu."
+
+#: Views\Payment\Create.cshtml:55
+msgid "Get exchange table"
+msgstr "Pokaż tablicę walut"
+
+#: Controllers\HomeController.cs:30
 msgid "Home"
 msgstr "Strona główna"
 
-#: Views\Category\Details.cshtml:15 Views\Item\Details.cshtml:14
+#: Controllers\PaymentController.cs:28
+msgid "Index"
+msgstr "Indeks"
+
+#: Views\Category\Details.cshtml:15
+#: Views\Item\Details.cshtml:14
 msgid "Item information"
 msgstr "Dane sprzętu"
 
-#: Controllers\ItemController.cs:31 Views\Item\Index.cshtml:13
+#: Controllers\ItemController.cs:31
+#: Views\Item\Index.cshtml:13
 msgid "Item management"
 msgstr "Zarządzanie sprzętem"
 
-#: Views\Shared\_Layout.cshtml:61 Views\Shared\_Layout.cshtml:64
+#: Views\Order\Details.cshtml:78
+#: Views\Shared\_Layout.cshtml:61
+#: Views\Shared\_Layout.cshtml:64
 msgid "Items"
 msgstr "Sprzęt"
 
-#: Views\Login\Index.cshtml:10 Views\Login\Index.cshtml:20
+#: Views\Login\Index.cshtml:10
+#: Views\Login\Index.cshtml:20
 msgid "Log in"
 msgstr "Zaloguj się"
 
+#: Controllers\LoginController.cs:48
+msgid "Logged in successfully"
+msgstr "Zalogowano pomyślnie"
+
+#: Entities\FilterModels\EmployeeFilterModel.cs:19
 #: ViewModels\Employee\EmployeeBasicViewModel.cs:35
-#: ViewModels\Login\LoginViewModel.cs:13 Views\Employee\Index.cshtml:76
+#: ViewModels\Login\LoginViewModel.cs:13
+#: Views\Employee\Index.cshtml:76
 #: Views\Shared\_Layout.cshtml:93
 msgid "Login"
 msgstr "Zaloguj się"
+
+#: Controllers\LoginController.cs:53
+msgid "Login Fail"
+msgstr "Błąd przy logowaniu"
 
 #: ViewModels\Login\LoginViewModel.cs:12
 msgid "Login is required"
 msgstr "Zalogowanie się jest wymagane"
 
+#: Controllers\LoginController.cs:53
+msgid "Login or password is incorrect"
+msgstr "Użytkownik lub hasło są niepoprawne"
+
+#: Controllers\LoginController.cs:48
+msgid "Login successful"
+msgstr "Logowanie pomyślne"
+
 #: Views\Shared\_Layout.cshtml:85
 msgid "Logout"
 msgstr "Wyloguj się"
 
-#: ViewModels\Item\ItemBasicViewModel.cs:22 Views\Item\Index.cshtml:82
-#: Views\Order\Details.cshtml:73
+#: Entities\FilterModels\ItemFilterModel.cs:13
+#: ViewModels\Item\ItemBasicViewModel.cs:22
+#: Views\Item\Index.cshtml:82
+#: Views\Order\Details.cshtml:84
 msgid "Manufacturer"
 msgstr "Producent"
 
-#: ViewModels\Item\ItemBasicViewModel.cs:27 Views\Item\Index.cshtml:81
-#: Views\Order\Create.cshtml:75 Views\Order\Details.cshtml:72
+#: Entities\FilterModels\ItemFilterModel.cs:16
+#: ViewModels\Item\ItemBasicViewModel.cs:27
+#: Views\Item\Index.cshtml:81
+#: Views\Order\Create.cshtml:75
+#: Views\Order\Details.cshtml:83
 msgid "Model"
 msgstr "Model"
 
+#: Entities\FilterModels\CategoryFilterModel.cs:14
+#: Entities\FilterModels\CustomerFilterModel.cs:13
+#: Entities\FilterModels\EmployeeFilterModel.cs:13
 #: ViewModels\Category\CategoryBasicViewModel.cs:18
 #: ViewModels\Customer\CustomerBasicViewModel.cs:18
 #: ViewModels\Employee\EmployeeBasicViewModel.cs:17
-#: Views\Category\Index.cshtml:68 Views\Customer\Index.cshtml:75
+#: Views\Category\Index.cshtml:68
+#: Views\Customer\Index.cshtml:75
 #: Views\Employee\Index.cshtml:74
 msgid "Name"
 msgstr "Imię"
+
+#: Services\ItemService.cs:106
+msgid "No"
+msgstr "Nie"
 
 #: Controllers\OrderController.cs:34
 msgid "Order management"
 msgstr "Zarządzanie zamówieniami"
 
 #: Entities\FilterModels\OrderFilterModel.cs:12
-#: ViewModels\Order\OrderBasicViewModel.cs:17 Views\Order\Index.cshtml:74
+#: ViewModels\Order\OrderBasicViewModel.cs:17
+#: Views\Order\Index.cshtml:74
+#: Views\Shared\_OrderTable.cshtml:6
 msgid "Order number"
 msgstr "Nr zamówienia"
 
-#: Views\Order\Index.cshtml:13 Views\Shared\_Layout.cshtml:50
+#: ViewModels\Order\OrderDetailViewModel.cs:25
+#: Views\Order\Details.cshtml:112
+msgid "Order value"
+msgstr "Wartość wypożyczenia"
+
+#: Views\Order\Index.cshtml:13
+#: Views\Shared\_Layout.cshtml:50
 msgid "Orders"
 msgstr "Zamówienia"
+
+#: Views\Customer\Details.cshtml:59
+#: Views\Item\Details.cshtml:58
+msgid "Orders history"
+msgstr "Historia wypożyczeń"
 
 #: ViewModels\Category\CategoryBasicViewModel.cs:24
 msgid "Parent category"
 msgstr "Kategoria nadrzędna"
 
+#: ViewModels\Employee\EmployeeDetailViewModel.cs:19
 #: ViewModels\Login\LoginViewModel.cs:16
 msgid "Password"
 msgstr "Hasło"
 
+#: ViewModels\Employee\EmployeeDetailViewModel.cs:17
 #: ViewModels\Login\LoginViewModel.cs:15
 msgid "Password is required"
 msgstr "Hasło jest wymagane"
 
-#: ViewModels\Order\OrderDetailViewModel.cs:23
-msgid "Payment value"
-msgstr "Wartość płatności"
+#: Views\Order\Details.cshtml:130
+msgid "Payments"
+msgstr "Płatności"
 
-#: Controllers\BaseController.cs:26
-msgid "Pomyślnie dodano."
-msgstr "Added successfully"
+#: ViewModels\Order\OrderDetailViewModel.cs:29
+msgid "Payments value"
+msgstr "Suma płatności"
 
-#: Controllers\BaseController.cs:30
-msgid "Pomyślnie usunięto."
-msgstr "Deleted successfully."
-
-#: Controllers\BaseController.cs:22
-msgid "Pomyślnie zeedytowano."
-msgstr "Edited successfully."
-
-#: Views\Order\Details.cshtml:75
+#: Views\Order\Details.cshtml:86
 msgid "Price"
 msgstr "Cena"
 
+#: Entities\FilterModels\CategoryFilterModel.cs:18
 #: ViewModels\Category\CategoryBasicViewModel.cs:21
-#: ViewModels\Order\OrderDetailViewModel.cs:20
+#: ViewModels\Order\OrderDetailViewModel.cs:21
 msgid "Price per day"
 msgstr "Cena za dzień"
 
@@ -355,14 +541,33 @@ msgstr "Producent"
 msgid "Purchase date"
 msgstr "Data wypożyczenia"
 
-#: Views\Order\Details.cshtml:15
+#: Views\Order\Details.cshtml:16
 msgid "Rent details"
 msgstr "Szczegóły"
 
+#: ViewModels\Order\OrderDetailViewModel.cs:33
+msgid "Rest to pay"
+msgstr "Pozostało do zapłaty"
+
+#: Controllers\OrderController.cs:143
+#: Views\Order\Details.cshtml:22
+msgid "Return"
+msgstr "Zwróć"
+
+#: Views\Order\Return.cshtml:12
+msgid "Return order"
+msgstr "Zwróć wypożyczenie"
+
 #: Entities\FilterModels\OrderFilterModel.cs:16
-#: ViewModels\Order\OrderBasicViewModel.cs:42 Views\Order\Index.cshtml:77
+#: ViewModels\Order\OrderBasicViewModel.cs:42
+#: Views\Order\Index.cshtml:77
+#: Views\Shared\_OrderTable.cshtml:9
 msgid "Returned"
 msgstr "Zwrócone"
+
+#: Controllers\OrderController.cs:155
+msgid "Returned successfully."
+msgstr "Zwrócono pomyślnie."
 
 #: ViewModels\Employee\EmployeeBasicViewModel.cs:30
 msgid "Salary"
@@ -372,12 +577,23 @@ msgstr "Pensja"
 msgid "Save"
 msgstr "Zapisz"
 
-#: Views\Order\Index.cshtml:47 Views\Order\Index.cshtml:54
+#: Views\Order\Index.cshtml:47
+#: Views\Order\Index.cshtml:54
 msgid "Select"
 msgstr "Wybierz"
 
-#: Views\Category\Index.cshtml:25 Views\Customer\Index.cshtml:25
-#: Views\Employee\Index.cshtml:25 Views\Item\Index.cshtml:25
+#: Views\Payment\_ExchangeTable.cshtml:27
+msgid "Set"
+msgstr "Ustaw"
+
+#: Views\Order\Details.cshtml:173
+msgid "Settlement"
+msgstr "Rozliczenie"
+
+#: Views\Category\Index.cshtml:25
+#: Views\Customer\Index.cshtml:25
+#: Views\Employee\Index.cshtml:25
+#: Views\Item\Index.cshtml:25
 #: Views\Order\Index.cshtml:25
 msgid "Show filters"
 msgstr "Pokaż filtry"
@@ -386,14 +602,19 @@ msgstr "Pokaż filtry"
 msgid "Size"
 msgstr "Rozmiar"
 
-#: Controllers\BaseController.cs:22 Controllers\BaseController.cs:26
+#: Controllers\BaseController.cs:22
+#: Controllers\BaseController.cs:26
 #: Controllers\BaseController.cs:30
-msgid "Sukces!"
-msgstr "Success!"
+#: Controllers\OrderController.cs:155
+msgid "Success!"
+msgstr "Sukces!"
 
+#: Entities\FilterModels\CustomerFilterModel.cs:17
+#: Entities\FilterModels\EmployeeFilterModel.cs:16
 #: ViewModels\Customer\CustomerBasicViewModel.cs:23
 #: ViewModels\Employee\EmployeeBasicViewModel.cs:21
-#: Views\Customer\Index.cshtml:76 Views\Employee\Index.cshtml:75
+#: Views\Customer\Index.cshtml:76
+#: Views\Employee\Index.cshtml:75
 msgid "Surname"
 msgstr "Nazwisko"
 
@@ -405,7 +626,7 @@ msgstr "Telefon"
 msgid "Telephone number"
 msgstr "Numer telefonu"
 
-#: ViewModels\Order\OrderDetailViewModel.cs:16
+#: ViewModels\Order\OrderDetailViewModel.cs:17
 msgid "Time rented"
 msgstr "Czas wypożyczenia"
 
@@ -417,8 +638,54 @@ msgstr "Usuń filtr"
 msgid "Welcome to SkiRent!"
 msgstr "Witaj w aplikacji SkiRent!"
 
-#~ msgid "(filtr)"
-#~ msgstr "(filtr)"
+#: Services\ItemService.cs:101
+msgid "Yes"
+msgstr "Tak"
+
+#: Controllers\LoginController.cs:26
+msgid "You don't have required permissions."
+msgstr "Nie posiadasz wystarczających uprawnień."
+
+#: Controllers\LoginController.cs:30
+msgid "You need to log in first."
+msgstr "Musisz się zalogować."
+
+#~ msgid "Are you sure you want to delete client:"
+#~ msgstr "Czy na pewno usunąć klienta:"
+
+#~ msgid "Are you sure you want to delete employee:"
+#~ msgstr "Czy na pewno usunąć pracownika:"
+
+#~ msgid "Are you sure you want to delete order"
+#~ msgstr "Czy na pewno usunąć zamówienie"
+
+#~ msgid "Are you sure you want to delete order no. "
+#~ msgstr "Czy na pewno usunąć zamówienie numer"
+
+#~ msgid "Are you sure you want to delete this category"
+#~ msgstr "Czy na pewno usunąć kategorię"
+
+#~ msgid "Błąd!"
+#~ msgstr "Error!"
+
+#~ msgid "Czy jesteś pewny, że chcesz usunąć kategorię:"
+#~ msgstr "Czy na pewno usunąć kategorię:"
+
+#~ msgid "Payment value"
+#~ msgstr "Wartość płatności"
+
+#~ msgid "Pomyślnie dodano."
+#~ msgstr "Added successfully"
+
+#~ msgid "Pomyślnie usunięto."
+#~ msgstr "Deleted successfully."
+
+#~ msgid "Pomyślnie zeedytowano."
+#~ msgstr "Edited successfully."
+
+#~ msgid "Sukces!"
+#~ msgstr "Success!"
 
 #~ msgid "Zarządzanie pracownikami"
 #~ msgstr "Zarządzanie pracownikami"
+

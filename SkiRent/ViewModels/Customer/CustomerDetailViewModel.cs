@@ -9,6 +9,6 @@ namespace SkiRent.ViewModels.Customer
 {
 	public class CustomerDetailViewModel : CustomerBasicViewModel
 	{
-		public virtual ICollection<OrderBasicViewModel> Orders { get; set; }
+		public virtual List<OrderBasicViewModel> Orders { get; set; }
 	}
 }

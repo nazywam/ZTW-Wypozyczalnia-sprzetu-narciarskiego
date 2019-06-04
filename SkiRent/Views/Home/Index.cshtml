@@ -1,10 +1,38 @@
 @model SkiRent.ViewModels.IndexViewModel
 
 @{
-	ViewBag.Title = "Home Page";
+    ViewBag.Title = "Home Page";
 }
 
 <div class="jumbotron">
-	<h1>SkiRent</h1>
-	<p class="lead">[[[Welcome to SkiRent!]]]</p>
+    <h1>SkiRent</h1>
+    <p class="lead">[[[Welcome to SkiRent!]]]</p>
+
 </div>
+<div class="jumbotron">
+    @using (Html.BeginForm())
+    {
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-3 col-form-label">[[[Find item by barcode:]]]</label>
+            <div class="col-sm-5">
+                @Html.TextBoxFor(model => model.S_Barcode, new { @class = "form-control barcodeInput" + @Html.FieldHasError(model => model.S_Barcode) })
+                @Html.ValidationMessageFor(model => model.S_Barcode, "", new { @class = "invalid-feedback" })
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-primary" type="submit"><i class="fas fa-search mr-2"></i>[[[Find]]]</button>
+            </div>
+        </div>
+    }
+</div>
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(function () {
+            $(".barcodeInput").autocomplete({
+                source: '@Url.Action("ItemsAutocomplete", "Order")'
+            });
+        });
+    });
+</script>

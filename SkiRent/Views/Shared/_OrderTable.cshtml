@@ -1,0 +1,36 @@
+﻿@model IList<SkiRent.ViewModels.Order.OrderBasicViewModel>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">[[[Order number]]]</th>
+        <th scope="col">[[[Date rented]]]</th>
+        <th scope="col">[[[Date return]]]</th>
+        <th scope="col">[[[Returned]]]</th>
+        <th scope="col">[[[Actions]]]</th>
+    </tr>
+    </thead>
+    @foreach (var emp in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => emp.ID)<br />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => emp.Date_Rented)<br/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => emp.Date_Return)<br/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => emp.IsReturned)<br/>
+            </td>
+            <td class="">
+                <a href="@Url.Action("Details","Order", new {id = emp.ID})" class="icon-link">
+                    <i class="fas fa-info"></i>
+                </a>
+            </td>
+        </tr>
+    }
+</table>
+

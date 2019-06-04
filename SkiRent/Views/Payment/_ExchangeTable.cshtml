@@ -1,0 +1,32 @@
+﻿@model IDictionary<string, string>
+<div class="form-group row">
+    <label for="staticEmail" class="col-sm-2 col-form-label font-weight-bold">[[[Exchange PLN]]]:</label>
+    <div class="col-sm-4">
+        <input type="text" class="form-control" id="exchangePLNVal"/>
+    </div>
+    <div class="col-sm-2">
+        <a href="#" class="btn btn-primary exchangeButton" id="exchangePLN">[[[Exchange]]]</a>
+    </div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">[[[Currency code]]]</th>
+            <th scope="col">[[[Exchange rate]]]</th>
+            <th scope="col">[[[Exchange value]]]</th>
+            <th scope="col">[[[Action]]]</th>
+        </tr>
+    </thead>
+    @foreach (var kvp in Model)
+    {
+<tr>
+    <td class="currencyCode">@kvp.Key</td>
+    <td class="currencyRate">@kvp.Value</td>
+    <td> <input type="text" class="exchangeValue form-control" readonly="true"/></td>
+    <td>
+        <a href="#" class="setExchangeRates">[[[Set]]]</a>
+    </td>
+</tr>
+    }
+</table>
+

@@ -1,4 +1,4 @@
-﻿@model SkiRent.ViewModels.Employee.EmployeeDetailViewModel
+﻿@model SkiRent.ViewModels.Payment.PaymentBasicViewModel
 
 @{
 	ViewBag.Title = "title";
@@ -6,14 +6,15 @@
 
 @using (Html.BeginForm())
 {
+    @Html.HiddenFor(model => model.OrderID)
 	<ul class="list-group">
 		<li class="list-group-item cbg-blue text-white">
 			<div class="row">
-				<div class="col-md-9"><h2>[[[Delete employee]]]</h2></div>
+				<div class="col-md-9"><h2>[[[Delete payment]]]</h2></div>
 			</div>
 		</li>
         <li class="list-group-item">
-            <p class="mb-0"> [[[Are you sure you want to delete employee]]]: <span class="font-weight-bold">@Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</span>?</p>
+            <p class="mb-0"> [[[Are you sure you want to delete payment]]]: <span class="font-weight-bold">@Html.DisplayFor(model => model.ID)</span>?</p>
         </li>
 		<li class="list-group-item bg-light text-white">
 			<div class="row">
