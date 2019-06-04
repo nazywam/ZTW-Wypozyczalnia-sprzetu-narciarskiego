@@ -24,6 +24,7 @@
     <add key="MvcSiteMapProvider_ScanAssembliesForSiteMapNodes" value="true" />
   </appSettings>
   <system.web>
+    <customErrors mode="Off"></customErrors>
     <compilation debug="true" targetFramework="4.6.1" />
     <httpRuntime targetFramework="4.6.1" />
     <authentication mode="Forms">
@@ -94,9 +95,6 @@
   <entityFramework>
     <defaultConnectionFactory type="System.Data.Entity.Infrastructure.LocalDbConnectionFactory, EntityFramework">
     </defaultConnectionFactory>
-    <providers>
-      <provider invariantName="MySql.Data.MySqlClient" type="MySql.Data.MySqlClient.MySqlProviderServices, MySql.Data.Entity.EF6" />
-    </providers>
   </entityFramework>
   <connectionStrings>
     <add name="db_debug" connectionString="server=s8.zenbox.pl;user id=videomixhd_narty;password=Wypozyczalnia;database=videomixhd_narty" providerName="MySql.Data.MySqlClient" />
